@@ -1,24 +1,54 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/landing/Navbar";
+import { Hero } from "@/components/landing/Hero";
+import { Benefits } from "@/components/landing/Benefits";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { CompanyTypes } from "@/components/landing/CompanyTypes";
+import { Simulator } from "@/components/landing/Simulator";
+import { Testimonials } from "@/components/landing/Testimonials";
+import { FAQ } from "@/components/landing/FAQ";
+import { FinalCTA } from "@/components/landing/FinalCTA";
+import { Footer } from "@/components/landing/Footer";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Vidotti Consultoria — Abertura de CNPJ com assessoria premium" },
+      {
+        name: "description",
+        content:
+          "Abra seu CNPJ em 48 horas com a Vidotti Consultoria: planejamento tributário, contabilidade digital e consultor dedicado para empresas que exigem excelência.",
+      },
+      { property: "og:title", content: "Vidotti Consultoria — Abertura de CNPJ premium" },
+      {
+        property: "og:description",
+        content:
+          "Consultoria empresarial premium para abertura de CNPJ, planejamento tributário e contabilidade digital.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const ref = useScrollReveal<HTMLDivElement>();
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div ref={ref} className="bg-background text-navy overflow-x-hidden">
+      <Navbar />
+      <main>
+        <Hero />
+        <Benefits />
+        <HowItWorks />
+        <CompanyTypes />
+        <Simulator />
+        <Testimonials />
+        <FAQ />
+        <FinalCTA />
+      </main>
+      <Footer />
     </div>
   );
 }
