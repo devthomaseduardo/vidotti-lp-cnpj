@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Menu, MessageCircle, X } from "lucide-react";
-import logo from "@/assets/vidotti-logo.webp.asset.json";
+import logoNavy from "@/assets/vidotti-logo-navy.png";
 
 const links = [
   { href: "#top", label: "Início" },
@@ -34,7 +34,7 @@ export function Navbar() {
       >
         <a href="#top" className="flex items-center">
           <img
-            src={logo.url}
+            src={logoNavy}
             alt="Vidotti Consultoria"
             className={`w-auto transition-all duration-300 ${scrolled ? "h-7" : "h-9"}`}
           />
