@@ -126,6 +126,14 @@
   clip-path: inset(0 0 0 0);
 }
 
+.reveal.reveal-visible,
+.reveal-mask.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  clip-path: inset(0 0 0 0);
+}
+
+
 @utility photo-fade {
   mask-image: radial-gradient(115% 105% at 62% 42%, #000 55%, transparent 88%);
   -webkit-mask-image: radial-gradient(115% 105% at 62% 42%, #000 55%, transparent 88%);
