@@ -85,14 +85,15 @@ export function Hero() {
         <div
           data-reveal="mask"
           data-reveal-delay="120"
-          className="lg:col-span-6 xl:col-span-7 relative"
+          className="lg:col-span-6 relative"
         >
           <img
             src={hero.url}
             alt="Empresário atendido pela Vidotti Consultoria"
-            className="w-full lg:w-[120%] lg:max-w-none lg:-mr-[10%] photo-fade select-none transition-transform duration-[900ms] ease-out hover:scale-[1.02]"
+            className="w-full lg:w-[124%] lg:max-w-none lg:-mr-[14%] lg:-mt-8 photo-fade select-none transition-transform duration-[900ms] ease-out hover:scale-[1.02]"
           />
         </div>
+
       </div>
     </section>
   );
