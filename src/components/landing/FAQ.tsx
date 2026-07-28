@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CircleHelp, ChevronRight } from "lucide-react";
+import { Plus } from "lucide-react";
 
 const faqs = [
   {
@@ -30,56 +30,59 @@ const faqs = [
 
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
+
   return (
-    <section id="faq" className="relative py-28 bg-white">
-      <div className="max-w-[1280px] mx-auto px-6 grid lg:grid-cols-12 gap-10">
+    <section id="faq" className="relative py-36 bg-white">
+      <div className="max-w-[1280px] mx-auto px-6 grid lg:grid-cols-12 gap-x-8 gap-y-14">
         <div className="lg:col-span-4" data-reveal>
-          <span className="text-xs font-semibold text-brand-red uppercase tracking-widest">
+          <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/60">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
             Perguntas frequentes
           </span>
-          <h2 className="mt-3 text-4xl lg:text-5xl font-bold text-navy">
+          <h2 className="mt-6 text-4xl lg:text-[3rem] font-bold leading-[1.08] text-navy">
             Tudo o que você precisa saber.
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Não encontrou sua dúvida? Fale com um consultor Vidotti — respondemos em minutos.
+          <p className="mt-6 text-muted-foreground leading-relaxed max-w-sm">
+            Não encontrou sua dúvida? Fale com um consultor Vidotti — atendimento de segunda a
+            sábado, das 8h às 20h.
           </p>
-          <div className="mt-6 inline-flex items-center gap-2 rounded-xl bg-navy/5 px-4 py-3 text-sm text-navy">
-            <CircleHelp className="h-4 w-4" strokeWidth={1.5} />
-            Suporte de segunda a sábado, 8h às 20h.
-          </div>
         </div>
 
-        <div className="lg:col-span-8 space-y-3">
+        <div className="lg:col-span-7 lg:col-start-6">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <div
                 key={f.q}
                 data-reveal
-                data-reveal-delay={i * 40}
-                className={`rounded-[18px] border transition-all duration-300 ${
-                  isOpen ? "border-navy/20 bg-background shadow-soft" : "border-border bg-card"
-                }`}
+                data-reveal-delay={i * 50}
+                className="border-b border-border-subtle first:border-t"
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+                  className="w-full flex items-center justify-between gap-6 py-6 text-left group"
                 >
-                  <span className="font-semibold text-navy">{f.q}</span>
-                  <ChevronRight
+                  <span
+                    className={`text-lg font-medium transition-colors duration-300 ${
+                      isOpen ? "text-navy" : "text-navy/80 group-hover:text-navy"
+                    }`}
+                  >
+                    {f.q}
+                  </span>
+                  <Plus
                     strokeWidth={1.75}
-                    className={`h-5 w-5 text-navy transition-transform duration-300 ${
-                      isOpen ? "rotate-90 text-brand-red" : ""
+                    className={`h-5 w-5 shrink-0 transition-all duration-300 ${
+                      isOpen ? "rotate-45 text-brand-red" : "text-navy/40"
                     }`}
                   />
                 </button>
                 <div
-                  className={`grid transition-all duration-300 ease-out ${
+                  className={`grid transition-all duration-400 ease-out ${
                     isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="px-6 pb-6 text-sm text-muted-foreground leading-relaxed">
+                    <p className="pb-7 pr-10 text-sm text-muted-foreground leading-relaxed">
                       {f.a}
                     </p>
                   </div>
