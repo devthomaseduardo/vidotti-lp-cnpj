@@ -20,8 +20,9 @@ export function Hero() {
         <BrandCurves className="w-full opacity-60" />
       </div>
 
-      <div className="relative max-w-[1280px] mx-auto px-6 grid lg:grid-cols-12 gap-x-8 gap-y-16 items-center w-full">
-        <div className="lg:col-span-6 xl:col-span-5">
+      <div className="relative max-w-[1280px] mx-auto px-6 grid lg:grid-cols-12 gap-x-6 gap-y-12 items-center w-full">
+        <div className="lg:col-span-6">
+
           <span
             data-reveal
             className="inline-flex items-center gap-2 text-[11px] font-semibold text-navy/70 uppercase tracking-[0.18em]"
@@ -33,7 +34,7 @@ export function Hero() {
           <h1
             data-reveal
             data-reveal-delay="80"
-            className="mt-7 text-5xl xl:text-[4.2rem] font-extrabold leading-[1.03] text-navy"
+            className="mt-7 text-5xl xl:text-6xl font-extrabold leading-[1.05] text-navy max-w-xl"
           >
             Abra seu CNPJ com{" "}
             <span className="text-brand-red">segurança, agilidade</span> e assessoria de alto padrão.
