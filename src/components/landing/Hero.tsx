@@ -1,5 +1,5 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
-import hero from "@/assets/hero-businessman.webp.asset.json";
+import heroImg from "@/assets/hero-empresario.png";
 import { BrandArcSoft, BrandCurves } from "./BrandCurves";
 import { useCountUp, useParallax } from "@/hooks/use-scroll-reveal";
 
