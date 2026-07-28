@@ -17,7 +17,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             <li><a href="#empresas" className="hover:text-white transition-colors">Abertura de CNPJ</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Contabilidade mensal</a></li>
-            <li><a href="#simulador" className="hover:text-white transition-colors">Planejamento tributário</a></li>
+            <li><a href="#empresas" className="hover:text-white transition-colors">Planejamento tributário</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Migração de contador</a></li>
             <li><a href="#" className="hover:text-white transition-colors">Certificado digital</a></li>
           </ul>
