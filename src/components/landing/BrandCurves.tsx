@@ -8,52 +8,92 @@ export function BrandCurves({ className = "" }: { className?: string }) {
       aria-hidden="true"
     >
       <path
-        d="M120 640 C 220 260, 520 180, 720 340"
+        d="M60 700 C 140 300, 420 140, 760 260"
         stroke="#1F2344"
-        strokeOpacity="0.06"
-        strokeWidth="80"
+        strokeOpacity="0.05"
+        strokeWidth="1.5"
         strokeLinecap="round"
       />
       <path
-        d="M80 720 C 260 380, 560 260, 780 420"
+        d="M40 740 C 160 340, 460 180, 780 320"
+        stroke="#1F2344"
+        strokeOpacity="0.07"
+        strokeWidth="1"
+        strokeLinecap="round"
+      />
+      <path
+        d="M100 760 C 220 400, 520 250, 790 400"
         stroke="#C7C7C7"
-        strokeOpacity="0.35"
-        strokeWidth="2"
+        strokeOpacity="0.4"
+        strokeWidth="1"
         strokeLinecap="round"
       />
       <path
-        d="M200 700 C 320 480, 580 380, 760 500"
+        d="M180 780 C 300 480, 570 360, 795 490"
         stroke="#D71920"
-        strokeOpacity="0.12"
-        strokeWidth="2"
+        strokeOpacity="0.10"
+        strokeWidth="1"
         strokeLinecap="round"
       />
     </svg>
   );
 }
 
-export function BrandArc({ className = "" }: { className?: string }) {
+/** Wide translucent arc echoing the logo swoosh. */
+export function BrandArcSoft({ className = "" }: { className?: string }) {
   return (
     <svg
       className={className}
-      viewBox="0 0 200 200"
+      viewBox="0 0 1200 600"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
       <path
-        d="M40 170 C 40 60, 120 20, 180 50"
-        stroke="#C7C7C7"
-        strokeWidth="22"
+        d="M-40 560 C 220 140, 760 60, 1240 220"
+        stroke="#1F2344"
+        strokeOpacity="0.045"
+        strokeWidth="120"
         strokeLinecap="round"
-        fill="none"
       />
       <path
-        d="M70 150 C 80 80, 130 55, 170 75"
-        stroke="#D71920"
-        strokeWidth="14"
+        d="M-20 520 C 240 130, 780 50, 1220 200"
+        stroke="#1F2344"
+        strokeOpacity="0.08"
+        strokeWidth="1"
+      />
+    </svg>
+  );
+}
+
+/** Light-on-dark variant for navy bands. */
+export function BrandCurvesLight({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 1200 600"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M-60 520 C 220 120, 760 40, 1260 200"
+        stroke="#FFFFFF"
+        strokeOpacity="0.05"
+        strokeWidth="140"
         strokeLinecap="round"
-        fill="none"
+      />
+      <path
+        d="M-40 480 C 240 110, 780 30, 1240 180"
+        stroke="#FFFFFF"
+        strokeOpacity="0.12"
+        strokeWidth="1"
+      />
+      <path
+        d="M-40 560 C 260 180, 800 90, 1240 250"
+        stroke="#D71920"
+        strokeOpacity="0.30"
+        strokeWidth="1"
       />
     </svg>
   );

@@ -1,9 +1,8 @@
-import { Building2, BriefcaseBusiness, Landmark, ChevronRight } from "lucide-react";
+import { Building2, BriefcaseBusiness, Landmark, ArrowUpRight } from "lucide-react";
 
 const types = [
   {
     icon: BriefcaseBusiness,
-    tag: "Microempreendedor",
     title: "MEI",
     limit: "Até R$ 81 mil/ano",
     regime: "DAS mensal fixo",
@@ -11,7 +10,6 @@ const types = [
   },
   {
     icon: Building2,
-    tag: "Microempresa",
     title: "ME",
     limit: "Até R$ 360 mil/ano",
     regime: "Simples Nacional",
@@ -19,7 +17,6 @@ const types = [
   },
   {
     icon: Building2,
-    tag: "Pequeno Porte",
     title: "EPP",
     limit: "Até R$ 4,8 milhões/ano",
     regime: "Simples ou Presumido",
@@ -27,7 +24,6 @@ const types = [
   },
   {
     icon: Building2,
-    tag: "Sociedade",
     title: "LTDA",
     limit: "Sem limite de faturamento",
     regime: "Presumido / Real",
@@ -35,7 +31,6 @@ const types = [
   },
   {
     icon: BriefcaseBusiness,
-    tag: "Unipessoal",
     title: "SLU",
     limit: "Sem limite de faturamento",
     regime: "Presumido / Real",
@@ -43,7 +38,6 @@ const types = [
   },
   {
     icon: Landmark,
-    tag: "Anônima",
     title: "S/A",
     limit: "Estrutura por ações",
     regime: "Lucro Real",
@@ -53,19 +47,26 @@ const types = [
 
 export function CompanyTypes() {
   return (
-    <section id="empresas" className="relative py-28">
+    <section id="empresas" className="relative py-36 bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-14" data-reveal>
-          <div className="max-w-2xl">
-            <span className="text-xs font-semibold text-brand-red uppercase tracking-widest">
+        <div className="grid lg:grid-cols-12 gap-8 items-end mb-16">
+          <div className="lg:col-span-6" data-reveal>
+            <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/60">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
               Tipos de empresa
             </span>
-            <h2 className="mt-3 text-4xl lg:text-5xl font-bold text-navy">
-              Qual modelo se encaixa no seu negócio?
+            <h2 className="mt-6 text-4xl lg:text-[3.25rem] font-bold leading-[1.08] text-navy">
+              Qual modelo se encaixa
+              <br className="hidden lg:block" /> no seu negócio?
             </h2>
           </div>
-          <p className="text-muted-foreground max-w-md">
-            Nossa equipe analisa faturamento, atividade e composição societária para indicar a natureza jurídica correta.
+          <p
+            className="lg:col-span-4 lg:col-start-9 text-muted-foreground leading-relaxed"
+            data-reveal
+            data-reveal-delay="120"
+          >
+            Analisamos faturamento, atividade e composição societária para indicar a natureza
+            jurídica correta.
           </p>
         </div>
 
@@ -75,34 +76,20 @@ export function CompanyTypes() {
               key={t.title}
               data-reveal
               data-reveal-delay={i * 60}
-              className="group relative rounded-[18px] border border-border bg-card p-7 shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+              className="group rounded-[18px] border border-border-subtle bg-card p-8 transition-all duration-300 hover:shadow-soft hover:-translate-y-0.5"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="h-11 w-11 rounded-xl bg-navy/5 flex items-center justify-center text-navy">
-                  <t.icon strokeWidth={1.5} className="h-5 w-5" />
-                </div>
-                <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">
-                  {t.tag}
-                </span>
+              <div className="flex items-start justify-between">
+                <t.icon strokeWidth={1.75} className="h-6 w-6 text-navy/70" />
+                <ArrowUpRight
+                  strokeWidth={1.75}
+                  className="h-5 w-5 text-navy/20 transition-all duration-300 group-hover:text-brand-red group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
               </div>
-              <h3 className="text-3xl font-bold text-navy">{t.title}</h3>
+              <h3 className="mt-8 text-2xl font-bold text-navy">{t.title}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{t.text}</p>
-
-              <dl className="mt-6 pt-6 border-t border-border space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Faturamento</dt>
-                  <dd className="font-medium text-navy">{t.limit}</dd>
-                </div>
-                <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Regime</dt>
-                  <dd className="font-medium text-navy">{t.regime}</dd>
-                </div>
-              </dl>
-
-              <div className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-red group-hover:gap-2 transition-all">
-                Falar com consultor
-                <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
-              </div>
+              <p className="mt-6 text-xs text-navy/50 tracking-wide">
+                {t.limit} · {t.regime}
+              </p>
             </article>
           ))}
         </div>

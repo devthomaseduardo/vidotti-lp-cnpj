@@ -37,9 +37,11 @@
   --color-brand-red: var(--brand-red);
   --color-gray-light: var(--gray-light);
 
-  --shadow-soft: 0 4px 24px -8px rgb(23 26 53 / 0.08);
-  --shadow-card: 0 8px 32px -12px rgb(31 35 68 / 0.12);
-  --shadow-elevated: 0 20px 60px -20px rgb(31 35 68 / 0.20);
+  --color-border-subtle: var(--border-subtle);
+
+  --shadow-soft: 0 1px 2px rgb(31 35 68 / 0.03), 0 6px 20px -14px rgb(31 35 68 / 0.10);
+  --shadow-card: 0 2px 6px -2px rgb(31 35 68 / 0.05), 0 12px 32px -18px rgb(31 35 68 / 0.14);
+  --shadow-elevated: 0 24px 70px -34px rgb(31 35 68 / 0.28);
 }
 
 :root {
@@ -66,7 +68,8 @@
   --accent-foreground: #1F2344;
   --destructive: #D71920;
   --destructive-foreground: #FFFFFF;
-  --border: #E4E7EF;
+  --border: #E8EAF2;
+  --border-subtle: #E8EAF2;
   --input: #E4E7EF;
   --ring: #1F2344;
 }
@@ -107,11 +110,31 @@
 
 @utility reveal {
   opacity: 0;
-  transform: translateY(16px) scale(0.98);
-  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(18px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@utility reveal-mask {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1), clip-path 1000ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @utility reveal-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
+  clip-path: inset(0 0 0 0);
+}
+
+.reveal.reveal-visible,
+.reveal-mask.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  clip-path: inset(0 0 0 0);
+}
+
+
+@utility photo-fade {
+  mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
 }

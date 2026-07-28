@@ -1,107 +1,100 @@
-import { ArrowRight, ShieldCheck, Clock3, BadgeCheck } from "lucide-react";
-import hero from "@/assets/hero-businessman.webp.asset.json";
-import { BrandCurves } from "./BrandCurves";
+import { ArrowRight, MessageCircle } from "lucide-react";
+import heroImg from "@/assets/hero-empresario.png";
+import { BrandArcSoft, BrandCurves } from "./BrandCurves";
+import { useCountUp, useParallax } from "@/hooks/use-scroll-reveal";
 
 export function Hero() {
-  return (
-    <section id="top" className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-      <BrandCurves className="absolute -top-40 -left-60 w-[900px] opacity-70 pointer-events-none" />
-      <BrandCurves className="absolute bottom-0 right-0 w-[700px] opacity-40 rotate-180 pointer-events-none" />
+  const arcRef = useParallax<HTMLDivElement>(0.05);
+  const curvesRef = useParallax<HTMLDivElement>(0.09);
+  const countRef = useCountUp(2400);
 
-      <div className="relative max-w-[1280px] mx-auto px-6 grid lg:grid-cols-12 gap-10 items-center w-full">
-        <div className="lg:col-span-6 space-y-7" data-reveal>
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white/70 backdrop-blur px-4 py-1.5 text-xs font-semibold text-navy uppercase tracking-wider">
+  return (
+    <section
+      id="top"
+      className="relative min-h-[92vh] flex items-center pt-32 pb-24 overflow-hidden"
+    >
+      <div ref={arcRef} className="absolute inset-x-0 -top-24 pointer-events-none">
+        <BrandArcSoft className="w-full h-[720px]" />
+      </div>
+      <div ref={curvesRef} className="absolute -right-40 top-10 w-[900px] pointer-events-none">
+        <BrandCurves className="w-full opacity-60" />
+      </div>
+
+      <div className="relative max-w-[1280px] mx-auto px-6 grid lg:grid-cols-12 gap-x-6 gap-y-12 items-center w-full">
+        <div className="lg:col-span-6">
+
+          <span
+            data-reveal
+            className="inline-flex items-center gap-2 text-[11px] font-semibold text-navy/70 uppercase tracking-[0.18em]"
+          >
             <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
-            Consultoria empresarial premium
+            100% online
           </span>
 
-          <h1 className="text-5xl lg:text-6xl font-extrabold leading-[1.05] text-navy">
+          <h1
+            data-reveal
+            data-reveal-delay="80"
+            className="mt-7 text-5xl xl:text-6xl font-extrabold leading-[1.05] text-navy max-w-xl"
+          >
             Abra seu CNPJ com{" "}
-            <span className="text-brand-gradient">segurança, agilidade</span> e assessoria de alto padrão.
+            <span className="text-brand-red">segurança, agilidade</span> e assessoria de alto padrão.
           </h1>
 
-          <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-            Da escolha do regime tributário à emissão do primeiro documento fiscal — a Vidotti Consultoria conduz cada etapa da abertura da sua empresa com precisão contábil e visão de negócio.
+          <p
+            data-reveal
+            data-reveal-delay="160"
+            className="mt-7 text-lg text-muted-foreground max-w-lg leading-relaxed"
+          >
+            Da escolha do regime tributário à emissão do primeiro documento fiscal — a Vidotti
+            Consultoria conduz cada etapa da abertura da sua empresa com precisão contábil e visão
+            de negócio.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div data-reveal data-reveal-delay="240" className="mt-10 flex flex-wrap items-center gap-4">
             <a
               href="#cta"
-              className="group inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-7 py-4 text-base font-semibold shadow-card hover:brightness-110 hover:-translate-y-0.5 transition-all duration-200"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-7 py-4 text-base font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_34px_-16px_rgb(215_25_32_/_0.75)]"
             >
-              Abrir minha empresa
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" strokeWidth={1.75} />
+              Abrir meu CNPJ
+              <ArrowRight
+                className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                strokeWidth={1.75}
+              />
             </a>
             <a
-              href="#simulador"
-              className="inline-flex items-center gap-2 rounded-full border border-navy/20 bg-white/70 backdrop-blur text-navy px-7 py-4 text-base font-semibold hover:bg-white transition-all duration-200"
+              href="https://wa.me/551130000000"
+              className="inline-flex items-center gap-2 rounded-full border border-navy/15 text-navy px-7 py-4 text-base font-semibold transition-all duration-300 hover:border-navy/40 hover:-translate-y-0.5"
             >
-              Simular tributação
+              <MessageCircle className="h-5 w-5" strokeWidth={1.75} />
+              Falar no WhatsApp
             </a>
           </div>
 
-          <dl className="grid grid-cols-3 gap-6 pt-6 border-t border-border max-w-lg">
-            {[
-              { k: "+2.400", v: "empresas abertas" },
-              { k: "48h", v: "prazo médio" },
-              { k: "4,9/5", v: "avaliação de clientes" },
-            ].map((s) => (
-              <div key={s.v}>
-                <dt className="text-2xl font-bold text-navy">{s.k}</dt>
-                <dd className="text-xs text-muted-foreground mt-1">{s.v}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <div className="lg:col-span-6 relative" data-reveal data-reveal-delay="150">
-          <div className="relative aspect-[5/4] w-full">
-            <div className="absolute inset-0 rounded-[32px] brand-gradient shadow-elevated" />
-            <BrandCurves className="absolute inset-0 w-full h-full opacity-30" />
-            <img
-              src={hero.url}
-              alt="Empresário conectado, atendido pela Vidotti Consultoria"
-              className="absolute inset-0 w-full h-full object-cover object-center rounded-[32px] mix-blend-luminosity opacity-95"
-            />
-            <img
-              src={hero.url}
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover object-center rounded-[32px] opacity-90"
-            />
-
-            {/* Floating info cards */}
-            <div className="absolute -left-4 top-10 lg:-left-10 bg-white rounded-2xl border border-border shadow-card p-4 flex items-center gap-3 w-56">
-              <div className="h-10 w-10 rounded-xl bg-navy/5 flex items-center justify-center text-navy">
-                <ShieldCheck strokeWidth={1.5} />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Certificado digital</p>
-                <p className="text-sm font-semibold text-navy">Emitido em 24h</p>
-              </div>
-            </div>
-
-            <div className="absolute -right-4 bottom-16 lg:-right-8 bg-white rounded-2xl border border-border shadow-card p-4 flex items-center gap-3 w-60">
-              <div className="h-10 w-10 rounded-xl bg-brand-red/10 flex items-center justify-center text-brand-red">
-                <BadgeCheck strokeWidth={1.5} />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">CNPJ aprovado</p>
-                <p className="text-sm font-semibold text-navy">Consultor dedicado</p>
-              </div>
-            </div>
-
-            <div className="absolute left-8 -bottom-6 bg-white rounded-2xl border border-border shadow-card p-4 flex items-center gap-3">
-              <div className="h-10 w-10 rounded-xl bg-navy/5 flex items-center justify-center text-navy">
-                <Clock3 strokeWidth={1.5} />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">Tempo médio</p>
-                <p className="text-sm font-semibold text-navy">48 horas úteis</p>
-              </div>
-            </div>
+          <div
+            data-reveal
+            data-reveal-delay="320"
+            className="mt-14 flex items-baseline gap-4 border-t border-border-subtle pt-6 max-w-xs"
+          >
+            <span className="text-3xl font-bold text-navy">
+              +<span ref={countRef}>2.400</span>
+            </span>
+            <span className="text-sm text-muted-foreground">empresas abertas</span>
           </div>
         </div>
+
+        <div
+          data-reveal="mask"
+          data-reveal-delay="120"
+          className="lg:col-span-6 relative flex justify-center lg:justify-end"
+        >
+          <img
+            src={heroImg}
+            alt="Empresário atendido pela Vidotti Consultoria"
+            className="w-[86%] max-w-[560px] lg:w-full lg:max-w-[640px] photo-fade select-none transition-transform duration-[900ms] ease-out hover:scale-[1.02]"
+          />
+        </div>
+
+
       </div>
     </section>
   );
