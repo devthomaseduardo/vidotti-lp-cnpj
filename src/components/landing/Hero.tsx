@@ -90,7 +90,7 @@ export function Hero() {
           <img
             src={heroImg}
             alt="Empresário atendido pela Vidotti Consultoria"
-            className="w-[86%] max-w-[560px] lg:w-full lg:max-w-[640px] select-none transition-transform duration-[900ms] ease-out hover:scale-[1.02]"
+            className="w-[86%] max-w-[560px] lg:w-full lg:max-w-[640px] photo-fade select-none transition-transform duration-[900ms] ease-out hover:scale-[1.02]"
           />
         </div>
 
