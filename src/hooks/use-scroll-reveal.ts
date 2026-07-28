@@ -27,10 +27,22 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>() {
           }
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" }
     );
     items.forEach((n) => io.observe(n));
-    return () => io.disconnect();
+
+    // Safety net: elements that resize late (images) can miss the observer.
+    const fallback = window.setTimeout(() => {
+      items.forEach((n) => {
+        const r = n.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) n.classList.add("reveal-visible");
+      });
+    }, 1200);
+
+    return () => {
+      window.clearTimeout(fallback);
+      io.disconnect();
+    };
   }, []);
   return ref;
 }
