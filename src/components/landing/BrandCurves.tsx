@@ -98,3 +98,27 @@ export function BrandCurvesLight({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+/** Vector crescents recreated from the reference mark, in the brand curves style. */
+export function BrandCrescents({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 600 600"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M310 30 C 170 70, 90 220, 105 370 C 115 450, 170 510, 265 565 C 245 470, 215 370, 235 255 C 250 175, 280 95, 310 30 Z"
+        fill="#C7C7C7"
+        fillOpacity="0.85"
+      />
+      <path
+        d="M355 50 C 500 95, 570 240, 545 385 C 530 460, 470 515, 380 565 C 400 470, 425 375, 405 260 C 390 185, 365 110, 355 50 Z"
+        fill="#D71920"
+        fillOpacity="0.9"
+      />
+    </svg>
+  );
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Menu, MessageCircle, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { WhatsappIcon } from "@/components/WhatsappIcon";
 import logoNavy from "@/assets/vidotti-logo-navy.png";
 
 const links = [
@@ -55,11 +56,11 @@ export function Navbar() {
 
         <div className="hidden lg:flex items-center gap-5">
           <a
-            href="https://wa.me/551130000000"
+            href="https://wa.me/5519996355181"
             aria-label="WhatsApp"
             className="h-10 w-10 rounded-full border border-border-subtle flex items-center justify-center text-navy transition-all duration-300 hover:border-navy/35 hover:-translate-y-0.5"
           >
-            <MessageCircle className="h-4 w-4" strokeWidth={1.75} />
+            <WhatsappIcon className="h-4 w-4" />
           </a>
           <a
             href="#cta"

@@ -19,9 +19,9 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="como-funciona" className="relative py-40">
+    <section id="como-funciona" className="relative py-32 lg:py-40 bg-navy/5">
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="max-w-2xl mx-auto text-center mb-24" data-reveal>
+        <div className="max-w-2xl mx-auto text-center mb-20" data-reveal>
           <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/60">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
             Como funciona
@@ -31,21 +31,26 @@ export function HowItWorks() {
           </h2>
         </div>
 
-        <div className="relative grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16">
-          <div
-            data-reveal="mask"
-            className="hidden lg:block absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-navy/12 to-transparent"
-          />
+        <div className="relative grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {steps.map((s, i) => (
-            <div key={s.title} data-reveal data-reveal-delay={i * 120} className="relative lg:pt-12">
-              <span className="hidden lg:block absolute -top-[3px] left-0 h-1.5 w-1.5 rounded-full bg-brand-red/70" />
-              <span className="block text-sm font-semibold tracking-[0.2em] text-navy/35">
+            <div 
+              key={s.title} 
+              data-reveal 
+              data-reveal-delay={i * 150} 
+              className="group relative flex flex-col bg-white rounded-3xl p-8 border border-navy/5 shadow-sm hover:shadow-xl hover:border-brand-red/20 transition-all duration-500 hover:-translate-y-2"
+            >
+              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-red/10 text-2xl font-bold text-brand-red transition-transform duration-500 group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white">
                 {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-5 text-xl font-semibold text-navy leading-snug">{s.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-[15rem]">
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-navy">{s.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {s.text}
               </p>
+              
+              {/* Connector line for desktop */}
+              {i !== steps.length - 1 && (
+                <div className="hidden lg:block absolute top-[52px] -right-4 w-8 h-px bg-navy/10 z-10" />
+              )}
             </div>
           ))}
         </div>

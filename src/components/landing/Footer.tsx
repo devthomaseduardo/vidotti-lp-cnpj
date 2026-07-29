@@ -38,7 +38,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-3">
               <Phone className="h-4 w-4 mt-0.5 text-brand-red" strokeWidth={1.5} />
-              <span>(11) 3000-0000</span>
+              <span>(19) 3232-5555</span>
             </li>
             <li className="flex items-start gap-3">
               <Mail className="h-4 w-4 mt-0.5 text-brand-red" strokeWidth={1.5} />
@@ -46,7 +46,7 @@ export function Footer() {
             </li>
             <li className="flex items-start gap-3">
               <MapPin className="h-4 w-4 mt-0.5 text-brand-red" strokeWidth={1.5} />
-              <span>Av. Paulista, 1000 — Bela Vista<br />São Paulo · SP</span>
+              <span>Av. Dermival Bernardes Siqueira, 1790 Sobreloja - Swiss Park, Campinas - SP, 13049-252</span>
             </li>
           </ul>
         </div>
