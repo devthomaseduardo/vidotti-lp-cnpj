@@ -47,15 +47,15 @@ const types = [
 
 export function CompanyTypes() {
   return (
-    <section id="empresas" className="relative py-36 bg-white">
-      <div className="max-w-[1280px] mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-8 items-end mb-16">
+    <section id="empresas" className="relative py-20 sm:py-28 lg:py-36 bg-white">
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-6">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-end mb-12 sm:mb-16">
           <div className="lg:col-span-6" data-reveal>
             <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/60">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
               Tipos de empresa
             </span>
-            <h2 className="mt-6 text-4xl lg:text-[3.25rem] font-bold leading-[1.08] text-navy">
+            <h2 className="mt-6 text-3xl sm:text-4xl lg:text-[3.25rem] font-bold leading-[1.15] lg:leading-[1.08] text-navy">
               Qual modelo se encaixa
               <br className="hidden lg:block" /> no seu negócio?
             </h2>
@@ -70,13 +70,13 @@ export function CompanyTypes() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {types.map((t, i) => (
             <article
               key={t.title}
               data-reveal
               data-reveal-delay={i * 60}
-              className="group rounded-[18px] border border-border-subtle bg-card p-8 transition-all duration-300 hover:shadow-soft hover:-translate-y-0.5"
+              className="group rounded-[18px] border border-border-subtle bg-card p-6 sm:p-8 transition-all duration-300 hover:shadow-soft hover:-translate-y-0.5"
             >
               <div className="flex items-start justify-between">
                 <t.icon strokeWidth={1.75} className="h-6 w-6 text-navy/70" />
@@ -87,9 +87,11 @@ export function CompanyTypes() {
               </div>
               <h3 className="mt-8 text-2xl font-bold text-navy">{t.title}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{t.text}</p>
-              <p className="mt-6 text-xs text-navy/50 tracking-wide">
-                {t.limit} · {t.regime}
-              </p>
+              <div className="mt-6 pt-4 border-t border-border-subtle flex flex-wrap items-center gap-x-2 gap-y-1 font-mono-tech text-[11px] text-navy/45">
+                <span>{t.limit}</span>
+                <span className="text-navy/20">·</span>
+                <span>{t.regime}</span>
+              </div>
             </article>
           ))}
         </div>

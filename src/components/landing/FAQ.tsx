@@ -32,14 +32,14 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-36 bg-white">
-      <div className="max-w-[1280px] mx-auto px-6 grid lg:grid-cols-12 gap-x-8 gap-y-14">
+    <section id="faq" className="relative py-20 sm:py-28 lg:py-36 bg-white">
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-6 grid lg:grid-cols-12 gap-x-8 gap-y-10 lg:gap-y-14">
         <div className="lg:col-span-4" data-reveal>
           <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/60">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
             Perguntas frequentes
           </span>
-          <h2 className="mt-6 text-4xl lg:text-[3rem] font-bold leading-[1.08] text-navy">
+          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-[3rem] font-bold leading-[1.15] lg:leading-[1.08] text-navy">
             Tudo o que você precisa saber.
           </h2>
           <p className="mt-6 text-muted-foreground leading-relaxed max-w-sm">
@@ -60,10 +60,10 @@ export function FAQ() {
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-6 py-6 text-left group"
+                  className="w-full flex items-center justify-between gap-4 sm:gap-6 py-5 sm:py-6 text-left group"
                 >
                   <span
-                    className={`text-lg font-medium transition-colors duration-300 ${
+                    className={`text-base sm:text-lg font-medium transition-colors duration-300 ${
                       isOpen ? "text-navy" : "text-navy/80 group-hover:text-navy"
                     }`}
                   >
@@ -82,7 +82,7 @@ export function FAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="pb-7 pr-10 text-sm text-muted-foreground leading-relaxed">
+                    <p className="pb-6 sm:pb-7 pr-4 sm:pr-10 text-sm text-muted-foreground leading-relaxed">
                       {f.a}
                     </p>
                   </div>

@@ -6,6 +6,7 @@
 
 @theme inline {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -35,6 +36,7 @@
   --color-navy: var(--navy);
   --color-navy-deep: var(--navy-deep);
   --color-brand-red: var(--brand-red);
+  --color-brand-red-light: var(--brand-red-light);
   --color-gray-light: var(--gray-light);
 
   --color-border-subtle: var(--border-subtle);
@@ -50,6 +52,8 @@
   --navy: #1F2344;
   --navy-deep: #171A35;
   --brand-red: #D71920;
+  /* Lighter red kept AA-compliant (>4.5:1) for text/accents on navy-deep backgrounds. */
+  --brand-red-light: #FF6B6F;
   --gray-light: #C7C7C7;
 
   --background: #F8F9FC;
@@ -137,4 +141,54 @@
 @utility photo-fade {
   mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+}
+
+/* Technical blueprint dot-grid — used behind data/spec panels instead of soft blobs. */
+@utility bg-grid-dots {
+  background-image: radial-gradient(rgb(31 35 68 / 0.16) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@utility bg-grid-dots-light {
+  background-image: radial-gradient(rgb(255 255 255 / 0.18) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Fine engineering grid lines for panels/mockups. */
+@utility bg-grid-lines {
+  background-image:
+    linear-gradient(rgb(31 35 68 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(31 35 68 / 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+  font-feature-settings: "ss01", "zero";
+  letter-spacing: -0.01em;
+}
+
+@keyframes status-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(34 197 94 / 0.45); }
+  50% { box-shadow: 0 0 0 5px rgb(34 197 94 / 0); }
+}
+
+.status-dot {
+  animation: status-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot,
+  .marquee-track {
+    animation: none;
+  }
 }

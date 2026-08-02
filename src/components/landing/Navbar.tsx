@@ -4,10 +4,10 @@ import { WhatsappIcon } from "@/components/WhatsappIcon";
 import logoNavy from "@/assets/vidotti-logo-navy.png";
 
 const links = [
-  { href: "#top", label: "Início" },
   { href: "#beneficios", label: "Benefícios" },
   { href: "#como-funciona", label: "Como Funciona" },
   { href: "#empresas", label: "Tipos de Empresa" },
+  { href: "#tributacao", label: "Tributação" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -41,12 +41,12 @@ export function Navbar() {
           />
         </a>
 
-        <ul className="hidden lg:flex items-center gap-9">
+        <ul className="hidden lg:flex items-center gap-5 xl:gap-8">
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="relative text-sm font-medium text-navy/75 hover:text-navy transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-brand-red after:transition-transform after:duration-300 hover:after:origin-left hover:after:scale-x-100"
+                className="relative text-[13px] xl:text-sm font-medium text-navy/75 hover:text-navy transition-colors duration-300 whitespace-nowrap after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-brand-red after:transition-transform after:duration-300 hover:after:origin-left hover:after:scale-x-100"
               >
                 {l.label}
               </a>
@@ -54,7 +54,7 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden lg:flex items-center gap-5">
+        <div className="hidden lg:flex items-center gap-3 xl:gap-5 shrink-0">
           <a
             href="https://wa.me/5519996355181"
             aria-label="WhatsApp"
@@ -64,7 +64,7 @@ export function Navbar() {
           </a>
           <a
             href="#cta"
-            className="group inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-14px_rgb(215_25_32_/_0.8)]"
+            className="group inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-5 xl:px-6 py-3 text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-14px_rgb(215_25_32_/_0.8)]"
           >
             Abrir meu CNPJ
             <ArrowRight
@@ -75,7 +75,7 @@ export function Navbar() {
         </div>
 
         <button
-          className="lg:hidden p-2 text-navy"
+          className="lg:hidden p-2 -mr-2 text-navy"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menu"
         >

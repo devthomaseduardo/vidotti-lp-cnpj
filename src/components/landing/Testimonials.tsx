@@ -6,25 +6,25 @@ import { useParallax } from "@/hooks/use-scroll-reveal";
 const testimonials = [
   {
     name: "Marina Prado",
+    initials: "MP",
     role: "CEO, Prado Arquitetura",
-    photo:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=facearea&w=200&h=200&facepad=2.5&q=80",
+    since: "cliente desde 2023",
     quote:
       "A Vidotti reestruturou nossa operação em menos de duas semanas. Saímos do Simples para o Presumido com uma economia real de 22% em impostos.",
   },
   {
     name: "Rafael Andrade",
+    initials: "RA",
     role: "Sócio-fundador, Tecnix Labs",
-    photo:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=facearea&w=200&h=200&facepad=2.5&q=80",
+    since: "cliente desde 2022",
     quote:
       "Consultoria à altura de uma empresa de tecnologia. Painel próprio, consultor dedicado e respostas em horas — não em dias.",
   },
   {
     name: "Camila Rezende",
+    initials: "CR",
     role: "Diretora, Rezende Advocacia",
-    photo:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=facearea&w=200&h=200&facepad=2.5&q=80",
+    since: "cliente desde 2024",
     quote:
       "Migrar de contador nunca foi tão simples. A equipe cuidou de tudo com discrição e precisão. Recomendo sem hesitar.",
   },
@@ -36,7 +36,7 @@ export function Testimonials() {
 
   const go = useCallback(
     (dir: number) => setIndex((i) => (i + dir + testimonials.length) % testimonials.length),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -47,13 +47,16 @@ export function Testimonials() {
   const t = testimonials[index];
 
   return (
-    <section className="relative py-40 overflow-hidden">
-      <div ref={curves} className="absolute -left-52 top-0 w-[820px] pointer-events-none">
+    <section className="relative py-24 sm:py-32 lg:py-40 overflow-hidden">
+      <div
+        ref={curves}
+        className="absolute -left-52 top-0 w-[820px] pointer-events-none hidden sm:block"
+      >
         <BrandCurves className="w-full opacity-70" />
       </div>
 
-      <div className="relative max-w-[1280px] mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-y-12 gap-x-8 items-center">
+      <div className="relative max-w-[1280px] mx-auto px-5 sm:px-6">
+        <div className="grid lg:grid-cols-12 gap-y-10 gap-x-8 items-center">
           <div className="lg:col-span-3" data-reveal>
             <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/60">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
@@ -65,25 +68,24 @@ export function Testimonials() {
           </div>
 
           <div className="lg:col-span-8 lg:col-start-5">
-            <Quote strokeWidth={1.75} className="h-8 w-8 text-brand-red/60" />
+            <Quote strokeWidth={1.75} className="h-7 w-7 sm:h-8 sm:w-8 text-brand-red/60" />
             <blockquote
               key={t.name}
-              className="mt-8 text-2xl lg:text-[2rem] font-medium leading-[1.35] text-navy animate-fade-in"
+              className="mt-6 sm:mt-8 text-xl sm:text-2xl lg:text-[2rem] font-medium leading-[1.4] lg:leading-[1.35] text-navy animate-fade-in"
             >
               {t.quote}
             </blockquote>
 
-            <div className="mt-12 flex items-center justify-between gap-6 border-t border-border-subtle pt-6">
+            <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-border-subtle pt-6">
               <div className="flex items-center gap-4">
-                <img
-                  src={t.photo}
-                  alt={t.name}
-                  loading="lazy"
-                  className="h-11 w-11 rounded-full object-cover transition-transform duration-500 hover:scale-105"
-                />
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy text-white text-sm font-bold font-mono-tech">
+                  {t.initials}
+                </span>
                 <div>
                   <p className="text-sm font-semibold text-navy">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {t.role} <span className="text-navy/30">· {t.since}</span>
+                  </p>
                 </div>
               </div>
 
