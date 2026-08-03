@@ -1,87 +1,66 @@
-import {
-  ShieldCheck,
-  Clock3,
-  BadgeCheck,
-  FileCheck,
-  Handshake,
-  Calculator,
-} from "lucide-react";
-import { BrandCurvesLight } from "./BrandCurves";
-
-const items = [
-  {
-    icon: Clock3,
-    title: "Abertura em 48 horas",
-    text: "Processo digital ponta a ponta, com acompanhamento em tempo real até a emissão do CNPJ.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Segurança jurídica",
-    text: "Análise minuciosa de CNAE, contrato social e regime tributário desde o dia zero.",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Consultor dedicado",
-    text: "Um especialista sênior em cada etapa — sem call center, sem transferências.",
-  },
-  {
-    icon: Calculator,
-    title: "Planejamento tributário",
-    text: "Simples, Presumido ou Real: escolhemos o regime que reduz sua carga com base em projeções.",
-  },
-  {
-    icon: FileCheck,
-    title: "Documentação completa",
-    text: "Contrato social, inscrições, alvarás e certificado digital emitidos e organizados.",
-  },
-  {
-    icon: Handshake,
-    title: "Suporte contínuo",
-    text: "Contabilidade mensal, obrigações acessórias e assessoria estratégica de crescimento.",
-  },
-];
+import { Check } from "lucide-react";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 export function Benefits() {
+  const points = [
+    "Abrir com CNAE ou natureza jurídica sem avaliar impacto tributário.",
+    "Ficar no MEI depois que a operação já exige outra estrutura.",
+    "Misturar finanças pessoais, caixa da empresa, notas e obrigações fiscais.",
+    "Pagar impostos sem entender de onde veio cada guia.",
+    "Deixar folha, pró-labore e encargos para resolver só quando vira urgência.",
+  ];
+
   return (
-    <section id="beneficios" className="relative py-36 bg-navy-deep text-white overflow-hidden">
-      <BrandCurvesLight className="absolute inset-x-0 -top-20 w-full h-[560px] pointer-events-none" />
-
-      <div className="relative max-w-[1280px] mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-8 mb-20">
-          <div className="lg:col-span-7" data-reveal>
-            <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
-              Por que Vidotti
+    <section id="beneficios" className="relative overflow-hidden bg-[#0D1126] py-20 md:py-28">
+      <div className="relative z-10 mx-auto max-w-[1280px] px-6">
+        <div className="grid items-center gap-16 lg:grid-cols-2">
+          <div data-reveal>
+            <span className="mb-6 inline-block rounded-full border border-white/10 px-4 py-1.5 text-xs font-semibold text-white/60">
+              Por que isso importa
             </span>
-            <h2 className="mt-6 text-4xl lg:text-[3.25rem] font-bold leading-[1.08]">
-              Mais que contabilidade,
-              <br />
-              uma <span className="text-brand-red">parceria estratégica.</span>
+            <h2 className="mb-6 text-3xl font-bold leading-tight text-white md:text-5xl">
+              Contabilidade ruim custa tempo, caixa e tranquilidade.
             </h2>
-          </div>
-          <p className="lg:col-span-4 lg:col-start-9 self-end text-white/60 leading-relaxed" data-reveal data-reveal-delay="120">
-            Estruturamos empresas para operar com previsibilidade fiscal, eficiência tributária e
-            credibilidade no mercado.
-          </p>
-        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-14">
-          {items.map((it, i) => (
-            <div
-              key={it.title}
-              data-reveal
-              data-reveal-delay={i * 70}
-              className="group relative sm:pl-8 sm:first:pl-0 lg:pl-10 lg:[&:nth-child(3n+1)]:pl-0"
+            <p className="mb-8 max-w-lg text-lg leading-relaxed text-white/70">
+              O problema não é só abrir o CNPJ. É começar a empresa com enquadramento errado,
+              obrigação esquecida e decisões fiscais tomadas sem clareza.
+            </p>
+
+            <ul className="mb-10 space-y-4">
+              {points.map((point) => (
+                <li key={point} className="flex items-center gap-3 text-white">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-red text-white">
+                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                  </div>
+                  <span className="text-sm font-medium leading-relaxed text-white/90">{point}</span>
+                </li>
+              ))}
+            </ul>
+
+            <WhatsAppLink
+              source="benefits_whatsapp"
+              intent="Quero evitar erro de enquadramento e entender o melhor caminho para meu CNPJ."
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
             >
-              <span className="hidden sm:block absolute left-0 top-1 bottom-1 w-px bg-white/10 group-first:hidden lg:[&:nth-child(3n+1)]:hidden" />
-              <it.icon
-                strokeWidth={1.75}
-                className="h-7 w-7 text-white/85 transition-transform duration-300 group-hover:-translate-y-0.5"
+              Conversar com um consultor
+            </WhatsAppLink>
+          </div>
+
+          <div className="relative" data-reveal="mask" data-reveal-delay="200">
+            <div className="overflow-hidden rounded-2xl bg-[#151933] md:rounded-[28px]">
+              <img
+                src="/contadores/Gustavo%20Vidotti%20e%20Pedro%20Vidotti2.jpg"
+                alt="Equipe da Vidotti Contabilidade"
+                className="aspect-[4/3] w-full object-cover object-[50%_18%] md:aspect-[5/4] lg:aspect-[4/3]"
               />
-              <h3 className="mt-6 text-lg font-semibold">{it.title}</h3>
-              <p className="mt-3 text-sm text-white/55 leading-relaxed max-w-xs">{it.text}</p>
             </div>
-          ))}
+            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-white/70">
+              <span className="text-brand-red">Enquadramento</span>
+              <span>Obrigações</span>
+              <span>Caixa</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

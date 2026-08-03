@@ -1,121 +1,107 @@
-import { useCallback, useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import { BadgeCheck, Building2, CalendarCheck, FileCheck2, ShieldCheck } from "lucide-react";
 import { BrandCurves } from "./BrandCurves";
-import { useParallax } from "@/hooks/use-scroll-reveal";
+import { WhatsAppLink } from "./WhatsAppLink";
 
-const testimonials = [
+const proofPoints = [
   {
-    name: "Marina Prado",
-    role: "CEO, Prado Arquitetura",
-    photo:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=facearea&w=200&h=200&facepad=2.5&q=80",
-    quote:
-      "A Vidotti reestruturou nossa operação em menos de duas semanas. Saímos do Simples para o Presumido com uma economia real de 22% em impostos.",
+    icon: CalendarCheck,
+    title: "Atuação desde 2002",
+    text: "Histórico de atendimento contábil, fiscal e de RH para empresas em diferentes fases.",
   },
   {
-    name: "Rafael Andrade",
-    role: "Sócio-fundador, Tecnix Labs",
-    photo:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=facearea&w=200&h=200&facepad=2.5&q=80",
-    quote:
-      "Consultoria à altura de uma empresa de tecnologia. Painel próprio, consultor dedicado e respostas em horas — não em dias.",
+    icon: Building2,
+    title: "Endereço e canais oficiais",
+    text: "Atendimento em Campinas/SP, WhatsApp, e-mail e presença institucional no Instagram.",
   },
   {
-    name: "Camila Rezende",
-    role: "Diretora, Rezende Advocacia",
-    photo:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=facearea&w=200&h=200&facepad=2.5&q=80",
-    quote:
-      "Migrar de contador nunca foi tão simples. A equipe cuidou de tudo com discrição e precisão. Recomendo sem hesitar.",
+    icon: FileCheck2,
+    title: "Escopo completo",
+    text: "Abertura, fiscal, contábil, trabalhista, desenquadramento MEI e planejamento tributário.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Promessa responsável",
+    text: "A orientação considera atividade, documentos, prefeitura e regime. Sem diagnóstico automático ou genérico.",
   },
 ];
 
 export function Testimonials() {
-  const [index, setIndex] = useState(0);
-  const curves = useParallax<HTMLDivElement>(0.05);
-
-  const go = useCallback(
-    (dir: number) => setIndex((i) => (i + dir + testimonials.length) % testimonials.length),
-    []
-  );
-
-  useEffect(() => {
-    const id = window.setInterval(() => go(1), 8000);
-    return () => window.clearInterval(id);
-  }, [go]);
-
-  const t = testimonials[index];
-
   return (
-    <section className="relative py-40 overflow-hidden">
-      <div ref={curves} className="absolute -left-52 top-0 w-[820px] pointer-events-none">
-        <BrandCurves className="w-full opacity-70" />
+    <section
+      className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-20 md:py-28"
+      id="prova"
+    >
+      <div className="pointer-events-none absolute -left-52 top-0 w-[820px] opacity-5">
+        <BrandCurves className="w-full" />
       </div>
 
-      <div className="relative max-w-[1280px] mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-y-12 gap-x-8 items-center">
-          <div className="lg:col-span-3" data-reveal>
-            <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/60">
+      <div className="relative mx-auto max-w-[1280px] px-6">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div data-reveal>
+            <span className="mb-6 inline-flex items-center justify-center gap-2 text-xs font-semibold text-white/60">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
-              Depoimentos
+              Prova de confiança
             </span>
-            <p className="mt-6 text-sm text-muted-foreground leading-relaxed max-w-[14rem]">
-              Empresas de diferentes setores que confiam na Vidotti.
+            <h2 className="text-3xl font-bold leading-tight text-white md:text-5xl">
+              Confiança vem de histórico, presença e orientação responsável.
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-white/60">
+              A Vidotti comunica o que pode ser verificado: tempo de atuação, canais oficiais,
+              escopo de atendimento e clareza antes de qualquer proposta.
             </p>
+
+            <div className="mt-8 grid grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-5">
+              {[
+                { value: "2002", label: "início da atuação" },
+                { value: "4", label: "frentes contábeis" },
+                { value: "SP", label: "Campinas e digital" },
+              ].map((stat) => (
+                <div key={stat.value} className="px-3 first:pl-0 last:pr-0">
+                  <p className="text-2xl font-bold text-white">{stat.value}</p>
+                  <p className="mt-1 text-xs text-white/55">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <WhatsAppLink
+              source="proof_whatsapp"
+              intent="Quero validar se a Vidotti atende o perfil da minha empresa."
+              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
+            >
+              Validar meu caso
+            </WhatsAppLink>
           </div>
 
-          <div className="lg:col-span-8 lg:col-start-5">
-            <Quote strokeWidth={1.75} className="h-8 w-8 text-brand-red/60" />
-            <blockquote
-              key={t.name}
-              className="mt-8 text-2xl lg:text-[2rem] font-medium leading-[1.35] text-navy animate-fade-in"
-            >
-              {t.quote}
-            </blockquote>
-
-            <div className="mt-12 flex items-center justify-between gap-6 border-t border-border-subtle pt-6">
-              <div className="flex items-center gap-4">
-                <img
-                  src={t.photo}
-                  alt={t.name}
-                  loading="lazy"
-                  className="h-11 w-11 rounded-full object-cover transition-transform duration-500 hover:scale-105"
-                />
+          <div className="border-y border-white/10">
+            {proofPoints.map((point, index) => (
+              <article
+                key={point.title}
+                data-reveal
+                data-reveal-delay={index * 70}
+                className="grid gap-4 border-b border-white/10 py-6 last:border-b-0 sm:grid-cols-[52px_1fr]"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-red/10 text-brand-red">
+                  <point.icon className="h-5 w-5" strokeWidth={1.75} />
+                </div>
                 <div>
-                  <p className="text-sm font-semibold text-navy">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                  <h3 className="mb-3 text-lg font-bold text-white">{point.title}</h3>
+                  <p className="text-sm leading-relaxed text-white/60">{point.text}</p>
                 </div>
-              </div>
+              </article>
+            ))}
 
-              <div className="flex items-center gap-3">
-                <div className="hidden sm:flex items-center gap-2 mr-3">
-                  {testimonials.map((item, i) => (
-                    <button
-                      key={item.name}
-                      aria-label={`Depoimento ${i + 1}`}
-                      onClick={() => setIndex(i)}
-                      className={`h-1 rounded-full transition-all duration-300 ${
-                        i === index ? "w-7 bg-brand-red" : "w-3 bg-navy/15 hover:bg-navy/30"
-                      }`}
-                    />
-                  ))}
+            <article className="py-6">
+              <div className="flex gap-4">
+                <BadgeCheck className="mt-1 h-6 w-6 shrink-0 text-brand-red" strokeWidth={1.75} />
+                <div>
+                  <h3 className="text-lg font-bold text-white">Próximo passo seguro</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">
+                    A conversa inicial serve para entender o contexto antes de falar em preço, prazo
+                    ou regime tributário.
+                  </p>
                 </div>
-                <button
-                  aria-label="Anterior"
-                  onClick={() => go(-1)}
-                  className="h-10 w-10 rounded-full border border-border-subtle flex items-center justify-center text-navy transition-all duration-300 hover:border-navy/40 hover:-translate-x-0.5"
-                >
-                  <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />
-                </button>
-                <button
-                  aria-label="Próximo"
-                  onClick={() => go(1)}
-                  className="h-10 w-10 rounded-full border border-border-subtle flex items-center justify-center text-navy transition-all duration-300 hover:border-navy/40 hover:translate-x-0.5"
-                >
-                  <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
-                </button>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </div>

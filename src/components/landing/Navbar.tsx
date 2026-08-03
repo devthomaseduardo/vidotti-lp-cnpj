@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { WhatsappIcon } from "@/components/WhatsappIcon";
+import { trackConversionEvent } from "@/lib/conversion";
 import logoNavy from "@/assets/vidotti-logo-navy.png";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 const links = [
   { href: "#top", label: "Início" },
-  { href: "#beneficios", label: "Benefícios" },
-  { href: "#como-funciona", label: "Como Funciona" },
-  { href: "#empresas", label: "Tipos de Empresa" },
+  { href: "#empresas", label: "Serviços" },
+  { href: "#beneficios", label: "Vantagens" },
+  { href: "#como-funciona", label: "Como funciona" },
+  { href: "#prova", label: "Confiança" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -25,7 +27,7 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/85 backdrop-blur-md border-b border-border-subtle" : "bg-transparent"
+        scrolled ? "bg-[#0D1126]/90 backdrop-blur-md border-b border-white/5" : "bg-transparent"
       }`}
     >
       <nav
@@ -37,16 +39,16 @@ export function Navbar() {
           <img
             src={logoNavy}
             alt="Vidotti Consultoria"
-            className={`w-auto transition-all duration-300 ${scrolled ? "h-7" : "h-9"}`}
+            className={`w-auto transition-all duration-300 brightness-0 invert ${scrolled ? "h-7" : "h-9"}`}
           />
         </a>
 
-        <ul className="hidden lg:flex items-center gap-9">
+        <ul className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="relative text-sm font-medium text-navy/75 hover:text-navy transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-brand-red after:transition-transform after:duration-300 hover:after:origin-left hover:after:scale-x-100"
+                className="relative text-sm font-medium text-white/75 transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-brand-red after:transition-transform after:duration-300 hover:text-white hover:after:origin-left hover:after:scale-x-100"
               >
                 {l.label}
               </a>
@@ -55,15 +57,22 @@ export function Navbar() {
         </ul>
 
         <div className="hidden lg:flex items-center gap-5">
-          <a
-            href="https://wa.me/5519996355181"
+          <WhatsAppLink
+            source="navbar_icon"
+            intent="Quero falar com a Vidotti sobre abertura de CNPJ ou contabilidade para minha empresa."
             aria-label="WhatsApp"
-            className="h-10 w-10 rounded-full border border-border-subtle flex items-center justify-center text-navy transition-all duration-300 hover:border-navy/35 hover:-translate-y-0.5"
+            className="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center text-white transition-all duration-300 hover:border-white/50 hover:bg-white/5 hover:-translate-y-0.5"
           >
-            <WhatsappIcon className="h-4 w-4" />
-          </a>
+            <span className="sr-only">Falar no WhatsApp</span>
+          </WhatsAppLink>
           <a
-            href="#cta"
+            href="#lead-form"
+            onClick={() =>
+              trackConversionEvent("cta_clicked", {
+                source: "navbar_primary",
+                destination: "lead_form",
+              })
+            }
             className="group inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-14px_rgb(215_25_32_/_0.8)]"
           >
             Abrir meu CNPJ
@@ -75,7 +84,7 @@ export function Navbar() {
         </div>
 
         <button
-          className="lg:hidden p-2 text-navy"
+          className="lg:hidden p-2 text-white"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menu"
         >
@@ -84,22 +93,28 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="lg:hidden bg-white border-t border-border-subtle">
+        <div className="lg:hidden bg-[#151933] border-t border-white/5">
           <ul className="px-6 py-5 flex flex-col gap-1">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block py-3 text-sm font-medium text-navy border-b border-border-subtle"
+                  className="block py-3 text-sm font-medium text-white border-b border-white/5"
                 >
                   {l.label}
                 </a>
               </li>
             ))}
             <a
-              href="#cta"
-              onClick={() => setOpen(false)}
+              href="#lead-form"
+              onClick={() => {
+                setOpen(false);
+                trackConversionEvent("cta_clicked", {
+                  source: "navbar_mobile_primary",
+                  destination: "lead_form",
+                });
+              }}
               className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-brand-red text-white px-5 py-3 text-sm font-semibold"
             >
               Abrir meu CNPJ <ArrowRight className="h-4 w-4" strokeWidth={1.75} />

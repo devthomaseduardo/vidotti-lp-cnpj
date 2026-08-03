@@ -1,37 +1,82 @@
-import { WhatsappIcon } from "@/components/WhatsappIcon";
-import { BrandCurvesLight } from "./BrandCurves";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { trackConversionEvent } from "@/lib/conversion";
+import { WhatsAppLink } from "./WhatsAppLink";
+
+const closingPoints = [
+  "Entender atividade, faturamento esperado e momento da empresa.",
+  "Separar abertura de CNPJ, desenquadramento MEI, troca de contador ou revisão tributária.",
+  "Confirmar documentos, próximos passos e escopo antes de falar em prazo ou preço.",
+];
 
 export function FinalCTA() {
   return (
-    <section id="cta" className="relative py-32">
-      <div className="max-w-[1280px] mx-auto px-6">
-        <div
-          data-reveal
-          className="relative overflow-hidden rounded-[20px] brand-gradient px-10 py-16 lg:px-16 lg:py-20 text-white"
-        >
-          <BrandCurvesLight className="absolute inset-0 w-full h-full pointer-events-none" />
+    <section
+      id="cta"
+      className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-20 md:py-28"
+    >
+      <div className="relative z-10 mx-auto max-w-[1280px] px-6">
+        <div className="grid items-start gap-12 lg:grid-cols-[1fr_0.85fr]">
+          <div data-reveal>
+            <span className="mb-6 inline-block rounded-full border border-white/10 px-4 py-1.5 text-xs font-semibold text-white/60">
+              Próximo passo
+            </span>
+            <h2 className="mb-6 max-w-3xl text-3xl font-bold leading-tight text-white md:text-5xl">
+              Abra ou organize seu CNPJ com uma orientação inicial responsável.
+            </h2>
 
-          <div className="relative grid lg:grid-cols-12 gap-y-10 gap-x-8 items-center">
-            <div className="lg:col-span-7">
-              <h2 className="text-3xl lg:text-[2.6rem] font-bold leading-[1.12]">
-                Pronto para abrir seu CNPJ com
-                <br className="hidden lg:block" /> quem realmente entende do assunto?
-              </h2>
-              <p className="mt-5 text-white/60 max-w-xl">
-                Atendimento rápido, transparente e sem complicação. Um consultor sênior analisa seu
-                caso e conduz o processo do início ao fim.
-              </p>
-            </div>
+            <p className="mb-10 max-w-2xl text-lg leading-relaxed text-white/70">
+              A conversa inicial serve para entender seu caso, evitar enquadramento errado e mostrar
+              os próximos passos antes de qualquer proposta.
+            </p>
 
-            <div className="lg:col-span-4 lg:col-start-9 flex flex-col items-start lg:items-end gap-5">
-             
+            <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4">
               <a
-                href="https://wa.me/5519996355181"
-                className="inline-flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors duration-300"
+                href="#lead-form"
+                onClick={() =>
+                  trackConversionEvent("cta_clicked", {
+                    source: "final_primary",
+                    destination: "lead_form",
+                  })
+                }
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-3 py-3 text-center text-xs font-semibold leading-tight text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-sm"
               >
-                Ou fale com a gente no WhatsApp
-                <WhatsappIcon className="h-4 w-4" />
+                <span className="hidden sm:inline">Preencher diagnóstico</span>
+                <span className="sm:hidden">Diagnóstico</span>
+                <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
               </a>
+              <WhatsAppLink
+                source="final_whatsapp"
+                intent="Quero falar com a Vidotti e entender os próximos passos para meu CNPJ."
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-3 py-3 text-center text-xs font-semibold leading-tight text-white transition-colors hover:bg-white/5 sm:px-8 sm:py-3.5 sm:text-sm"
+              >
+                Falar no WhatsApp
+              </WhatsAppLink>
+            </div>
+          </div>
+
+          <div
+            className="border-y border-white/10 py-6 md:py-8"
+            data-reveal="mask"
+            data-reveal-delay="200"
+          >
+            <h3 className="text-2xl font-bold text-white">Na conversa inicial</h3>
+            <ul className="mt-6 space-y-4">
+              {closingPoints.map((point) => (
+                <li key={point} className="flex gap-3">
+                  <CheckCircle2
+                    className="mt-0.5 h-5 w-5 shrink-0 text-brand-red"
+                    strokeWidth={1.75}
+                  />
+                  <span className="text-sm leading-relaxed text-white/70">{point}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 border-t border-white/10 pt-5">
+              <p className="text-sm font-semibold text-white">Canal principal</p>
+              <p className="mt-2 text-sm leading-relaxed text-white/60">
+                WhatsApp da Vidotti: resposta humana, com o contexto que você enviar no formulário
+                ou na mensagem inicial.
+              </p>
             </div>
           </div>
         </div>

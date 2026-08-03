@@ -1,95 +1,98 @@
-import { useState } from "react";
-import { Plus } from "lucide-react";
+import { HelpCircle } from "lucide-react";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 const faqs = [
   {
-    q: "Quanto tempo leva para abrir um CNPJ?",
-    a: "O prazo médio é de 48 horas úteis após o envio da documentação completa. Processos com exigência de alvará específico podem levar até 10 dias, dependendo da prefeitura.",
+    question: "Quais documentos preciso para abrir meu CNPJ?",
+    answer:
+      "A lista depende da atividade, endereço, tipo de empresa e exigências locais. No primeiro atendimento, a Vidotti confirma o caminho e orienta a documentação correta.",
   },
   {
-    q: "Preciso ter um endereço comercial?",
-    a: "Sim, mas ele pode ser residencial (para determinadas atividades) ou virtual, por meio de coworkings e escritórios parceiros que indicamos.",
+    question: "A Vidotti ajuda a escolher CNAE e regime tributário?",
+    answer:
+      "Sim. Essa é uma das partes mais importantes do atendimento, porque CNAE, natureza jurídica e regime tributário impactam impostos, notas e obrigações desde o começo.",
   },
   {
-    q: "Qual a diferença entre MEI, ME e LTDA?",
-    a: "MEI é indicado para faturamento até R$ 81 mil/ano. ME abrange até R$ 360 mil e pode ter sócios. LTDA é uma sociedade sem limite de faturamento, com responsabilidade limitada dos sócios.",
+    question: "Sou MEI e preciso desenquadrar. Vocês fazem essa migração?",
+    answer:
+      "Sim. A equipe avalia se a empresa já precisa sair do MEI, quais impactos existem e quais etapas são necessárias para migrar para uma estrutura adequada.",
   },
   {
-    q: "Já tenho contador — a Vidotti faz a migração?",
-    a: "Sim. Cuidamos de todo o processo de transferência: balanços, obrigações acessórias e comunicação com o contador anterior. Sem burocracia para você.",
+    question: "Já tenho contador. Posso trocar para a Vidotti?",
+    answer:
+      "Pode. A troca exige cuidado com documentos, pendências e rotinas em andamento. O primeiro passo é entender a situação atual para não herdar problemas sem visibilidade.",
   },
   {
-    q: "Como funciona a contabilidade mensal?",
-    a: "Após a abertura, você tem acesso a um painel próprio, envia documentos pelo app e recebe guias, folha e relatórios gerenciais mensalmente, com consultor dedicado.",
+    question: "O atendimento é apenas para Campinas?",
+    answer:
+      "A Vidotti tem presença em Campinas/SP, mas parte do atendimento pode ser conduzida de forma digital. A viabilidade depende do tipo de serviço e da necessidade da empresa.",
   },
   {
-    q: "Vocês atendem em todo o Brasil?",
-    a: "Sim. Nossa operação é 100% digital, com atendimento presencial sob demanda em São Paulo, Rio de Janeiro e Belo Horizonte.",
+    question: "Quanto tempo leva para abrir a empresa?",
+    answer:
+      "O prazo varia conforme documentação, atividade, município e órgãos responsáveis. A Vidotti evita promessa automática porque o correto é confirmar o cenário antes de assumir prazo.",
+  },
+  {
+    question: "Quanto custa a abertura ou a assessoria?",
+    answer:
+      "O valor depende do tipo de empresa, regime, atividade e escopo de atendimento. A conversa inicial serve para entender o caso antes de passar proposta.",
+  },
+  {
+    question: "Depois do CNPJ aberto, a Vidotti acompanha a rotina fiscal?",
+    answer:
+      "Sim. Além da abertura, a Vidotti atua com rotina contábil, fiscal, trabalhista, planejamento tributário e apoio financeiro conforme o perfil da empresa.",
   },
 ];
 
 export function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
-    <section id="faq" className="relative py-36 bg-white">
-      <div className="max-w-[1280px] mx-auto px-6 grid lg:grid-cols-12 gap-x-8 gap-y-14">
-        <div className="lg:col-span-4" data-reveal>
-          <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/60">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
-            Perguntas frequentes
-          </span>
-          <h2 className="mt-6 text-4xl lg:text-[3rem] font-bold leading-[1.08] text-navy">
-            Tudo o que você precisa saber.
-          </h2>
-          <p className="mt-6 text-muted-foreground leading-relaxed max-w-sm">
-            Não encontrou sua dúvida? Fale com um consultor Vidotti — atendimento de segunda a
-            sábado, das 8h às 20h.
+    <section
+      id="faq"
+      className="relative overflow-hidden border-t border-white/5 bg-[#0D1126] py-20 md:py-28"
+    >
+      <div className="relative z-10 mx-auto max-w-[1280px] px-6">
+        <div className="mb-14 grid gap-8 lg:grid-cols-[0.75fr_1fr] lg:items-end" data-reveal>
+          <div>
+            <span className="mb-6 inline-block rounded-full border border-white/10 px-4 py-1.5 text-xs font-semibold text-white/60">
+              Dúvidas frequentes
+            </span>
+            <h2 className="text-3xl font-bold leading-tight text-white md:text-5xl">
+              Dúvidas antes de abrir ou migrar seu CNPJ.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-base leading-relaxed text-white/60">
+            Respostas diretas para entender documentos, prazo, regime tributário, MEI, troca de
+            contador e atendimento antes do primeiro contato.
           </p>
         </div>
 
-        <div className="lg:col-span-7 lg:col-start-6">
-          {faqs.map((f, i) => {
-            const isOpen = open === i;
-            return (
-              <div
-                key={f.q}
-                data-reveal
-                data-reveal-delay={i * 50}
-                className="border-b border-border-subtle first:border-t"
-              >
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-6 py-6 text-left group"
-                >
-                  <span
-                    className={`text-lg font-medium transition-colors duration-300 ${
-                      isOpen ? "text-navy" : "text-navy/80 group-hover:text-navy"
-                    }`}
-                  >
-                    {f.q}
-                  </span>
-                  <Plus
-                    strokeWidth={1.75}
-                    className={`h-5 w-5 shrink-0 transition-all duration-300 ${
-                      isOpen ? "rotate-45 text-brand-red" : "text-navy/40"
-                    }`}
-                  />
-                </button>
-                <div
-                  className={`grid transition-all duration-400 ease-out ${
-                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <p className="pb-7 pr-10 text-sm text-muted-foreground leading-relaxed">
-                      {f.a}
-                    </p>
-                  </div>
+        <div className="grid gap-x-12 md:grid-cols-2">
+          {faqs.map((item, index) => (
+            <article
+              key={item.question}
+              data-reveal
+              data-reveal-delay={index * 40}
+              className="border-t border-white/10 py-6"
+            >
+              <div className="flex gap-4">
+                <HelpCircle className="mt-0.5 h-5 w-5 shrink-0 text-brand-red" strokeWidth={1.75} />
+                <div>
+                  <h3 className="mb-3 text-base font-bold text-white">{item.question}</h3>
+                  <p className="text-sm leading-relaxed text-white/60">{item.answer}</p>
                 </div>
               </div>
-            );
-          })}
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-12 flex justify-center" data-reveal>
+          <WhatsAppLink
+            source="faq_whatsapp"
+            intent="Li as dúvidas da landing page e quero entender o melhor caminho para meu CNPJ."
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
+          >
+            Tirar minha dúvida no WhatsApp
+          </WhatsAppLink>
         </div>
       </div>
     </section>

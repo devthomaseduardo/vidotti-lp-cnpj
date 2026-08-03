@@ -13,19 +13,29 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vidotti Consultoria — Abertura de CNPJ com assessoria premium" },
+      {
+        title: "Vidotti Contabilidade — Abra seu CNPJ com orientação tributária",
+      },
       {
         name: "description",
         content:
-          "Abra seu CNPJ em 48 horas com a Vidotti Consultoria: planejamento tributário, contabilidade digital e consultor dedicado para empresas que exigem excelência.",
+          "Abra, migre ou organize seu CNPJ com a Vidotti Contabilidade: orientação sobre MEI, CNAE, regime tributário, rotina fiscal e próximos passos para operar como PJ.",
       },
-      { property: "og:title", content: "Vidotti Consultoria — Abertura de CNPJ premium" },
+      {
+        property: "og:title",
+        content: "Vidotti Contabilidade — CNPJ com orientação tributária",
+      },
       {
         property: "og:description",
         content:
-          "Consultoria empresarial premium para abertura de CNPJ, planejamento tributário e contabilidade digital.",
+          "Landing page para abertura de CNPJ, desenquadramento MEI, planejamento tributário e assessoria contábil.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pt_BR" },
+      {
+        property: "og:image",
+        content: "/contadores/Gustavo%20Vidotti%20e%20Pedro%20Vidotti1.jpg",
+      },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
@@ -39,9 +49,9 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
+        <CompanyTypes />
         <Benefits />
         <HowItWorks />
-        <CompanyTypes />
         <Testimonials />
         <FAQ />
         <FinalCTA />

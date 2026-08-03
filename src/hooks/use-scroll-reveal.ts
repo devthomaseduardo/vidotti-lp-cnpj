@@ -16,31 +16,63 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>() {
       n.classList.add(n.dataset.reveal === "mask" ? "reveal-mask" : "reveal");
     });
 
+    const timers = new WeakMap<HTMLElement, number>();
+    const clearPending = (target: HTMLElement) => {
+      const pending = timers.get(target);
+      if (pending) window.clearTimeout(pending);
+    };
+    const scheduleReveal = (target: HTMLElement) => {
+      clearPending(target);
+      const delay = Number(target.dataset.revealDelay ?? 0);
+      const timer = window.setTimeout(() => target.classList.add("reveal-visible"), delay);
+      timers.set(target, timer);
+    };
+    const syncVisibleItems = () => {
+      items.forEach((target) => {
+        const rect = target.getBoundingClientRect();
+        const visible =
+          rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
+        if (visible) scheduleReveal(target);
+      });
+    };
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
+          const target = e.target as HTMLElement;
+
           if (e.isIntersecting) {
-            const target = e.target as HTMLElement;
-            const delay = Number(target.dataset.revealDelay ?? 0);
-            window.setTimeout(() => target.classList.add("reveal-visible"), delay);
-            io.unobserve(target);
+            scheduleReveal(target);
+          } else {
+            clearPending(target);
+            target.classList.remove("reveal-visible");
           }
         });
       },
-      { threshold: 0, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -12% 0px" },
     );
     items.forEach((n) => io.observe(n));
 
-    // Safety net: elements that resize late (images) can miss the observer.
-    const fallback = window.setTimeout(() => {
-      items.forEach((n) => {
-        const r = n.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) n.classList.add("reveal-visible");
-      });
-    }, 1200);
+    const initialFrame = window.requestAnimationFrame(syncVisibleItems);
+    const anchorSync = window.setTimeout(syncVisibleItems, 450);
+    const fallback = window.setTimeout(syncVisibleItems, 1200);
+    let hashTimer = 0;
+    const onHashChange = () => {
+      if (hashTimer) window.clearTimeout(hashTimer);
+      hashTimer = window.setTimeout(syncVisibleItems, 650);
+    };
+    window.addEventListener("hashchange", onHashChange);
 
     return () => {
+      window.cancelAnimationFrame(initialFrame);
+      window.clearTimeout(anchorSync);
       window.clearTimeout(fallback);
+      if (hashTimer) window.clearTimeout(hashTimer);
+      window.removeEventListener("hashchange", onHashChange);
+      items.forEach((n) => {
+        const pending = timers.get(n);
+        if (pending) window.clearTimeout(pending);
+      });
       io.disconnect();
     };
   }, []);
@@ -100,7 +132,7 @@ export function useCountUp(target: number, duration = 1600) {
         };
         requestAnimationFrame(tick);
       },
-      { threshold: 0.4 }
+      { threshold: 0.4 },
     );
     io.observe(el);
     return () => io.disconnect();
