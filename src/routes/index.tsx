@@ -8,7 +8,7 @@ import { Testimonials } from "@/components/landing/Testimonials";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
-import { FloatingWhatsAppButton } from "@/components/landing/FloatingWhatsAppButton";
+
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export const Route = createFileRoute("/")({
@@ -58,7 +58,7 @@ function Index() {
         <FinalCTA />
       </main>
       <Footer />
-      <FloatingWhatsAppButton />
+
     </div>
   );
 }
