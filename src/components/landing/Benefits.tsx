@@ -54,6 +54,7 @@ export function Benefits() {
                 alt="Equipe da Vidotti Contabilidade"
                 className="aspect-[4/3] w-full object-cover object-[50%_18%] md:aspect-[5/4] lg:aspect-[4/3]"
               />
+            </div>
           </div>
         </div>
       </div>
