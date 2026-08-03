@@ -195,3 +195,36 @@
   mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
 }
+
+/* ── Botão flutuante WhatsApp ───────────────────────────── */
+@keyframes wave-expand {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.wave-ring {
+  animation: wave-expand 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes float-msg-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.floating-whatsapp-msg {
+  position: relative;
+  animation: float-msg-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.5s both;
+}
+

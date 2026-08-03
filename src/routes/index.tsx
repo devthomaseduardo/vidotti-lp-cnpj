@@ -8,13 +8,14 @@ import { Testimonials } from "@/components/landing/Testimonials";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
+import { FloatingWhatsAppButton } from "@/components/landing/FloatingWhatsAppButton";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Vidotti Contabilidade — Abra seu CNPJ com orientação tributária",
+        title: "Vidotti Contabilidade: Abra seu CNPJ com orientação tributária",
       },
       {
         name: "description",
@@ -23,7 +24,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "Vidotti Contabilidade — CNPJ com orientação tributária",
+        content: "Vidotti Contabilidade: CNPJ com orientação tributária",
       },
       {
         property: "og:description",
@@ -57,6 +58,7 @@ function Index() {
         <FinalCTA />
       </main>
       <Footer />
+      <FloatingWhatsAppButton />
     </div>
   );
 }

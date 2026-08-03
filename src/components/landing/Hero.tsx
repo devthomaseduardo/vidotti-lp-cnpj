@@ -105,16 +105,16 @@ export function Hero() {
                   destination: "lead_form",
                 })
               }
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-3 py-3 text-center text-xs font-semibold leading-tight text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-sm"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-3 py-3 text-center text-xs font-semibold leading-tight text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-sm whitespace-nowrap"
             >
               <span className="hidden sm:inline">Receber orientação inicial</span>
-              <span className="sm:hidden">Receber orientação</span>
+              <span className="sm:hidden">Orientação inicial</span>
               <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
             </a>
             <WhatsAppLink
               source="hero_whatsapp"
               intent="Quero falar com um consultor sobre abertura de CNPJ, desenquadramento MEI ou troca de contador."
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-transparent px-3 py-3 text-center text-xs font-semibold leading-tight text-white transition-colors hover:border-white/40 hover:bg-white/5 sm:px-8 sm:py-3.5 sm:text-sm"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-transparent px-3 py-3 text-center text-xs font-semibold leading-tight text-white transition-colors hover:border-white/40 hover:bg-white/5 sm:px-8 sm:py-3.5 sm:text-sm whitespace-nowrap"
             >
               Falar no WhatsApp
             </WhatsAppLink>

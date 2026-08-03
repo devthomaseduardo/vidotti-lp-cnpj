@@ -54,12 +54,6 @@ export function Benefits() {
                 alt="Equipe da Vidotti Contabilidade"
                 className="aspect-[4/3] w-full object-cover object-[50%_18%] md:aspect-[5/4] lg:aspect-[4/3]"
               />
-            </div>
-            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-white/70">
-              <span className="text-brand-red">Enquadramento</span>
-              <span>Obrigações</span>
-              <span>Caixa</span>
-            </div>
           </div>
         </div>
       </div>

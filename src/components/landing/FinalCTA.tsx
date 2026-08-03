@@ -38,7 +38,7 @@ export function FinalCTA() {
                     destination: "lead_form",
                   })
                 }
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-3 py-3 text-center text-xs font-semibold leading-tight text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-sm"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-3 py-3 text-center text-xs font-semibold leading-tight text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-sm whitespace-nowrap"
               >
                 <span className="hidden sm:inline">Preencher diagnóstico</span>
                 <span className="sm:hidden">Diagnóstico</span>
@@ -47,7 +47,7 @@ export function FinalCTA() {
               <WhatsAppLink
                 source="final_whatsapp"
                 intent="Quero falar com a Vidotti e entender os próximos passos para meu CNPJ."
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-3 py-3 text-center text-xs font-semibold leading-tight text-white transition-colors hover:bg-white/5 sm:px-8 sm:py-3.5 sm:text-sm"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-3 py-3 text-center text-xs font-semibold leading-tight text-white transition-colors hover:bg-white/5 sm:px-8 sm:py-3.5 sm:text-sm whitespace-nowrap"
               >
                 Falar no WhatsApp
               </WhatsAppLink>
