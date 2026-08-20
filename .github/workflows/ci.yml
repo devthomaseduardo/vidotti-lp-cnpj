@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Generate, lint, typecheck & build
+    name: Generate, lint & build
     runs-on: ubuntu-latest
 
     steps:
