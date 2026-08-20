@@ -26,44 +26,44 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#0D1126]/90 backdrop-blur-md border-b border-white/5" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? "border-b border-white/5 bg-[#0D1126]/90 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <nav
-        className={`max-w-[1280px] mx-auto px-6 flex items-center justify-between transition-all duration-300 ${
+        className={`mx-auto flex max-w-[1280px] items-center justify-between px-6 transition-all duration-300 ${
           scrolled ? "h-16" : "h-24"
         }`}
       >
-        <a href="#top" className="flex items-center">
+        <a href="#top" className="flex items-center" aria-label="Voltar ao início">
           <img
             src={logoNavy}
             alt="Vidotti Contabilidade"
-            className={`w-auto transition-all duration-300 brightness-0 invert ${scrolled ? "h-7" : "h-9"}`}
+            className={`w-auto brightness-0 invert transition-all duration-300 ${scrolled ? "h-7" : "h-9"}`}
           />
         </a>
 
         <ul className="hidden items-center gap-8 lg:flex">
-          {links.map((l) => (
-            <li key={l.href}>
+          {links.map((link) => (
+            <li key={link.href}>
               <a
-                href={l.href}
+                href={link.href}
                 className="relative text-sm font-medium text-white/75 transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-brand-red after:transition-transform after:duration-300 hover:text-white hover:after:origin-left hover:after:scale-x-100"
               >
-                {l.label}
+                {link.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="hidden lg:flex items-center gap-5">
+        <div className="hidden items-center gap-5 lg:flex">
           <WhatsAppLink
             source="navbar_icon"
             intent="Quero falar com a Vidotti sobre abertura de CNPJ ou contabilidade para minha empresa."
-            aria-label="WhatsApp"
-            className="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center text-white transition-all duration-300 hover:border-white/50 hover:bg-white/5 hover:-translate-y-0.5"
+            aria-label="Falar pelo WhatsApp"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/5"
           >
-            <span className="sr-only">Falar no WhatsApp</span>
+            <span className="sr-only">Falar pelo WhatsApp</span>
           </WhatsAppLink>
           <a
             href="#lead-form"
@@ -73,9 +73,9 @@ export function Navbar() {
                 destination: "lead_form",
               })
             }
-            className="group inline-flex items-center gap-2 rounded-full bg-brand-red text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-14px_rgb(215_25_32_/_0.8)]"
+            className="group inline-flex items-center gap-2 rounded-full bg-brand-red px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-14px_rgb(215_25_32_/_0.8)]"
           >
-            Abrir meu CNPJ
+            Fazer diagnóstico
             <ArrowRight
               className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
               strokeWidth={1.75}
@@ -84,25 +84,26 @@ export function Navbar() {
         </div>
 
         <button
-          className="lg:hidden p-2 text-white"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menu"
+          className="p-2 text-white lg:hidden"
+          onClick={() => setOpen((value) => !value)}
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={open}
         >
           {open ? <X strokeWidth={1.75} /> : <Menu strokeWidth={1.75} />}
         </button>
       </nav>
 
       {open && (
-        <div className="lg:hidden bg-[#151933] border-t border-white/5">
-          <ul className="px-6 py-5 flex flex-col gap-1">
-            {links.map((l) => (
-              <li key={l.href}>
+        <div className="border-t border-white/5 bg-[#151933] lg:hidden">
+          <ul className="flex flex-col gap-1 px-6 py-5">
+            {links.map((link) => (
+              <li key={link.href}>
                 <a
-                  href={l.href}
+                  href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block py-3 text-sm font-medium text-white border-b border-white/5"
+                  className="block border-b border-white/5 py-3 text-sm font-medium text-white"
                 >
-                  {l.label}
+                  {link.label}
                 </a>
               </li>
             ))}
@@ -115,9 +116,9 @@ export function Navbar() {
                   destination: "lead_form",
                 });
               }}
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-brand-red text-white px-5 py-3 text-sm font-semibold"
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-5 py-3 text-sm font-semibold text-white"
             >
-              Abrir meu CNPJ <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
+              Fazer diagnóstico <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
             </a>
           </ul>
         </div>

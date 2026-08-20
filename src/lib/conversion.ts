@@ -10,7 +10,6 @@ const DEFAULT_UTMS = {
 } as const;
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const;
-
 const STORAGE_KEY = "vidotti_lp_utm";
 
 export type LandingEventName =
@@ -56,8 +55,7 @@ function readStoredUtms(win: AnalyticsWindow): Partial<UtmParams> {
   try {
     const raw = win.sessionStorage.getItem(STORAGE_KEY);
     if (!raw) return {};
-    const parsed = JSON.parse(raw) as Partial<UtmParams>;
-    return parsed;
+    return JSON.parse(raw) as Partial<UtmParams>;
   } catch {
     return {};
   }
@@ -76,7 +74,7 @@ function persistUtms(win: AnalyticsWindow, utms: UtmParams) {
   try {
     win.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(utms));
   } catch {
-    // Storage can be blocked by browser privacy settings. Conversion still works without it.
+    // Storage pode estar bloqueado. A conversão continua funcionando sem ele.
   }
 }
 
@@ -107,17 +105,6 @@ export function captureInitialCampaign(source = "page_load") {
   resolveCampaignParams(source);
 }
 
-function resolveDefaultCampaignParams(source: string): UtmParams {
-  return {
-    ...DEFAULT_UTMS,
-    utm_content: source,
-  };
-}
-
-function formatUtms(utms: UtmParams) {
-  return UTM_KEYS.map((key) => `${key}: ${utms[key]}`).join("\n");
-}
-
 function formatLead(lead?: LeadData) {
   if (!lead) return "";
 
@@ -141,16 +128,13 @@ export function buildWhatsAppUrl({
   lead,
   campaignMode = "resolved",
 }: WhatsAppOptions) {
-  const utms =
-    campaignMode === "default"
-      ? resolveDefaultCampaignParams(source)
-      : resolveCampaignParams(source);
+  if (campaignMode === "resolved") resolveCampaignParams(source);
+
   const leadBlock = formatLead(lead);
   const message = [
     "Olá, vim pelo site da Vidotti Contabilidade.",
     intent,
     leadBlock ? `Dados preenchidos:\n${leadBlock}` : "",
-    `Origem da campanha:\n${formatUtms(utms)}`,
   ]
     .filter(Boolean)
     .join("\n\n");
@@ -160,7 +144,6 @@ export function buildWhatsAppUrl({
   url.searchParams.set("text", message);
   url.searchParams.set("type", "phone_number");
   url.searchParams.set("app_absent", "0");
-  UTM_KEYS.forEach((key) => url.searchParams.set(key, utms[key]));
 
   return url.toString();
 }
