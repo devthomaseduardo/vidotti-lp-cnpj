@@ -14,6 +14,13 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { captureInitialCampaign, trackConversionEvent } from "../lib/conversion";
 
+const rawGaMeasurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || "";
+const gaMeasurementId = /^G-[A-Z0-9]+$/i.test(rawGaMeasurementId)
+  ? rawGaMeasurementId
+  : "";
+
+const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION?.trim() || "";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -39,6 +46,7 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
+
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
@@ -52,6 +60,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
+            type="button"
             onClick={() => {
               router.invalidate();
               reset();
@@ -79,6 +88,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "author", content: "Vidotti Contabilidade" },
       { name: "theme-color", content: "#0D1126" },
+      ...(googleSiteVerification
+        ? [{ name: "google-site-verification", content: googleSiteVerification }]
+        : []),
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -104,6 +116,21 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="pt-BR">
       <head>
         <HeadContent />
+        {gaMeasurementId ? (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(
+                gaMeasurementId,
+              )}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${gaMeasurementId}',{anonymize_ip:true});`,
+              }}
+            />
+          </>
+        ) : null}
       </head>
       <body>
         {children}
@@ -121,13 +148,15 @@ function RootComponent() {
     trackConversionEvent("page_view", { source: "root" });
 
     if (import.meta.env.PROD && "serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").catch(() => undefined);
+      navigator.serviceWorker
+        .register("/sw.js", { updateViaCache: "none" })
+        .then((registration) => registration.update())
+        .catch(() => undefined);
     }
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <FloatingWhatsApp />
     </QueryClientProvider>
