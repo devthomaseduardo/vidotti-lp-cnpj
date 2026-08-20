@@ -1,21 +1,43 @@
 {
+  "id": "/",
   "name": "Vidotti Contabilidade",
   "short_name": "Vidotti",
-  "description": "Orientação para abrir CNPJ, desenquadrar MEI, trocar de contador ou revisar rotina tributária e contábil.",
+  "description": "Abertura de CNPJ, desenquadramento MEI, troca de contador e orientação tributária e contábil para empresas.",
   "lang": "pt-BR",
   "start_url": "/?utm_source=pwa&utm_medium=app&utm_campaign=vidotti-cnpj-agosto-2026&utm_content=manifest&utm_term=abertura-cnpj",
   "scope": "/",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
   "orientation": "portrait-primary",
   "theme_color": "#0D1126",
   "background_color": "#0A0D1E",
-  "categories": ["business", "finance", "productivity"],
+  "categories": [
+    "business",
+    "finance",
+    "productivity"
+  ],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/favicon.ico",
       "sizes": "16x16 32x32 48x48",
       "type": "image/x-icon",
       "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Fazer diagnóstico",
+      "short_name": "Diagnóstico",
+      "url": "/#lead-form"
+    },
+    {
+      "name": "Ver serviços",
+      "short_name": "Serviços",
+      "url": "/#empresas"
     }
   ]
 }
