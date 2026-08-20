@@ -1,14 +1,6 @@
-const WHATSAPP_PHONE = "19993726183";
-const WHATSAPP_ENDPOINT = "https://api.whatsapp.com/send/";
+import { publicSiteConfig } from "@/generated/site-config";
 
-const DEFAULT_UTMS = {
-  utm_source: "direct",
-  utm_medium: "site",
-  utm_campaign: "vidotti-cnpj-agosto-2026",
-  utm_content: "site-cnpj",
-  utm_term: "abertura-cnpj",
-} as const;
-
+const DEFAULT_UTMS = publicSiteConfig.campaign;
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const;
 const STORAGE_KEY = "vidotti_lp_utm";
 
@@ -74,12 +66,13 @@ function persistUtms(win: AnalyticsWindow, utms: UtmParams) {
   try {
     win.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(utms));
   } catch {
-    // Storage pode estar bloqueado. A conversão continua funcionando sem ele.
+    // O atendimento continua funcionando mesmo quando o storage está bloqueado.
   }
 }
 
 export function resolveCampaignParams(source: string): UtmParams {
   const win = getWindow();
+
   if (!win) {
     return {
       ...DEFAULT_UTMS,
@@ -90,6 +83,7 @@ export function resolveCampaignParams(source: string): UtmParams {
   const stored = readStoredUtms(win);
   const current = readUrlUtms(win);
   const hasCurrentUtms = Object.keys(current).length > 0;
+
   const utms: UtmParams = {
     ...DEFAULT_UTMS,
     ...stored,
@@ -98,6 +92,7 @@ export function resolveCampaignParams(source: string): UtmParams {
   };
 
   if (hasCurrentUtms || !stored.utm_campaign) persistUtms(win, utms);
+
   return utms;
 }
 
@@ -118,7 +113,7 @@ function formatLead(lead?: LeadData) {
 
   return fields
     .filter(([, value]) => Boolean(value?.trim()))
-    .map(([label, value]) => `${label}: ${value}`)
+    .map(([label, value]) => `${label}: ${value?.trim()}`)
     .join("\n");
 }
 
@@ -133,17 +128,18 @@ export function buildWhatsAppUrl({
   const leadBlock = formatLead(lead);
   const message = [
     "Olá, vim pelo site da Vidotti Contabilidade.",
-    intent,
+    intent.trim(),
     leadBlock ? `Dados preenchidos:\n${leadBlock}` : "",
   ]
     .filter(Boolean)
     .join("\n\n");
 
-  const url = new URL(WHATSAPP_ENDPOINT);
-  url.searchParams.set("phone", WHATSAPP_PHONE);
+  const url = new URL(publicSiteConfig.contact.whatsappUrl);
+  url.searchParams.set("phone", publicSiteConfig.contact.whatsappPhone);
   url.searchParams.set("text", message);
   url.searchParams.set("type", "phone_number");
   url.searchParams.set("app_absent", "0");
+  url.searchParams.set("utm_source", "ig");
 
   return url.toString();
 }
