@@ -52,8 +52,8 @@ export function CompanyTypes() {
               {[...logos, ...logos].map((logo, index) => {
                 const isDuplicate = index >= logos.length;
                 return (
-                  <div key={`${logo}-${index}`} aria-hidden={isDuplicate || undefined} className="flex h-[100px] w-[170px] flex-shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white md:h-[105px] md:w-[200px]">
-                    <div className="flex h-full w-full items-center justify-center overflow-hidden bg-white"><img src={logo} alt="" loading="lazy" decoding="async" draggable={false} className="h-full w-full scale-[1.18] select-none object-contain [clip-path:inset(12px_14px_round_8px)]" /></div>
+                  <div key={`${logo}-${index}`} aria-hidden={isDuplicate || undefined} className="flex h-[84px] w-[145px] flex-shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white md:h-[92px] md:w-[170px]">
+                    <div className="flex h-full w-full items-center justify-center overflow-hidden bg-white"><img src={logo} alt="" loading="lazy" decoding="async" draggable={false} className="h-full w-full scale-[1.12] select-none object-contain [clip-path:inset(12px_14px_round_8px)]" /></div>
                   </div>
                 );
               })}
