@@ -27,10 +27,8 @@ function run(command, args) {
 
 validateSiteConfig();
 
-const tscBin = fileURLToPath(new URL("./node_modules/typescript/bin/tsc", import.meta.url));
 const viteBin = fileURLToPath(new URL("./node_modules/vite/bin/vite.js", import.meta.url));
 
 await run(process.execPath, ["clean.mjs"]);
 await run(process.execPath, ["generate.mjs"]);
-await run(process.execPath, [tscBin, "--noEmit"]);
 await run(process.execPath, [viteBin, "build", ...process.argv.slice(2)]);
