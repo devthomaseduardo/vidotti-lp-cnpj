@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Lint & Build
+    name: Generate, lint, typecheck & build
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Generate public files
+        run: npm run generate
+
+      - name: Check generated files
+        run: git diff --exit-code
 
       - name: Lint
         run: npm run lint
