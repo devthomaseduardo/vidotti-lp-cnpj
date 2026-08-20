@@ -10,7 +10,7 @@ export function Footer() {
           <div className="flex items-center justify-between gap-4 lg:block">
             <img
               src={logoNavy}
-              alt="Vidotti Consultoria"
+              alt="Vidotti Contabilidade"
               className="h-7 w-auto brightness-0 invert md:h-8"
             />
             <a
@@ -24,7 +24,7 @@ export function Footer() {
             </a>
           </div>
           <p className="mt-3 hidden max-w-md text-xs leading-relaxed text-white/60 md:mt-5 md:block md:text-sm lg:max-w-xs">
-            Desde 2002 provendo soluções nas áreas fiscal, contábil, tributária e trabalhista.
+            Desde 2002, atendimento fiscal, contábil, tributário e trabalhista para empresas.
           </p>
         </div>
 
@@ -92,11 +92,11 @@ export function Footer() {
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" strokeWidth={1.5} />
               <WhatsAppLink
                 source="footer_phone"
-                intent="Quero falar com a Vidotti pelo contato do rodapé da landing page."
+                intent="Quero falar com a Vidotti pelo contato do site sobre meu CNPJ ou rotina contábil."
                 withIcon={false}
                 className="text-white/60 transition-colors hover:text-brand-red"
               >
-                (19) 99635-5181
+                (19) 99372-6183
               </WhatsAppLink>
             </li>
             <li className="flex items-start gap-2.5 md:gap-3">

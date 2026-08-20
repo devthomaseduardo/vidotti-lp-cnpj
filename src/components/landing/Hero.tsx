@@ -16,9 +16,9 @@ const initialLead: LeadForm = {
 };
 
 const trustPoints = [
-  { icon: Clock3, title: "Desde 2002", text: "atuação contábil, fiscal e RH" },
-  { icon: ShieldCheck, title: "Escolha tributária", text: "antes de emitir nota" },
-  { icon: CheckCircle2, title: "Atendimento direto", text: "Campinas/SP e digital" },
+  { icon: Clock3, title: "Desde 2002", text: "contábil, fiscal e trabalhista" },
+  { icon: ShieldCheck, title: "Escolha tributária", text: "CNAE e regime antes das notas" },
+  { icon: CheckCircle2, title: "Atendimento direto", text: "Campinas/SP e canais digitais" },
 ];
 
 export function Hero() {
@@ -72,7 +72,7 @@ export function Hero() {
             data-reveal
             className="mb-8 inline-block rounded-full border border-white/20 px-4 py-1.5 text-xs font-medium text-white/80 backdrop-blur-sm"
           >
-            Abertura de CNPJ, MEI e contabilidade consultiva
+            Abertura de CNPJ, desenquadramento MEI e contabilidade
           </span>
 
           <h1
@@ -88,8 +88,8 @@ export function Hero() {
             data-reveal-delay="160"
             className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70"
           >
-            A Vidotti ajuda você a sair da dúvida sobre MEI, CNAE, regime tributário, documentos e
-            rotina fiscal antes de começar a operar como PJ.
+            Você entende qual tipo de empresa abrir, quais documentos separar, como escolher CNAE e
+            regime tributário e quais cuidados tomar antes de começar a emitir notas como PJ.
           </p>
 
           <div
@@ -121,7 +121,7 @@ export function Hero() {
           </div>
 
           <p data-reveal data-reveal-delay="300" className="mt-5 text-xs text-white/55 md:hidden">
-            Desde 2002 · Campinas/SP · Fiscal, contábil e RH
+            Desde 2002 · Campinas/SP · Fiscal, contábil e trabalhista
           </p>
 
           <div
@@ -244,7 +244,7 @@ export function Hero() {
                     htmlFor="lead-need"
                     className="mb-1.5 block text-xs font-medium text-white/60"
                   >
-                    Preciso de *
+                    O que você precisa? *
                   </label>
                   <select
                     id="lead-need"

@@ -1,10 +1,11 @@
-const WHATSAPP_NUMBER = "5519996355181";
+const WHATSAPP_PHONE = "19993726183";
+const WHATSAPP_ENDPOINT = "https://api.whatsapp.com/send/";
 
 const DEFAULT_UTMS = {
   utm_source: "direct",
-  utm_medium: "landing_page",
+  utm_medium: "site",
   utm_campaign: "vidotti-cnpj-agosto-2026",
-  utm_content: "lp-cnpj",
+  utm_content: "site-cnpj",
   utm_term: "abertura-cnpj",
 } as const;
 
@@ -124,7 +125,7 @@ export function buildWhatsAppUrl({ source, intent, lead }: WhatsAppOptions) {
   const utms = resolveCampaignParams(source);
   const leadBlock = formatLead(lead);
   const message = [
-    "Olá, vim pela landing page da Vidotti Contabilidade.",
+    "Olá, vim pelo site da Vidotti Contabilidade.",
     intent,
     leadBlock ? `Dados preenchidos:\n${leadBlock}` : "",
     `Origem da campanha:\n${formatUtms(utms)}`,
@@ -132,7 +133,14 @@ export function buildWhatsAppUrl({ source, intent, lead }: WhatsAppOptions) {
     .filter(Boolean)
     .join("\n\n");
 
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  const url = new URL(WHATSAPP_ENDPOINT);
+  url.searchParams.set("phone", WHATSAPP_PHONE);
+  url.searchParams.set("text", message);
+  url.searchParams.set("type", "phone_number");
+  url.searchParams.set("app_absent", "0");
+  UTM_KEYS.forEach((key) => url.searchParams.set(key, utms[key]));
+
+  return url.toString();
 }
 
 export function trackConversionEvent(

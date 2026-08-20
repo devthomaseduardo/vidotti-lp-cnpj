@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Abra, migre ou organize seu CNPJ com a Vidotti Contabilidade: orientação sobre MEI, CNAE, regime tributário, rotina fiscal e próximos passos para operar como PJ.",
+          "Entenda como abrir, migrar ou organizar seu CNPJ com orientação sobre MEI, CNAE, regime tributário, documentos, notas e rotina fiscal.",
       },
       {
         property: "og:title",
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Landing page para abertura de CNPJ, desenquadramento MEI, planejamento tributário e assessoria contábil.",
+          "Orientação para abrir CNPJ, desenquadrar MEI, trocar de contador ou revisar sua rotina tributária e contábil.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
@@ -58,7 +58,6 @@ function Index() {
         <FinalCTA />
       </main>
       <Footer />
-
     </div>
   );
 }

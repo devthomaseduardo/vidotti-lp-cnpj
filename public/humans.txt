@@ -1,0 +1,14 @@
+/* TEAM */
+Empresa: Vidotti Contabilidade
+Contato: contato@vidotticontabilidade.com.br
+WhatsApp: (19) 99372-6183
+Local: Campinas, SP, Brasil
+
+/* SITE */
+URL: https://vidotticontabilidade.com.br
+Idioma: pt-BR
+Atualizado: 2026-08-20
+Stack: React, TanStack Start, TypeScript, Vite, Tailwind CSS
+
+/* FOCO */
+Abertura de CNPJ, desenquadramento MEI, planejamento tributário e assessoria contábil.

@@ -5,22 +5,22 @@ const steps = [
   {
     icon: MessagesSquare,
     title: "Diagnóstico inicial",
-    text: "Você informa atividade, momento da empresa, faturamento esperado e principal dúvida.",
+    text: "Você informa atividade, momento da empresa, faturamento esperado, cidade e principal dúvida.",
   },
   {
     icon: ShieldCheck,
     title: "Enquadramento tributário",
-    text: "A Vidotti avalia natureza jurídica, CNAE e regime para reduzir risco antes da abertura.",
+    text: "Você recebe uma análise inicial de natureza jurídica, CNAE e regime antes de abrir ou migrar.",
   },
   {
     icon: FileText,
     title: "Documentos e abertura",
-    text: "A equipe orienta documentação, registro e etapas com órgãos públicos conforme sua atividade.",
+    text: "Você sabe quais documentos separar e quais etapas dependem da atividade, endereço e município.",
   },
   {
     icon: Rocket,
     title: "Operação contábil",
-    text: "Depois do CNPJ, você recebe próximos passos para notas, impostos, pró-labore e rotina fiscal.",
+    text: "Depois do CNPJ, você entende próximos passos para notas, guias, pró-labore e rotina fiscal.",
   },
 ];
 
@@ -40,8 +40,8 @@ export function HowItWorks() {
               Processo claro antes, durante e depois da abertura.
             </h2>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-white/60">
-              Cada etapa existe para reduzir dúvida sobre documentos, enquadramento, impostos e
-              rotina depois que o CNPJ estiver ativo.
+              Cada etapa mostra o que você precisa decidir, quais informações enviar e quais
+              cuidados tomar para operar com menos risco fiscal.
             </p>
             <a
               href="#lead-form"

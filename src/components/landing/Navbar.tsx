@@ -7,7 +7,7 @@ import { WhatsAppLink } from "./WhatsAppLink";
 const links = [
   { href: "#top", label: "Início" },
   { href: "#empresas", label: "Serviços" },
-  { href: "#beneficios", label: "Vantagens" },
+  { href: "#beneficios", label: "Riscos" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#prova", label: "Confiança" },
   { href: "#faq", label: "FAQ" },
@@ -38,7 +38,7 @@ export function Navbar() {
         <a href="#top" className="flex items-center">
           <img
             src={logoNavy}
-            alt="Vidotti Consultoria"
+            alt="Vidotti Contabilidade"
             className={`w-auto transition-all duration-300 brightness-0 invert ${scrolled ? "h-7" : "h-9"}`}
           />
         </a>

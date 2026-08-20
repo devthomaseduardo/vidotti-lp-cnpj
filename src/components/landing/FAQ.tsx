@@ -5,37 +5,37 @@ const faqs = [
   {
     question: "Quais documentos preciso para abrir meu CNPJ?",
     answer:
-      "A lista depende da atividade, endereço, tipo de empresa e exigências locais. No primeiro atendimento, a Vidotti confirma o caminho e orienta a documentação correta.",
+      "A lista depende da atividade, endereço, tipo de empresa e exigências locais. No primeiro atendimento, você entende quais dados e documentos separar para o seu caso.",
   },
   {
     question: "A Vidotti ajuda a escolher CNAE e regime tributário?",
     answer:
-      "Sim. Essa é uma das partes mais importantes do atendimento, porque CNAE, natureza jurídica e regime tributário impactam impostos, notas e obrigações desde o começo.",
+      "Sim. Você recebe orientação inicial sobre CNAE, natureza jurídica e regime tributário, porque essas escolhas impactam impostos, notas e obrigações desde o começo.",
   },
   {
     question: "Sou MEI e preciso desenquadrar. Vocês fazem essa migração?",
     answer:
-      "Sim. A equipe avalia se a empresa já precisa sair do MEI, quais impactos existem e quais etapas são necessárias para migrar para uma estrutura adequada.",
+      "Sim. A Vidotti avalia se sua empresa já precisa sair do MEI, quais impactos fiscais existem e quais etapas entram na migração para uma estrutura adequada.",
   },
   {
     question: "Já tenho contador. Posso trocar para a Vidotti?",
     answer:
-      "Pode. A troca exige cuidado com documentos, pendências e rotinas em andamento. O primeiro passo é entender a situação atual para não herdar problemas sem visibilidade.",
+      "Pode. Você entende quais documentos, pendências e rotinas precisam ser conferidos antes da troca, para não levar problemas antigos sem visibilidade.",
   },
   {
     question: "O atendimento é apenas para Campinas?",
     answer:
-      "A Vidotti tem presença em Campinas/SP, mas parte do atendimento pode ser conduzida de forma digital. A viabilidade depende do tipo de serviço e da necessidade da empresa.",
+      "A Vidotti tem presença em Campinas/SP e também atende por canais digitais. A viabilidade depende do tipo de serviço, município e necessidade da empresa.",
   },
   {
     question: "Quanto tempo leva para abrir a empresa?",
     answer:
-      "O prazo varia conforme documentação, atividade, município e órgãos responsáveis. A Vidotti evita promessa automática porque o correto é confirmar o cenário antes de assumir prazo.",
+      "O prazo varia conforme documentação, atividade, município e órgãos responsáveis. Por isso, a Vidotti primeiro confirma o cenário antes de assumir prazo.",
   },
   {
     question: "Quanto custa a abertura ou a assessoria?",
     answer:
-      "O valor depende do tipo de empresa, regime, atividade e escopo de atendimento. A conversa inicial serve para entender o caso antes de passar proposta.",
+      "O valor depende do tipo de empresa, regime, atividade e escopo de atendimento. A conversa inicial serve para entender seu caso antes de passar uma proposta.",
   },
   {
     question: "Depois do CNPJ aberto, a Vidotti acompanha a rotina fiscal?",
@@ -88,7 +88,7 @@ export function FAQ() {
         <div className="mt-12 flex justify-center" data-reveal>
           <WhatsAppLink
             source="faq_whatsapp"
-            intent="Li as dúvidas da landing page e quero entender o melhor caminho para meu CNPJ."
+            intent="Li as dúvidas do site e quero entender o melhor caminho para meu CNPJ."
             className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
           >
             Tirar minha dúvida no WhatsApp

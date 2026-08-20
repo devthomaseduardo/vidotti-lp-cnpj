@@ -3,9 +3,9 @@ import { trackConversionEvent } from "@/lib/conversion";
 import { WhatsAppLink } from "./WhatsAppLink";
 
 const closingPoints = [
-  "Entender atividade, faturamento esperado e momento da empresa.",
-  "Separar abertura de CNPJ, desenquadramento MEI, troca de contador ou revisão tributária.",
-  "Confirmar documentos, próximos passos e escopo antes de falar em prazo ou preço.",
+  "Explicar sua atividade, cidade, faturamento esperado e momento da empresa.",
+  "Entender se seu caso é abertura de CNPJ, desenquadramento MEI, troca de contador ou revisão tributária.",
+  "Saber quais documentos separar, quais próximos passos vêm depois e qual escopo faz sentido.",
 ];
 
 export function FinalCTA() {
@@ -26,7 +26,7 @@ export function FinalCTA() {
 
             <p className="mb-10 max-w-2xl text-lg leading-relaxed text-white/70">
               A conversa inicial serve para entender seu caso, evitar enquadramento errado e mostrar
-              os próximos passos antes de qualquer proposta.
+              documentos, riscos e próximos passos antes de qualquer proposta.
             </p>
 
             <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4">

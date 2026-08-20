@@ -1,37 +1,37 @@
-import { Briefcase, Building, Calculator, FileSignature, LineChart, Users } from "lucide-react";
 import { trackConversionEvent } from "@/lib/conversion";
+
 import { WhatsAppLink } from "./WhatsAppLink";
 
 const services = [
   {
-    icon: Building,
-    title: "Abertura de Empresa",
-    text: "Orientação sobre natureza jurídica, CNAE, regime tributário, CNPJ e primeiros passos para operar sem improviso.",
+    number: "01",
+    title: "Abertura de empresa",
+    text: "Definição de natureza jurídica, CNAE e regime tributário antes da abertura do CNPJ.",
   },
   {
-    icon: FileSignature,
-    title: "Desenquadramento MEI",
-    text: "Análise da migração para ME, impactos fiscais e organização da nova rotina contábil depois que a empresa cresce.",
+    number: "02",
+    title: "Desenquadramento do MEI",
+    text: "Planejamento da saída do MEI e organização das novas obrigações fiscais da empresa.",
   },
   {
-    icon: Calculator,
-    title: "Assessoria Contábil",
-    text: "Rotina contábil, fiscal e trabalhista com acompanhamento para manter obrigações, impostos e documentos em ordem.",
+    number: "03",
+    title: "Assessoria contábil",
+    text: "Rotina contábil, fiscal e trabalhista acompanhada durante todo o mês.",
   },
   {
-    icon: LineChart,
-    title: "Planejamento Tributário",
-    text: "Comparação entre regimes, atividade, faturamento e emissão de notas para reduzir risco e evitar impostos mal planejados.",
+    number: "04",
+    title: "Planejamento tributário",
+    text: "Análise da operação para identificar o regime tributário mais adequado ao negócio.",
   },
   {
-    icon: Briefcase,
-    title: "Gestão Financeira",
-    text: "Apoio no financeiro, conciliação, fluxo de caixa e relatórios para decisões menos baseadas em planilha solta.",
+    number: "05",
+    title: "Gestão financeira",
+    text: "Organização de fluxo de caixa, conciliações e informações financeiras da empresa.",
   },
   {
-    icon: Users,
-    title: "Departamento Pessoal",
-    text: "Admissões, demissões, folha de pagamento e encargos com rotina organizada para empresas com equipe.",
+    number: "06",
+    title: "Departamento pessoal",
+    text: "Folha de pagamento, admissões, desligamentos, pró-labore e encargos da equipe.",
   },
 ];
 
@@ -55,100 +55,145 @@ const logos = [
 
 export function CompanyTypes() {
   return (
-    <section id="empresas" className="relative overflow-hidden bg-[#0D1126] py-20 md:py-28">
-      <div className="relative z-10 mx-auto max-w-[1280px] px-6">
-        {/* Cabeçalho da seção */}
-        <div className="mb-12 max-w-3xl md:mb-16" data-reveal>
-          <span className="mb-5 inline-block rounded-full border border-white/10 px-4 py-1.5 text-xs font-semibold text-white/60">
-            Serviços
-          </span>
-          <h2 className="text-3xl font-bold leading-tight text-white md:text-4xl">
-            Soluções para abrir, migrar e manter sua empresa em ordem
-          </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/60">
-            A página é focada em CNPJ, mas a conversa inicial já separa se o melhor caminho é abrir
-            empresa, sair do MEI, trocar de contador ou revisar a carga tributária.
-          </p>
-        </div>
+    <section
+      id="empresas"
+      className="relative overflow-hidden bg-[#0B0F1F] py-20 md:py-28 lg:py-32"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-red-700/10 blur-[150px]"
+      />
 
-        {/* Grid de serviços */}
-        <div className="divide-y divide-white/[0.06] border-y border-white/[0.06] md:grid md:grid-cols-2 md:divide-x md:divide-y-0 lg:grid-cols-3">
-          {services.map((s, i) => (
-            <article
-              key={s.title}
-              data-reveal
-              data-reveal-delay={i * 60}
-              className="group flex min-h-[200px] flex-col px-0 py-5 transition-colors md:border-b md:border-white/[0.06] md:px-8 lg:[&:nth-last-child(-n+3)]:border-b-0"
-            >
-              <div className="mb-4 flex items-center gap-4">
-                <s.icon strokeWidth={1.5} className="h-7 w-7 text-brand-red" />
-                <h3 className="text-xl font-bold text-white">{s.title}</h3>
-              </div>
-              <p className="text-sm leading-relaxed text-white/60">{s.text}</p>
-            </article>
-          ))}
-        </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-48 bottom-32 h-[450px] w-[450px] rounded-full bg-blue-900/10 blur-[160px]"
+      />
 
-        {/* CTAs — logo após a seção Serviços */}
-        <div
-          className="mt-12 flex w-full flex-col items-center justify-center gap-4 sm:flex-row"
-          data-reveal
-        >
-          <WhatsAppLink
-            source="services_specialist"
-            intent="Quero falar com um especialista da Vidotti sobre os serviços para minha empresa."
-            className="inline-flex items-center gap-3 rounded-full bg-brand-red px-7 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 whitespace-nowrap"
-          >
-            Fale com um especialista
-          </WhatsAppLink>
-          <a
-            href="#lead-form"
-            onClick={() =>
-              trackConversionEvent("cta_clicked", {
-                source: "services_secondary",
-                destination: "lead_form",
-              })
-            }
-            className="text-sm font-medium text-white/50 underline-offset-4 transition-colors hover:text-white/80 hover:underline"
-          >
-            Ou preencha o diagnóstico
-          </a>
-        </div>
-
-        {/* Seção Clientes */}
-        <div
-          className="mt-14 overflow-hidden py-8 md:mt-20 md:py-10"
-          data-reveal
-        >
-          <div className="mb-6">
-            <span className="mb-4 inline-block rounded-full border border-white/10 px-4 py-1.5 text-xs font-semibold text-white/60">
-              Clientes
+      <div className="relative z-10 mx-auto max-w-[1280px] px-6 lg:px-8">
+        <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div data-reveal className="lg:sticky lg:top-28 lg:h-fit lg:self-start">
+            <span className="mb-5 block text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">
+              Contabilidade para empresas
             </span>
-            <h3 className="max-w-xl text-2xl font-bold text-white md:text-3xl">
-              Empresas que já conhecem a Vidotti
-            </h3>
+
+            <h2 className="max-w-[520px] text-3xl font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:text-4xl md:text-5xl">
+              Estrutura contábil para sua empresa crescer com segurança.
+            </h2>
+
+            <p className="mt-6 max-w-[500px] text-base leading-7 text-white/55 md:text-[17px]">
+              Da abertura do CNPJ à rotina fiscal, financeira e trabalhista, a Vidotti acompanha sua
+              empresa em cada etapa da operação.
+            </p>
+
+            <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+              <WhatsAppLink
+                source="services_specialist"
+                intent="Quero falar com a Vidotti sobre abertura, MEI, contador ou rotina fiscal da minha empresa."
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-red px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110"
+              >
+                Falar com um especialista
+              </WhatsAppLink>
+
+              <a
+                href="#lead-form"
+                onClick={() =>
+                  trackConversionEvent("cta_clicked", {
+                    source: "services_secondary",
+                    destination: "lead_form",
+                  })
+                }
+                className="text-sm font-medium text-white/50 transition-colors duration-300 hover:text-white"
+              >
+                Solicitar diagnóstico
+              </a>
+            </div>
           </div>
 
-          <div
-            className="-mx-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_9%,#000_91%,transparent)]"
-            data-reveal
-            data-reveal-delay="100"
-          >
-            <div className="client-logo-track flex min-w-max gap-3 px-6 py-2 md:gap-6">
-              {[...logos, ...logos].map((logo, i) => {
-                const isDuplicate = i >= logos.length;
+          <div className="border-t border-white/10">
+            {services.map((service, index) => (
+              <article
+                key={service.title}
+                data-reveal
+                data-reveal-delay={index * 70}
+                className="group grid gap-4 border-b border-white/10 py-7 md:grid-cols-[64px_1fr] md:py-9"
+              >
+                <div>
+                  <span className="text-xs font-medium tracking-[0.15em] text-white/25 transition-colors duration-300 group-hover:text-brand-red">
+                    {service.number}
+                  </span>
+                </div>
+
+                <div className="grid gap-3 md:grid-cols-[0.8fr_1.2fr] md:gap-10">
+                  <h3 className="text-xl font-semibold tracking-[-0.02em] text-white md:text-2xl">
+                    {service.title}
+                  </h3>
+
+                  <p className="max-w-[500px] text-sm leading-6 text-white/50 md:text-[15px] md:leading-7">
+                    {service.text}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-24 border-t border-white/10 pt-14 md:mt-32 md:pt-20" data-reveal>
+          <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <span className="mb-4 block text-xs font-semibold uppercase tracking-[0.22em] text-brand-red">
+                Empresas atendidas
+              </span>
+
+              <h3 className="max-w-xl text-2xl font-semibold tracking-[-0.025em] text-white md:text-3xl">
+                Negócios que confiam no trabalho da Vidotti.
+              </h3>
+            </div>
+
+            <p className="max-w-[420px] text-sm leading-6 text-white/45 md:text-right">
+              Atendimento próximo para empresas de diferentes segmentos e momentos de crescimento.
+            </p>
+          </div>
+
+          <div className="relative w-full overflow-hidden" data-reveal data-reveal-delay="100">
+            <div className="client-logo-track flex min-w-max items-center gap-4 py-3 md:gap-5">
+              {[...logos, ...logos].map((logo, index) => {
+                const isDuplicate = index >= logos.length;
+                const logoIndex = index % logos.length;
 
                 return (
                   <div
-                    key={`${logo}-${i}`}
+                    key={`${logo}-${index}`}
                     aria-hidden={isDuplicate || undefined}
-                    className="flex h-20 w-32 flex-shrink-0 items-center justify-center rounded-xl bg-white p-3 md:h-32 md:w-52 md:p-5"
+                    className="
+                      flex
+                      h-[100px]
+                      w-[170px]
+                      flex-shrink-0
+                      items-center
+                      justify-center
+                      overflow-hidden
+                      rounded-xl
+                      bg-white
+                      md:h-[105px]
+                      md:w-[200px]
+                    "
                   >
-                    <img
-                      src={logo}
-                      alt={isDuplicate ? "" : `Cliente Vidotti ${i + 1}`}
-                      className="max-h-full max-w-full object-contain"
-                    />
+                    <div className="flex h-full w-full items-center justify-center overflow-hidden bg-white">
+                      <img
+                        src={logo}
+                        alt={isDuplicate ? "" : `Empresa atendida pela Vidotti ${logoIndex + 1}`}
+                        loading="lazy"
+                        draggable={false}
+                        className="
+                          h-full
+                          w-full
+                          scale-[1.18]
+                          select-none
+                          object-contain
+                          [clip-path:inset(12px_14px_round_8px)]
+                        "
+                      />
+                    </div>
                   </div>
                 );
               })}

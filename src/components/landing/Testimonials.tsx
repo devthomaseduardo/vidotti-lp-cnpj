@@ -6,22 +6,22 @@ const proofPoints = [
   {
     icon: CalendarCheck,
     title: "Atuação desde 2002",
-    text: "Histórico de atendimento contábil, fiscal e de RH para empresas em diferentes fases.",
+    text: "Histórico de atendimento contábil, fiscal e trabalhista para empresas em diferentes fases.",
   },
   {
     icon: Building2,
     title: "Endereço e canais oficiais",
-    text: "Atendimento em Campinas/SP, WhatsApp, e-mail e presença institucional no Instagram.",
+    text: "Você encontra endereço em Campinas/SP, WhatsApp, e-mail e Instagram institucional da Vidotti.",
   },
   {
     icon: FileCheck2,
     title: "Escopo completo",
-    text: "Abertura, fiscal, contábil, trabalhista, desenquadramento MEI e planejamento tributário.",
+    text: "Atendimento para abertura, fiscal, contábil, trabalhista, desenquadramento MEI e planejamento tributário.",
   },
   {
     icon: ShieldCheck,
-    title: "Promessa responsável",
-    text: "A orientação considera atividade, documentos, prefeitura e regime. Sem diagnóstico automático ou genérico.",
+    title: "Orientação responsável",
+    text: "A orientação considera atividade, documentos, prefeitura e regime. Sem resposta automática ou genérica.",
   },
 ];
 
@@ -46,14 +46,14 @@ export function Testimonials() {
               Confiança vem de histórico, presença e orientação responsável.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-white/60">
-              A Vidotti comunica o que pode ser verificado: tempo de atuação, canais oficiais,
-              escopo de atendimento e clareza antes de qualquer proposta.
+              Você consegue verificar tempo de atuação, canais oficiais, escopo de atendimento e
+              como a conversa inicial evita resposta genérica para o seu caso.
             </p>
 
             <div className="mt-8 grid grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-5">
               {[
                 { value: "2002", label: "início da atuação" },
-                { value: "4", label: "frentes contábeis" },
+                { value: "4", label: "áreas de atendimento" },
                 { value: "SP", label: "Campinas e digital" },
               ].map((stat) => (
                 <div key={stat.value} className="px-3 first:pl-0 last:pr-0">
