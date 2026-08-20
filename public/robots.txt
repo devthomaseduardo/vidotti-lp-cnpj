@@ -1,16 +1,4 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
 
-Sitemap: https://vidotticontabilidade.com.br/sitemap.xml
+Sitemap: https://vidotti-lp-cnpj.vercel.app/sitemap.xml
