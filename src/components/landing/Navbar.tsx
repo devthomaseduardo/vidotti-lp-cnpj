@@ -24,6 +24,15 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -31,6 +40,7 @@ export function Navbar() {
       }`}
     >
       <nav
+        aria-label="Navegação principal"
         className={`mx-auto flex max-w-[1280px] items-center justify-between px-6 transition-all duration-300 ${
           scrolled ? "h-16" : "h-24"
         }`}
@@ -84,43 +94,58 @@ export function Navbar() {
         </div>
 
         <button
+          type="button"
           className="p-2 text-white lg:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
           {open ? <X strokeWidth={1.75} /> : <Menu strokeWidth={1.75} />}
         </button>
       </nav>
 
       {open && (
-        <div className="border-t border-white/5 bg-[#151933] lg:hidden">
-          <ul className="flex flex-col gap-1 px-6 py-5">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block border-b border-white/5 py-3 text-sm font-medium text-white"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-            <a
-              href="#lead-form"
-              onClick={() => {
-                setOpen(false);
-                trackConversionEvent("cta_clicked", {
-                  source: "navbar_mobile_primary",
-                  destination: "lead_form",
-                });
-              }}
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-5 py-3 text-sm font-semibold text-white"
-            >
-              Fazer diagnóstico <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
-            </a>
-          </ul>
+        <div id="mobile-navigation" className="border-t border-white/5 bg-[#151933] lg:hidden">
+          <div className="flex flex-col px-6 py-5">
+            <ul className="flex flex-col gap-1">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block border-b border-white/5 py-3 text-sm font-medium text-white"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <a
+                href="#lead-form"
+                onClick={() => {
+                  setOpen(false);
+                  trackConversionEvent("cta_clicked", {
+                    source: "navbar_mobile_primary",
+                    destination: "lead_form",
+                  });
+                }}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-4 text-center text-xs font-semibold text-white"
+              >
+                Fazer diagnóstico
+              </a>
+              <WhatsAppLink
+                source="navbar_mobile_whatsapp"
+                intent="Quero falar com a Vidotti sobre abertura de CNPJ ou contabilidade para minha empresa."
+                onClick={() => setOpen(false)}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-4 text-center text-xs font-semibold text-white"
+              >
+                WhatsApp
+              </WhatsAppLink>
+            </div>
+          </div>
         </div>
       )}
     </header>
