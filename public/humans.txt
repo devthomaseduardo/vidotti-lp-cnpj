@@ -5,10 +5,12 @@ WhatsApp: (19) 99372-6183
 Local: Campinas, SP, Brasil
 
 /* SITE */
-URL: https://vidotticontabilidade.com.br
+Landing page: https://vidotti-lp-cnpj.vercel.app
+Site institucional: https://vidotticonsultoria.com.br
 Idioma: pt-BR
 Atualizado: 2026-08-20
 Stack: React, TanStack Start, TypeScript, Vite, Tailwind CSS
+Hospedagem: Vercel
 
 /* FOCO */
-Abertura de CNPJ, desenquadramento MEI, planejamento tributário e assessoria contábil.
+Abertura de CNPJ, desenquadramento MEI, troca de contador, planejamento tributário e assessoria contábil.
