@@ -3,14 +3,45 @@ import { ArrowRight, CheckCircle2, Clock3, ShieldCheck } from "lucide-react";
 import { BrandArcSoft } from "./BrandCurves";
 import { WhatsAppLink } from "./WhatsAppLink";
 import heroImg from "@/assets/hero-empresario.png";
-import { buildWhatsAppUrl, trackConversionEvent, type LeadData } from "@/lib/conversion";
+import { buildWhatsAppUrl, trackConversionEvent } from "@/lib/conversion";
 
-type LeadForm = Required<LeadData>;
+type LeadForm = {
+  business: string;
+  phone: string;
+  need: string;
+};
+
+const needOptions = [
+  {
+    label: "Abrir CNPJ",
+    value: "Abertura de CNPJ",
+    helper: "Começar como PJ",
+  },
+  {
+    label: "Sair do MEI",
+    value: "Desenquadramento MEI",
+    helper: "Migrar para ME",
+  },
+  {
+    label: "Trocar contador",
+    value: "Troca de contador",
+    helper: "Revisar rotina atual",
+  },
+  {
+    label: "Revisar impostos",
+    value: "Planejamento tributário",
+    helper: "Entender carga tributária",
+  },
+  {
+    label: "Não sei ainda",
+    value: "Preciso entender meu caso",
+    helper: "Receber orientação",
+    fullWidth: true,
+  },
+] as const;
 
 const initialLead: LeadForm = {
-  name: "",
   business: "",
-  email: "",
   phone: "",
   need: "Abertura de CNPJ",
 };
@@ -25,10 +56,9 @@ export function Hero() {
   const [lead, setLead] = useState<LeadForm>(initialLead);
   const [started, setStarted] = useState(false);
 
-  const updateLead =
-    (field: keyof LeadForm) => (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      setLead((current) => ({ ...current, [field]: event.target.value }));
-    };
+  const updateLead = (field: keyof LeadForm) => (event: ChangeEvent<HTMLInputElement>) => {
+    setLead((current) => ({ ...current, [field]: event.target.value }));
+  };
 
   const handleFormStart = () => {
     if (started) return;
@@ -36,20 +66,38 @@ export function Hero() {
     trackConversionEvent("form_started", { source: "hero_form" });
   };
 
+  const selectNeed = (need: string) => {
+    handleFormStart();
+    setLead((current) => ({ ...current, need }));
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    trackConversionEvent("form_submitted", {
+    trackConversionEvent("form_completed", {
       source: "hero_form",
       need: lead.need,
-      has_email: Boolean(lead.email),
+      has_context: Boolean(lead.business),
+      has_phone: Boolean(lead.phone),
+      fields_count: 3,
     });
 
     if (typeof window !== "undefined") {
-      window.location.href = buildWhatsAppUrl({
+      const whatsappUrl = buildWhatsAppUrl({
         source: "hero_form",
-        intent: "Quero receber uma orientação inicial para abrir, migrar ou organizar meu CNPJ.",
-        lead,
+        intent: "Quero entender o melhor caminho para meu CNPJ pelo pré-atendimento da Vidotti.",
+        lead: {
+          business: lead.business,
+          phone: lead.phone,
+          need: lead.need,
+        },
       });
+
+      trackConversionEvent("whatsapp_opened", {
+        source: "hero_form",
+        need: lead.need,
+        method: "form_redirect",
+      });
+      window.location.href = whatsappUrl;
     }
   };
 
@@ -147,45 +195,79 @@ export function Hero() {
           data-reveal-delay="120"
           className="relative mt-8 lg:col-span-5 lg:mt-0"
         >
-          <div className="relative z-10 mx-auto max-w-[430px] rounded-2xl border border-white/10 bg-[#151933] p-6 shadow-2xl md:p-8 lg:ml-auto lg:mr-0">
-            <p className="mb-2 text-xs font-semibold text-brand-red">Diagnóstico inicial</p>
-            <h2 className="mb-3 text-2xl font-bold text-white">Receba os próximos passos</h2>
-            <p className="mb-6 text-sm leading-relaxed text-white/60">
-              Preencha os dados e continue pelo WhatsApp com o contexto do seu caso.
+          <div className="relative z-10 mx-auto max-w-[460px] rounded-2xl border border-white/10 bg-[#151933]/95 p-5 shadow-[0_28px_80px_-42px_rgba(0,0,0,0.95)] md:p-6 lg:ml-auto lg:mr-0">
+            <div className="mb-5 flex items-start justify-between gap-4">
+              <div>
+                <p className="mb-2 text-xs font-semibold text-brand-red">
+                  Pré-atendimento pelo WhatsApp
+                </p>
+                <h2 className="text-2xl font-bold leading-tight text-white">
+                  Entenda seu próximo passo
+                </h2>
+              </div>
+              <span className="rounded-full border border-white/10 px-3 py-1 text-[11px] font-semibold text-white/50">
+                2 min
+              </span>
+            </div>
+            <p className="mb-5 text-sm leading-relaxed text-white/60">
+              Marque seu momento, informe sua atividade ou cidade e continue com uma mensagem pronta
+              para a Vidotti.
             </p>
 
             <form
               id="lead-form"
-              className="space-y-4"
+              className="space-y-5"
               onFocusCapture={handleFormStart}
               onSubmit={handleSubmit}
             >
-              <div>
-                <label
-                  htmlFor="lead-name"
-                  className="mb-1.5 block text-xs font-medium text-white/60"
-                >
-                  Nome completo *
-                </label>
-                <input
-                  id="lead-name"
-                  name="name"
-                  type="text"
-                  required
-                  autoComplete="name"
-                  value={lead.name}
-                  onChange={updateLead("name")}
-                  className="w-full rounded-md border border-white/10 bg-[#0D1126] px-4 py-3 text-sm text-white placeholder-white/30 transition-all focus:border-brand-red/60 focus:outline-none focus:ring-1 focus:ring-brand-red/60"
-                  placeholder="Seu nome"
-                />
-              </div>
+              <fieldset>
+                <legend className="mb-2 block text-xs font-medium text-white/60">
+                  O que você precisa agora? *
+                </legend>
+                <input type="hidden" name="need" value={lead.need} />
+                <div className="grid grid-cols-2 gap-2">
+                  {needOptions.map((option) => {
+                    const selected = lead.need === option.value;
+                    const fullWidth = "fullWidth" in option && option.fullWidth;
+
+                    return (
+                      <button
+                        key={option.value}
+                        type="button"
+                        aria-pressed={selected}
+                        onClick={() => selectNeed(option.value)}
+                        className={`relative min-h-[72px] rounded-lg border px-3 py-3 text-left transition-all ${
+                          fullWidth ? "col-span-2" : ""
+                        } ${
+                          selected
+                            ? "border-brand-red/70 bg-brand-red/10 text-white shadow-[0_14px_35px_-28px_rgba(215,25,32,0.9)]"
+                            : "border-white/10 bg-[#0D1126] text-white/70 hover:border-white/25 hover:bg-white/[0.04]"
+                        }`}
+                      >
+                        <span className="block pr-6 text-sm font-semibold leading-tight">
+                          {option.label}
+                        </span>
+                        <span className="mt-1 block text-[11px] leading-snug text-white/45">
+                          {option.helper}
+                        </span>
+                        {selected && (
+                          <CheckCircle2
+                            className="absolute right-3 top-3 h-4 w-4 text-brand-red"
+                            strokeWidth={2}
+                          />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </fieldset>
 
               <div>
                 <label
                   htmlFor="lead-business"
                   className="mb-1.5 block text-xs font-medium text-white/60"
                 >
-                  Empresa ou atividade *
+                  Atividade, cidade ou dúvida principal *
                 </label>
                 <input
                   id="lead-business"
@@ -195,7 +277,7 @@ export function Hero() {
                   value={lead.business}
                   onChange={updateLead("business")}
                   className="w-full rounded-md border border-white/10 bg-[#0D1126] px-4 py-3 text-sm text-white placeholder-white/30 transition-all focus:border-brand-red/60 focus:outline-none focus:ring-1 focus:ring-brand-red/60"
-                  placeholder="Ex.: comércio, serviços, tecnologia"
+                  placeholder="Ex.: serviços em Campinas, loja online, TI"
                 />
               </div>
 
@@ -204,7 +286,7 @@ export function Hero() {
                   htmlFor="lead-phone"
                   className="mb-1.5 block text-xs font-medium text-white/60"
                 >
-                  Celular com WhatsApp *
+                  WhatsApp para retorno *
                 </label>
                 <input
                   id="lead-phone"
@@ -219,50 +301,7 @@ export function Hero() {
                 />
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label
-                    htmlFor="lead-email"
-                    className="mb-1.5 block text-xs font-medium text-white/60"
-                  >
-                    E-mail
-                  </label>
-                  <input
-                    id="lead-email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    value={lead.email}
-                    onChange={updateLead("email")}
-                    className="w-full rounded-md border border-white/10 bg-[#0D1126] px-4 py-3 text-sm text-white placeholder-white/30 transition-all focus:border-brand-red/60 focus:outline-none focus:ring-1 focus:ring-brand-red/60"
-                    placeholder="voce@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="lead-need"
-                    className="mb-1.5 block text-xs font-medium text-white/60"
-                  >
-                    O que você precisa? *
-                  </label>
-                  <select
-                    id="lead-need"
-                    name="need"
-                    required
-                    value={lead.need}
-                    onChange={updateLead("need")}
-                    className="w-full rounded-md border border-white/10 bg-[#0D1126] px-4 py-3 text-sm text-white transition-all focus:border-brand-red/60 focus:outline-none focus:ring-1 focus:ring-brand-red/60"
-                  >
-                    <option>Abertura de CNPJ</option>
-                    <option>Desenquadramento MEI</option>
-                    <option>Troca de contador</option>
-                    <option>Planejamento tributário</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="mb-6 mt-6 flex items-start gap-3">
+              <div className="flex items-start gap-3">
                 <input
                   type="checkbox"
                   id="lgpd"
@@ -273,19 +312,19 @@ export function Hero() {
                   htmlFor="lgpd"
                   className="cursor-pointer text-xs leading-relaxed text-white/50"
                 >
-                  Autorizo a Vidotti a entrar em contato pelos canais informados para dar
-                  continuidade ao atendimento.
+                  Autorizo a Vidotti a usar essas informações para continuar o atendimento pelo
+                  WhatsApp.
                 </label>
               </div>
 
-              <button className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-red py-3.5 text-sm font-semibold text-white transition-colors hover:bg-red-700">
-                Continuar pelo WhatsApp
+              <button className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-red px-5 py-4 text-sm font-semibold text-white shadow-[0_16px_35px_-22px_rgba(215,25,32,0.95)] transition-transform hover:-translate-y-0.5">
+                Enviar contexto no WhatsApp
                 <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
               </button>
             </form>
 
-            <p className="mt-4 text-center text-xs text-white/45">
-              Não é uma proposta automática. A orientação depende da atividade e dos documentos.
+            <p className="mt-4 text-center text-xs leading-relaxed text-white/45">
+              Você revisa a mensagem antes de enviar. Não é proposta automática.
             </p>
           </div>
         </div>

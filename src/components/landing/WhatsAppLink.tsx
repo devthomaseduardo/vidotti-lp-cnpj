@@ -26,7 +26,7 @@ export function WhatsAppLink({
   onClick,
   ...props
 }: WhatsAppLinkProps) {
-  const href = buildWhatsAppUrl({ source, intent });
+  const href = buildWhatsAppUrl({ source, intent, campaignMode: "default" });
 
   return (
     <a

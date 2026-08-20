@@ -14,7 +14,13 @@ const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "ut
 const STORAGE_KEY = "vidotti_lp_utm";
 
 export type LandingEventName =
-  "page_view" | "cta_clicked" | "whatsapp_clicked" | "form_started" | "form_submitted";
+  | "page_view"
+  | "cta_clicked"
+  | "whatsapp_clicked"
+  | "form_started"
+  | "form_completed"
+  | "whatsapp_opened"
+  | "form_submitted";
 
 type UtmKey = (typeof UTM_KEYS)[number];
 type UtmParams = Record<UtmKey, string>;
@@ -31,6 +37,7 @@ type WhatsAppOptions = {
   source: string;
   intent: string;
   lead?: LeadData;
+  campaignMode?: "default" | "resolved";
 };
 
 type AnalyticsWindow = Window & {
@@ -100,6 +107,13 @@ export function captureInitialCampaign(source = "page_load") {
   resolveCampaignParams(source);
 }
 
+function resolveDefaultCampaignParams(source: string): UtmParams {
+  return {
+    ...DEFAULT_UTMS,
+    utm_content: source,
+  };
+}
+
 function formatUtms(utms: UtmParams) {
   return UTM_KEYS.map((key) => `${key}: ${utms[key]}`).join("\n");
 }
@@ -109,9 +123,9 @@ function formatLead(lead?: LeadData) {
 
   const fields: Array<[string, string | undefined]> = [
     ["Nome", lead.name],
-    ["Empresa/atividade", lead.business],
+    ["Atividade/cidade/dúvida", lead.business],
     ["E-mail", lead.email],
-    ["Celular", lead.phone],
+    ["WhatsApp informado", lead.phone],
     ["Necessidade", lead.need],
   ];
 
@@ -121,8 +135,16 @@ function formatLead(lead?: LeadData) {
     .join("\n");
 }
 
-export function buildWhatsAppUrl({ source, intent, lead }: WhatsAppOptions) {
-  const utms = resolveCampaignParams(source);
+export function buildWhatsAppUrl({
+  source,
+  intent,
+  lead,
+  campaignMode = "resolved",
+}: WhatsAppOptions) {
+  const utms =
+    campaignMode === "default"
+      ? resolveDefaultCampaignParams(source)
+      : resolveCampaignParams(source);
   const leadBlock = formatLead(lead);
   const message = [
     "Olá, vim pelo site da Vidotti Contabilidade.",

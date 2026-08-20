@@ -2,13 +2,16 @@ import { WhatsappIcon } from "@/components/WhatsappIcon";
 import { buildWhatsAppUrl, trackConversionEvent } from "@/lib/conversion";
 
 export function FloatingWhatsApp() {
+  const source = "floating_button";
+  const intent = "Olá! Vim pelo site e quero entender o melhor caminho para meu CNPJ.";
   const href = buildWhatsAppUrl({
-    source: "floating_button",
-    intent: "Olá! Vim pelo site e quero entender o melhor caminho para meu CNPJ.",
+    source,
+    intent,
+    campaignMode: "default",
   });
 
   return (
-    <div className="floating-whatsapp fixed bottom-6 right-6 z-50 flex items-end gap-3">
+    <div className="floating-whatsapp fixed bottom-6 right-6 z-50 hidden items-end gap-3 md:flex">
       {/* Mensagem flutuante — renderizada antes no DOM mas posicionada à esquerda */}
       <div className="floating-whatsapp-msg relative z-40 mb-1 max-w-[200px] rounded-2xl rounded-br-sm bg-white px-4 py-2.5 text-xs font-medium leading-snug text-gray-800 shadow-lg">
         Tire sua dúvida no WhatsApp
@@ -22,11 +25,14 @@ export function FloatingWhatsApp() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp"
-        onClick={() =>
+        onClick={(event) => {
+          event.preventDefault();
           trackConversionEvent("whatsapp_clicked", {
-            source: "floating_button",
-          })
-        }
+            source,
+            intent,
+          });
+          window.open(buildWhatsAppUrl({ source, intent }), "_blank", "noopener,noreferrer");
+        }}
         className="relative z-50 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-red shadow-[0_4px_20px_-4px_rgba(215,25,32,0.6)] transition-transform hover:scale-110"
       >
         {/* Ondas */}
