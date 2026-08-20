@@ -9,17 +9,19 @@ import { FAQ, faqItems } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { publicSiteConfig } from "@/generated/site-config";
 
-const siteUrl = "https://vidotticontabilidade.com.br";
+const canonicalUrl = `${publicSiteConfig.siteUrl}/`;
+const socialImage = `${publicSiteConfig.siteUrl}/contadores/Gustavo%20Vidotti%20e%20Pedro%20Vidotti1.jpg`;
 
 const accountingServiceSchema = {
   "@context": "https://schema.org",
   "@type": "AccountingService",
-  name: "Vidotti Contabilidade",
-  url: `${siteUrl}/`,
-  image: `${siteUrl}/contadores/Gustavo%20Vidotti%20e%20Pedro%20Vidotti1.jpg`,
-  telephone: "+55 19 99372-6183",
-  email: "contato@vidotticontabilidade.com.br",
+  name: publicSiteConfig.name,
+  url: canonicalUrl,
+  image: socialImage,
+  telephone: `+55${publicSiteConfig.contact.whatsappPhone}`,
+  email: publicSiteConfig.contact.email,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Av. Dermival Bernardes Siqueira, 1790",
@@ -32,14 +34,8 @@ const accountingServiceSchema = {
     "@type": "City",
     name: "Campinas",
   },
-  sameAs: ["https://instagram.com/vidotticontabilidade2002"],
-  serviceType: [
-    "Abertura de CNPJ",
-    "Desenquadramento MEI",
-    "Troca de contador",
-    "Assessoria contábil",
-    "Planejamento tributário",
-  ],
+  sameAs: [publicSiteConfig.companySiteUrl, publicSiteConfig.contact.instagram],
+  serviceType: publicSiteConfig.services,
 };
 
 const faqSchema = {
@@ -65,7 +61,11 @@ export const Route = createFileRoute("/")({
           "Abra seu CNPJ em Campinas com orientação sobre CNAE, regime tributário, desenquadramento MEI, troca de contador e rotina contábil desde o primeiro passo.",
       },
       { name: "robots", content: "index,follow,max-image-preview:large" },
-      { property: "og:title", content: "Abertura de Empresa em Campinas | Vidotti Contabilidade" },
+      { property: "og:site_name", content: publicSiteConfig.name },
+      {
+        property: "og:title",
+        content: "Abertura de Empresa em Campinas | Vidotti Contabilidade",
+      },
       {
         property: "og:description",
         content:
@@ -73,24 +73,21 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
-      { property: "og:url", content: `${siteUrl}/` },
-      {
-        property: "og:image",
-        content: `${siteUrl}/contadores/Gustavo%20Vidotti%20e%20Pedro%20Vidotti1.jpg`,
-      },
+      { property: "og:url", content: canonicalUrl },
+      { property: "og:image", content: socialImage },
       { property: "og:image:alt", content: "Equipe da Vidotti Contabilidade" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Abertura de Empresa em Campinas | Vidotti Contabilidade" },
+      {
+        name: "twitter:title",
+        content: "Abertura de Empresa em Campinas | Vidotti Contabilidade",
+      },
       {
         name: "twitter:description",
         content: "Abertura de CNPJ, MEI, troca de contador e orientação tributária em Campinas.",
       },
-      {
-        name: "twitter:image",
-        content: `${siteUrl}/contadores/Gustavo%20Vidotti%20e%20Pedro%20Vidotti1.jpg`,
-      },
+      { name: "twitter:image", content: socialImage },
     ],
-    links: [{ rel: "canonical", href: `${siteUrl}/` }],
+    links: [{ rel: "canonical", href: canonicalUrl }],
   }),
   component: Index,
 });
@@ -103,6 +100,7 @@ function Index() {
       <a href="#main-content" className="skip-link">
         Pular para o conteúdo principal
       </a>
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(accountingServiceSchema) }}
@@ -111,7 +109,9 @@ function Index() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+
       <Navbar />
+
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <CompanyTypes />
@@ -121,6 +121,7 @@ function Index() {
         <FAQ />
         <FinalCTA />
       </main>
+
       <Footer />
     </div>
   );
