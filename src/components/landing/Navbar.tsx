@@ -41,15 +41,15 @@ export function Navbar() {
     >
       <nav
         aria-label="Navegação principal"
-        className={`mx-auto flex max-w-[1280px] items-center justify-between px-6 transition-all duration-300 ${
-          scrolled ? "h-16" : "h-24"
+        className={`mx-auto flex max-w-[1280px] items-center justify-between px-5 transition-all duration-300 sm:px-6 ${
+          scrolled ? "h-16" : "h-[4.5rem] lg:h-24"
         }`}
       >
         <a href="#top" className="flex items-center" aria-label="Voltar ao início">
           <img
             src={logoNavy}
             alt="Vidotti Contabilidade"
-            className={`w-auto brightness-0 invert transition-all duration-300 ${scrolled ? "h-7" : "h-9"}`}
+            className={`w-auto brightness-0 invert transition-all duration-300 ${scrolled ? "h-7" : "h-8 lg:h-9"}`}
           />
         </a>
 
@@ -95,7 +95,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="p-2 text-white lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white lg:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
@@ -106,15 +106,19 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div id="mobile-navigation" className="border-t border-white/5 bg-[#151933] lg:hidden">
-          <div className="flex flex-col px-6 py-5">
-            <ul className="flex flex-col gap-1">
+        <div id="mobile-navigation" className="border-t border-white/5 bg-[#0D1126]/98 shadow-[0_24px_70px_-40px_rgba(0,0,0,0.9)] backdrop-blur-md lg:hidden">
+          <div className="flex flex-col px-5 py-4">
+            <div className="mb-4 border-b border-white/10 pb-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">Menu</p>
+              <p className="mt-1 text-sm leading-6 text-white/60">Acesse serviços, riscos e próximos passos.</p>
+            </div>
+            <ul className="grid grid-cols-2 gap-2">
               {links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block border-b border-white/5 py-3 text-sm font-medium text-white"
+                    className="flex min-h-11 items-center rounded-xl border border-white/10 bg-white/[0.03] px-3 text-sm font-medium text-white transition-colors hover:bg-white/[0.06]"
                   >
                     {link.label}
                   </a>
@@ -122,7 +126,7 @@ export function Navbar() {
               ))}
             </ul>
 
-            <div className="mt-5 grid grid-cols-2 gap-3">
+            <div className="mt-4 grid grid-cols-2 gap-3">
               <a
                 href="#lead-form"
                 onClick={() => {

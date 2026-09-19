@@ -7,7 +7,7 @@ export function FloatingWhatsApp() {
   const href = buildWhatsAppUrl({ source, intent, campaignMode: "default" });
 
   return (
-    <div className="floating-whatsapp fixed bottom-4 right-4 z-50 flex items-end gap-3 md:bottom-6 md:right-6">
+    <div className="floating-whatsapp fixed bottom-3 right-3 z-50 flex items-end gap-3 md:bottom-6 md:right-6">
       <div className="floating-whatsapp-msg relative z-40 mb-1 hidden max-w-[200px] rounded-2xl rounded-br-sm bg-white px-4 py-2.5 text-xs font-medium leading-snug text-gray-800 shadow-lg md:block">
         Falar pelo WhatsApp
         <span className="absolute -right-1.5 bottom-3 h-0 w-0 border-b-[6px] border-l-[8px] border-t-[6px] border-b-transparent border-l-white border-t-transparent" />
@@ -23,11 +23,11 @@ export function FloatingWhatsApp() {
           trackConversionEvent("whatsapp_clicked", { source, intent });
           window.open(buildWhatsAppUrl({ source, intent }), "_blank", "noopener,noreferrer");
         }}
-        className="relative z-50 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-red shadow-[0_4px_20px_-4px_rgba(215,25,32,0.6)] transition-transform hover:scale-105 md:h-14 md:w-14 md:hover:scale-110"
+        className="relative z-50 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-red shadow-[0_4px_20px_-4px_rgba(215,25,32,0.6)] transition-transform hover:scale-105 md:h-14 md:w-14 md:hover:scale-110"
       >
         <span className="wave-ring absolute inset-0 rounded-full bg-brand-red opacity-35" />
         <span className="wave-ring absolute inset-0 rounded-full bg-brand-red opacity-20 [animation-delay:0.4s]" />
-        <WhatsappIcon className="relative z-10 h-6 w-6 text-white md:h-7 md:w-7" />
+        <WhatsappIcon className="relative z-10 h-5 w-5 text-white md:h-7 md:w-7" />
       </a>
     </div>
   );

@@ -47,7 +47,7 @@ export function WhatsAppLink({
         window.open(buildWhatsAppUrl({ source, intent }), "_blank", "noopener,noreferrer");
       }}
     >
-      {withIcon && <WhatsappIcon className={iconClassName} />}
+      {withIcon && <WhatsappIcon className={`shrink-0 ${iconClassName}`} />}
       {children}
     </a>
   );
