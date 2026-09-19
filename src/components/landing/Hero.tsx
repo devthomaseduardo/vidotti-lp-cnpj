@@ -96,7 +96,7 @@ export function Hero() {
   };
 
   return (
-    <section id="top" className="relative flex min-h-[680px] items-center overflow-hidden bg-[#0A0D1E] pb-12 pt-24 sm:min-h-[720px] md:min-h-[92vh] md:pb-20 md:pt-32">
+    <section id="top" className="relative flex min-h-[680px] items-center overflow-hidden bg-[#0A0D1E] pb-6 pt-40 sm:min-h-[720px] md:min-h-[92vh] md:pb-20 md:pt-32">
       <div className="pointer-events-none absolute inset-x-0 -top-24 opacity-10">
         <BrandArcSoft className="h-[720px] w-full" />
       </div>
@@ -104,7 +104,7 @@ export function Hero() {
         <img src={heroImg} alt="" decoding="async" fetchPriority="high" className="h-full w-full object-cover object-[72%_center] md:object-right" />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-[1280px] translate-y-10 items-center gap-8 px-5 sm:translate-y-12 sm:px-6 md:translate-y-0 lg:grid-cols-12">
+      <div className="relative mx-auto grid w-full max-w-[1280px] translate-y-24 items-center gap-8 px-5 sm:translate-y-24 sm:px-6 md:translate-y-0 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <span data-reveal className="mb-5 inline-block rounded-full border border-white/20 px-3 py-1.5 text-[11px] font-medium text-white/80 backdrop-blur-sm sm:px-4 sm:text-xs md:mb-8">
             <span className="md:hidden">CNPJ com orientação contábil</span>

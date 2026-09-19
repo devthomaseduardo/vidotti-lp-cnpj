@@ -42,7 +42,7 @@ export function Navbar() {
       <nav
         aria-label="Navegação principal"
         className={`mx-auto flex max-w-[1280px] items-center justify-between px-5 transition-all duration-300 sm:px-6 ${
-          scrolled ? "h-16" : "h-[4.5rem] lg:h-24"
+          scrolled ? "h-14 lg:h-16" : "h-14 lg:h-24"
         }`}
       >
         <a href="#top" className="flex items-center" aria-label="Voltar ao início">
@@ -146,7 +146,7 @@ export function Navbar() {
                 onClick={() => setOpen(false)}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-4 text-center text-xs font-semibold text-white"
               >
-                WhatsApp
+                Fale conosco
               </WhatsAppLink>
             </div>
           </div>

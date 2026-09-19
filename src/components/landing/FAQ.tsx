@@ -113,7 +113,7 @@ export function FAQ() {
             intent="Li as dúvidas do site e quero entender o melhor caminho para meu CNPJ."
             className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
           >
-            Falar pelo WhatsApp
+            Chamar no WhatsApp
           </WhatsAppLink>
         </div>
       </div>

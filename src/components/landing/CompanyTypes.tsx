@@ -28,9 +28,9 @@ export function CompanyTypes() {
             <span className="mb-4 block text-xs font-semibold uppercase tracking-[0.18em] text-brand-red md:mb-5 md:tracking-[0.22em]">Contabilidade para empresas</span>
             <h2 className="max-w-[520px] text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:text-4xl md:text-5xl">Estrutura contábil para sua empresa crescer com segurança.</h2>
             <p className="mt-4 max-w-[500px] text-sm leading-6 text-white/55 md:mt-6 md:text-[17px] md:leading-7">Da abertura do CNPJ à rotina fiscal, a Vidotti acompanha cada etapa da operação.</p>
-            <div className="mt-6 grid w-full grid-cols-2 gap-3 sm:max-w-[430px] md:mt-9 md:flex md:w-auto md:max-w-none md:items-center md:gap-4">
-              <a href="#lead-form" onClick={() => trackConversionEvent("cta_clicked", { source: "services_primary", destination: "lead_form" })} className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-red px-3 text-center text-xs font-semibold leading-tight text-white transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:text-sm md:px-7">Fazer diagnóstico</a>
-              <WhatsAppLink source="services_whatsapp" intent="Quero falar com a Vidotti sobre abertura, MEI, troca de contador ou rotina fiscal da minha empresa." className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full border border-white/15 px-3 text-center text-xs font-semibold leading-tight text-white/75 transition-all duration-300 hover:border-white/35 hover:text-white sm:text-sm md:px-6">WhatsApp</WhatsAppLink>
+            <div className="mt-9 hidden w-auto max-w-none items-center gap-4 md:flex">
+              <a href="#lead-form" onClick={() => trackConversionEvent("cta_clicked", { source: "services_primary", destination: "lead_form" })} className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-red px-7 text-center text-sm font-semibold leading-tight text-white transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110">Fazer diagnóstico</a>
+              <WhatsAppLink source="services_whatsapp" intent="Quero falar com a Vidotti sobre abertura, MEI, troca de contador ou rotina fiscal da minha empresa." className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full border border-white/15 px-6 text-center text-sm font-semibold leading-tight text-white/75 transition-all duration-300 hover:border-white/35 hover:text-white">Fale com especialista</WhatsAppLink>
             </div>
           </div>
           <div className="md:hidden">
@@ -54,6 +54,10 @@ export function CompanyTypes() {
               </article>
             ))}
           </div>
+          <div className="mt-8 grid w-full grid-cols-1 gap-3 md:hidden">
+            <a href="#lead-form" onClick={() => trackConversionEvent("cta_clicked", { source: "services_primary", destination: "lead_form" })} className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-red px-3 text-center text-[13px] font-semibold leading-tight text-white transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110">Fazer diagnóstico</a>
+            <WhatsAppLink source="services_whatsapp" intent="Quero falar com a Vidotti sobre abertura, MEI, troca de contador ou rotina fiscal da minha empresa." className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full border border-white/15 px-3 text-center text-[13px] font-semibold leading-tight text-white/75 transition-all duration-300 hover:border-white/35 hover:text-white">Fale com especialista</WhatsAppLink>
+          </div>
         </div>
         <div className="mt-14 border-t border-white/10 pt-10 md:mt-32 md:pt-20" data-reveal>
           <div className="mb-6 flex flex-col justify-between gap-4 md:mb-10 md:flex-row md:items-end md:gap-6">
@@ -66,7 +70,7 @@ export function CompanyTypes() {
                 const isDuplicate = index >= logos.length;
                 return (
                   <div key={`${logo}-${index}`} aria-hidden={isDuplicate || undefined} className="flex h-[72px] w-[128px] flex-shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white md:h-[92px] md:w-[170px]">
-                    <div className="flex h-full w-full items-center justify-center overflow-hidden bg-white"><img src={logo} alt="" loading="lazy" decoding="async" draggable={false} className="h-full w-full scale-[1.12] select-none object-contain [clip-path:inset(12px_14px_round_8px)]" /></div>
+                    <div className="flex h-full w-full items-center justify-center overflow-hidden bg-white p-2 md:p-3"><img src={logo} alt="" loading="lazy" decoding="async" draggable={false} className="h-full w-full select-none object-contain" /></div>
                   </div>
                 );
               })}
