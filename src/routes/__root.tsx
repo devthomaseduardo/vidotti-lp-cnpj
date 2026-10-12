@@ -14,11 +14,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { captureInitialCampaign, trackConversionEvent } from "../lib/conversion";
 
-const rawGaMeasurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || "";
-const gaMeasurementId = /^G-[A-Z0-9]+$/i.test(rawGaMeasurementId)
-  ? rawGaMeasurementId
-  : "";
-
 const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION?.trim() || "";
 
 function NotFoundComponent() {
@@ -116,21 +111,6 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="pt-BR" suppressHydrationWarning>
       <head suppressHydrationWarning>
         <HeadContent />
-        {gaMeasurementId ? (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(
-                gaMeasurementId,
-              )}`}
-            />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${gaMeasurementId}',{anonymize_ip:true});`,
-              }}
-            />
-          </>
-        ) : null}
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
