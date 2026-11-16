@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -6,23 +6,24 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  check:
     name: Generate, lint, test & build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      # Node 22: o jsdom/undici dos testes não roda no Node 20 (versão também fixada em .nvmrc e engines).
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
 
       - name: Generate public files
         run: npm run generate
@@ -30,14 +31,43 @@ jobs:
       - name: Check generated files
         run: git diff --exit-code
 
-      - name: Lint
-        run: npm run lint
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
 
-      - name: Typecheck
-        run: npm run typecheck
+  deploy:
+    name: Deploy produção (Vercel)
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Test
-        run: npm test
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
 
-      - name: Build
-        run: npm run build
+      # Sem os segredos, o deploy fica com a integração Git da Vercel e este job só avisa.
+      - name: Check Vercel secrets
+        id: secrets
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "::notice::VERCEL_TOKEN/VERCEL_ORG_ID/VERCEL_PROJECT_ID não configurados; deploy pelo GitHub Actions pulado."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build e deploy
+        if: steps.secrets.outputs.ready == 'true'
+        run: |
+          npx --yes vercel@64.5.0 pull --yes --environment=production --token="$VERCEL_TOKEN"
+          npx --yes vercel@64.5.0 build --prod --token="$VERCEL_TOKEN"
+          npx --yes vercel@64.5.0 deploy --prebuilt --prod --token="$VERCEL_TOKEN"
