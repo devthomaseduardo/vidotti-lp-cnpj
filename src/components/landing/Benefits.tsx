@@ -13,7 +13,7 @@ export function Benefits() {
   return (
     <section
       id="beneficios"
-      className="relative overflow-hidden bg-[#0D1126] py-14 md:py-28 lg:min-h-[900px]"
+      className="relative overflow-hidden bg-[#0D1126] py-10 md:py-28 lg:min-h-[900px]"
     >
       <div
         aria-hidden="true"
@@ -62,7 +62,7 @@ export function Benefits() {
             data-reveal
             className="photo-fade relative -mx-5 w-[calc(100%+2.5rem)] max-w-none lg:pointer-events-none lg:absolute lg:-right-[8vw] lg:bottom-0 lg:mx-0 lg:h-full lg:w-[46vw] lg:max-w-none xl:w-[48vw]"
           >
-            <div className="relative h-[480px] overflow-hidden sm:h-[500px] md:h-[590px] lg:h-full">
+            <div className="relative h-[340px] overflow-hidden sm:h-[500px] md:h-[590px] lg:h-full">
               <img
                 src={businesswomanImg}
                 alt="Empresária organizando a abertura do CNPJ com orientação contábil"

@@ -31,7 +31,7 @@ export function HowItWorks() {
   return (
     <section
       id="como-funciona"
-      className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-14 md:py-28"
+      className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-10 md:py-28"
     >
       <div className="mx-auto max-w-[1280px] px-5 sm:px-6">
         <div className="grid gap-9 md:gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
@@ -76,16 +76,14 @@ export function HowItWorks() {
                     <span
                       className={`absolute inset-0 flex flex-col justify-between rounded-2xl border bg-white/[0.04] p-4 transition-colors [backface-visibility:hidden] md:p-5 ${flipped ? "border-brand-red/35" : "border-white/10 hover:border-white/20 hover:bg-white/[0.06]"}`}
                     >
-                      <span className="flex items-start justify-between gap-3">
-                        <span className="text-xs font-semibold tracking-[0.16em] text-white/35">
-                          0{index + 1}
-                        </span>
-                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-red/10 text-brand-red md:h-10 md:w-10">
-                          <step.icon
-                            className="h-[18px] w-[18px] md:h-5 md:w-5"
-                            strokeWidth={1.75}
-                          />
-                        </span>
+                      <span className="text-xs font-semibold tracking-[0.16em] text-white/40">
+                        0{index + 1}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-red/10 text-brand-red ring-1 ring-brand-red/20 ring-offset-4 ring-offset-[#11152b] md:h-20 md:w-20"
+                      >
+                        <step.icon className="h-7 w-7 md:h-9 md:w-9" strokeWidth={1.5} />
                       </span>
                       <span>
                         <span className="block text-lg font-bold leading-tight text-white min-[380px]:text-base md:text-xl">
