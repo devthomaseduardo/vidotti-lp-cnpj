@@ -1,36 +1,34 @@
-# Vidotti Contabilidade — Landing Page CNPJ
+# Vidotti Contabilidade — landing de abertura de CNPJ
 
-Landing page institucional e de conversão da Vidotti Contabilidade, focada em abertura de CNPJ, desenquadramento do MEI, troca de contador e orientação tributária para empresas.
+[![CI](https://github.com/devthomaseduardo/vidotti-lp-cnpj/actions/workflows/ci.yml/badge.svg)](https://github.com/devthomaseduardo/vidotti-lp-cnpj/actions/workflows/ci.yml)
 
-Produção: https://vidotti-lp-cnpj.vercel.app/
+Landing page da **Vidotti Contabilidade** (Campinas/SP, desde 2002) para abertura de CNPJ, desenquadramento do MEI, troca de contador e orientação tributária. O objetivo é transformar tráfego de campanha e busca em conversas qualificadas no WhatsApp, sabendo de qual campanha e de qual botão cada contato veio.
 
-## Objetivo
+**No ar:** https://vidotti-lp-cnpj.vercel.app
 
-O projeto foi construído para transformar tráfego de campanhas e buscas em contatos qualificados pelo WhatsApp, oferecendo uma jornada simples de diagnóstico inicial, prova de confiança, serviços, dúvidas frequentes e contato direto.
+| Desktop                                     | Celular                                                              |
+| ------------------------------------------- | -------------------------------------------------------------------- |
+| ![Página no desktop](docs/img/desktop.webp) | <img src="docs/img/mobile.webp" alt="Página no celular" width="260"> |
 
-O número oficial usado em todos os CTAs da landing page é:
+## Meu papel
 
-```text
-(19) 99372-6183
-```
+Desenvolvedor do projeto: interface, conteúdo das seções, rastreamento de campanha, SEO técnico (dados estruturados, sitemap, `llms.txt`), pipeline de build, testes e CI.
+
+## Decisões técnicas
+
+- **Configuração única em `config.mjs`.** Nome, contato, WhatsApp, páginas e UTMs ficam em um só arquivo. `npm run generate` deriva dele o `src/generated/site-config.ts`, o manifest e o `llms.txt`, e a CI falha se os arquivos gerados estiverem desatualizados.
+- **WhatsApp travado por validação.** O build recusa número diferente do oficial ou link quebrado, e o teste confirma o formato internacional (`55` + DDD).
+- **Atribuição de campanha sem backend.** `src/lib/conversion.ts` lê os UTMs da URL, guarda na sessão e usa a origem do clique (`utm_content`) quando não há campanha, para que todo contato no WhatsApp chegue com contexto. Eventos vão para Google Tag Manager/gtag e PostHog quando presentes.
+- **SSR com TanStack Start.** A página chega pronta para buscadores. `src/server.ts` trata o erro de SSR que o h3 engole e devolve uma página de erro em HTML em vez de um JSON genérico.
+- **Dados estruturados seguros.** `AccountingService` e `FAQPage` são serializados por `toJsonLd`, que escapa `<` para nenhum texto fechar a tag `<script>`.
 
 ## Stack
 
-- React 19
-- TypeScript
-- TanStack Start
-- TanStack Router
-- Vite 8
-- Tailwind CSS 4
-- Lucide React
-- Vercel
+React 19, TypeScript, TanStack Start e Router (SSR), Vite, Tailwind CSS 4, Radix (accordion e dialog), Lucide, Vitest e Vercel.
 
-## Requisitos
+## Como rodar
 
-- Node.js 20 ou superior recomendado
-- npm
-
-## Instalação
+Requisitos: Node 20+ e npm.
 
 ```bash
 git clone https://github.com/devthomaseduardo/vidotti-lp-cnpj.git
@@ -39,63 +37,26 @@ npm install
 npm run dev
 ```
 
-O ambiente de desenvolvimento será iniciado pelo Vite.
+| Comando             | O que faz                                                          |
+| ------------------- | ------------------------------------------------------------------ |
+| `npm run dev`       | ambiente local                                                     |
+| `npm run build`     | valida a configuração, regenera os arquivos públicos e faz o build |
+| `npm run generate`  | regenera os arquivos derivados de `config.mjs`                     |
+| `npm run lint`      | ESLint + Prettier                                                  |
+| `npm run typecheck` | checagem de tipos                                                  |
+| `npm test`          | testes (Vitest)                                                    |
+| `npm run verify`    | lint + build                                                       |
 
-## Scripts
+## Testes
 
-```bash
-npm run dev
-```
+`src/test/` cobre o que quebraria a conversão sem ninguém perceber:
 
-Inicia o ambiente local de desenvolvimento.
+- link do WhatsApp com o número oficial e mensagem montada só com os campos preenchidos;
+- prioridade dos UTMs (URL, depois sessão, depois padrão) e persistência entre cliques;
+- validação da configuração central;
+- `FAQPage` com todas as perguntas e escape do JSON-LD.
 
-```bash
-npm run build
-```
-
-Executa o pipeline completo de produção usando `build.mjs`: valida a configuração, limpa arquivos gerados, recria os arquivos públicos e executa o build do Vite.
-
-```bash
-npm run build:vite
-```
-
-Executa somente o build do Vite.
-
-```bash
-npm run build:dev
-```
-
-Executa o pipeline de build em modo development.
-
-```bash
-npm run generate
-```
-
-Regenera os arquivos públicos derivados da configuração central do projeto.
-
-```bash
-npm run clean
-```
-
-Remove artefatos gerados pelo pipeline antes de um novo build.
-
-```bash
-npm run lint
-```
-
-Executa o ESLint.
-
-```bash
-npm run verify
-```
-
-Executa lint e build completo para validar a entrega.
-
-```bash
-npm run format
-```
-
-Formata o projeto com Prettier.
+A CI roda `generate` (e confere que nada mudou), lint, tipos, testes e build em cada PR.
 
 ## Configuração central
 
@@ -230,13 +191,13 @@ Todos os CTAs de WhatsApp devem usar o componente centralizado do projeto em vez
 Número oficial:
 
 ```text
-19993726183
+5519993726183
 ```
 
 Link base:
 
 ```text
-https://api.whatsapp.com/send/?phone=19993726183&text&type=phone_number&app_absent=0&utm_source=ig
+https://api.whatsapp.com/send/?phone=5519993726183&text&type=phone_number&app_absent=0&utm_source=ig
 ```
 
 As mensagens podem variar conforme a origem do CTA, mas o destino deve permanecer o mesmo.

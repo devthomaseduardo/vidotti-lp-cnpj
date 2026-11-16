@@ -91,8 +91,9 @@ export function HowItWorks() {
                         <span className="block text-lg font-bold leading-tight text-white min-[380px]:text-base md:text-xl">
                           {step.title}
                         </span>
-                        <span className="mt-2 block text-xs font-medium text-white/45">
-                          Toque para ver detalhes
+                        <span className="mt-2 block text-xs font-medium text-white/60">
+                          <span className="md:hidden">Toque</span>
+                          <span className="hidden md:inline">Clique</span> para ver detalhes
                         </span>
                       </span>
                     </span>
@@ -109,8 +110,9 @@ export function HowItWorks() {
                         <span className="mt-3 text-[13px] leading-5 text-white/75 min-[380px]:text-xs md:text-base md:leading-7">
                           {step.text}
                         </span>
-                        <span className="mt-3 text-xs font-medium text-white/40">
-                          Toque para voltar
+                        <span className="mt-3 text-xs font-medium text-white/60">
+                          <span className="md:hidden">Toque</span>
+                          <span className="hidden md:inline">Clique</span> para voltar
                         </span>
                       </span>
                     </span>

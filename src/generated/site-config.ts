@@ -8,9 +8,9 @@ export const publicSiteConfig = {
   "updatedAt": "2026-08-20",
   "description": "Abertura de CNPJ, desenquadramento MEI, troca de contador e orientação tributária e contábil para empresas.",
   "contact": {
-    "whatsappPhone": "19993726183",
+    "whatsappPhone": "5519993726183",
     "whatsappDisplay": "(19) 99372-6183",
-    "whatsappUrl": "https://api.whatsapp.com/send/?phone=19993726183&text&type=phone_number&app_absent=0&utm_source=ig",
+    "whatsappUrl": "https://api.whatsapp.com/send/?phone=5519993726183&text&type=phone_number&app_absent=0&utm_source=ig",
     "email": "contato@vidotticontabilidade.com.br",
     "instagram": "https://instagram.com/vidotticontabilidade2002",
     "address": "Av. Dermival Bernardes Siqueira, 1790, Campinas, SP 13049-252"
