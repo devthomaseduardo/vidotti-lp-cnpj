@@ -61,7 +61,7 @@ export function CompanyTypes() {
   return (
     <section
       id="empresas"
-      className="relative scroll-mt-24 overflow-hidden bg-[#0B0F1F] py-14 md:scroll-mt-28 md:py-28 lg:py-32"
+      className="relative scroll-mt-24 overflow-hidden bg-[#0B0F1F] py-10 md:scroll-mt-28 md:py-28 lg:py-32"
     >
       <div
         aria-hidden="true"
@@ -173,7 +173,7 @@ export function CompanyTypes() {
             </WhatsAppLink>
           </div>
         </div>
-        <div className="mt-14 border-t border-white/10 pt-10 md:mt-32 md:pt-20" data-reveal>
+        <div className="mt-10 border-t border-white/10 pt-8 md:mt-32 md:pt-20" data-reveal>
           <div className="mb-6 flex flex-col justify-between gap-4 md:mb-10 md:flex-row md:items-end md:gap-6">
             <div>
               <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.18em] text-brand-red md:mb-4 md:tracking-[0.22em]">

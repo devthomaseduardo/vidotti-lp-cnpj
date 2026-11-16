@@ -28,7 +28,7 @@ const proofPoints = [
 export function Testimonials() {
   return (
     <section
-      className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-14 md:py-28"
+      className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-10 md:py-28"
       id="prova"
     >
       <div className="pointer-events-none absolute -left-52 top-0 w-[820px] opacity-5">

@@ -54,7 +54,7 @@ export function FAQ() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden border-t border-white/5 bg-[#0D1126] py-14 md:py-28"
+      className="relative overflow-hidden border-t border-white/5 bg-[#0D1126] py-10 md:py-28"
     >
       <div className="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-6">
         <div
