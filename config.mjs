@@ -46,7 +46,7 @@ export const siteConfig = {
   pages: [
     {
       path: "/",
-      title: "Abertura de Empresa e CNPJ em Campinas | Vidotti Contabilidade",
+      title: "Abrir CNPJ em Campinas | Vidotti Contabilidade, desde 2002",
       changefreq: "weekly",
       priority: "1.0",
     },

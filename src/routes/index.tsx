@@ -61,22 +61,22 @@ const faqSchema = buildFaqSchema(faqItems);
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Abertura de Empresa e CNPJ em Campinas | Vidotti Contabilidade" },
+      { title: "Abrir CNPJ em Campinas | Vidotti Contabilidade, desde 2002" },
       {
         name: "description",
         content:
-          "Abra seu CNPJ em Campinas com orientação sobre CNAE, regime tributário, desenquadramento MEI, troca de contador e rotina contábil desde o primeiro passo.",
+          "Abra seu CNPJ em Campinas com análise de CNAE e regime tributário, saída do MEI e troca de contador. Fale com a Vidotti pelo WhatsApp.",
       },
       { name: "robots", content: "index,follow,max-image-preview:large" },
       { property: "og:site_name", content: publicSiteConfig.name },
       {
         property: "og:title",
-        content: "Abertura de Empresa e CNPJ em Campinas | Vidotti Contabilidade",
+        content: "Abrir CNPJ em Campinas | Vidotti Contabilidade, desde 2002",
       },
       {
         property: "og:description",
         content:
-          "Diagnóstico inicial para abertura de CNPJ, desenquadramento MEI, troca de contador e organização tributária e contábil.",
+          "Abra seu CNPJ em Campinas com análise de CNAE e regime tributário, saída do MEI e troca de contador. Fale com a Vidotti pelo WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
@@ -86,7 +86,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "Abertura de Empresa e CNPJ em Campinas | Vidotti Contabilidade",
+        content: "Abrir CNPJ em Campinas | Vidotti Contabilidade, desde 2002",
       },
       {
         name: "twitter:description",

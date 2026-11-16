@@ -21,7 +21,8 @@ export function FinalCTA() {
               Próximo passo
             </span>
             <h2 className="mb-4 max-w-3xl text-2xl font-bold leading-tight text-white sm:text-3xl md:mb-6 md:text-5xl">
-              Entenda o melhor caminho antes de abrir, migrar ou reorganizar seu CNPJ.
+              Vai abrir ou migrar o CNPJ?{" "}
+              <span className="text-white/55">Comece pelo diagnóstico.</span>
             </h2>
             <p className="mb-7 max-w-2xl text-sm leading-6 text-white/70 md:mb-10 md:text-lg md:leading-relaxed">
               O <mark className="hl">diagnóstico inicial</mark> organiza o contexto antes de

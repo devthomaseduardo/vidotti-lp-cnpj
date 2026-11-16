@@ -26,7 +26,7 @@ export function Benefits() {
               Por que isso importa
             </span>
             <h2 className="mb-4 max-w-[610px] text-2xl font-bold leading-tight tracking-[-0.03em] text-white sm:text-3xl md:mb-6 md:text-5xl">
-              CNPJ sem orientação pode custar tempo, caixa e tranquilidade.
+              Abrir do jeito errado <span className="text-white/55">custa caro depois.</span>
             </h2>
             <p className="mb-6 max-w-lg text-sm leading-6 text-white/65 md:mb-8 md:text-lg md:leading-relaxed">
               O problema não é só abrir o CNPJ. É evitar{" "}

@@ -31,13 +31,13 @@ const needOptions = [
 const initialLead: LeadForm = { business: "", need: "Abertura de CNPJ" };
 
 const trustPoints = [
-  { icon: Clock3, title: "Desde 2002", text: "experiência contábil para empresas" },
+  { icon: Clock3, title: "Desde 2002", text: "contabilidade para empresas em Campinas" },
   {
     icon: ShieldCheck,
-    title: "Decisão tributária",
-    text: "CNAE e regime analisados antes da operação",
+    title: "Regime certo",
+    text: "CNAE e tributação analisados antes de abrir",
   },
-  { icon: CheckCircle2, title: "Atendimento humano", text: "Campinas/SP e canais digitais" },
+  { icon: CheckCircle2, title: "Atendimento humano", text: "conversa direta pelo WhatsApp" },
 ];
 
 export function Hero() {
@@ -112,7 +112,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[680px] items-center overflow-hidden bg-[#0A0D1E] pb-6 pt-40 sm:min-h-[720px] md:min-h-[92vh] md:pb-20 md:pt-32"
+      className="relative flex min-h-[680px] items-center overflow-hidden bg-[#0A0D1E] pb-10 pt-28 sm:min-h-[720px] md:min-h-[92vh] md:pb-20 md:pt-32"
     >
       <div className="pointer-events-none absolute inset-x-0 -top-24 opacity-10">
         <BrandArcSoft className="h-[720px] w-full" />
@@ -127,45 +127,29 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-[1280px] translate-y-24 items-center gap-8 px-5 sm:translate-y-24 sm:px-6 md:translate-y-0 lg:grid-cols-12">
+      <div className="relative mx-auto grid w-full max-w-[1280px] items-center gap-8 px-5 sm:px-6 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <span
             data-reveal
             className="mb-5 inline-block rounded-full border border-white/20 px-3 py-1.5 text-[11px] font-medium text-white/80 backdrop-blur-sm sm:px-4 sm:text-xs md:mb-8"
           >
-            <span className="md:hidden">CNPJ com orientação contábil</span>
-            <span className="hidden md:inline">
-              Abertura de CNPJ, desenquadramento MEI e contabilidade
-            </span>
+            Contabilidade em Campinas desde 2002
           </span>
           <h1
             data-reveal
             data-reveal-delay="80"
             className="max-w-3xl text-[2rem] font-bold leading-[1.08] text-white sm:text-4xl md:text-5xl lg:text-[3.75rem]"
           >
-            Abra seu CNPJ em Campinas com orientação tributária
-            <span className="hidden md:inline">
-              {" "}
-              e acompanhamento contábil desde o primeiro passo
-            </span>
-            .
+            Abra seu CNPJ em Campinas{" "}
+            <span className="text-white/55">com a orientação certa desde o início.</span>
           </h1>
           <p
             data-reveal
             data-reveal-delay="160"
-            className="mt-5 max-w-sm text-base leading-7 text-white/70 md:hidden"
+            className="mt-5 max-w-xl text-base leading-7 text-white/70 md:mt-6 md:text-lg md:leading-relaxed"
           >
-            <mark className="hl">CNAE, regime tributário</mark> e próximos passos para começar com
-            mais segurança.
-          </p>
-          <p
-            data-reveal
-            data-reveal-delay="160"
-            className="mt-6 hidden max-w-2xl text-lg leading-relaxed text-white/70 md:block"
-          >
-            A Vidotti analisa sua atividade, orienta{" "}
-            <mark className="hl">natureza jurídica, CNAE e regime tributário</mark> e acompanha as
-            etapas necessárias para colocar o CNPJ em operação com mais segurança.
+            Analisamos <mark className="hl">CNAE, natureza jurídica e regime tributário</mark> antes
+            de abrir, para evitar imposto a mais e retrabalho depois.
           </p>
 
           <div
@@ -190,9 +174,18 @@ export function Hero() {
             </WhatsAppLink>
           </div>
 
-          <p data-reveal data-reveal-delay="300" className="mt-4 text-xs text-white/55 md:hidden">
-            Desde 2002 · Campinas/SP · canais digitais
-          </p>
+          <ul
+            data-reveal
+            data-reveal-delay="300"
+            className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs text-white/65 md:hidden"
+          >
+            {trustPoints.map((point) => (
+              <li key={point.title} className="flex items-center gap-1.5">
+                <point.icon className="h-3.5 w-3.5 text-brand-red" strokeWidth={2} />
+                {point.title}
+              </li>
+            ))}
+          </ul>
           <div
             data-reveal
             data-reveal-delay="320"
