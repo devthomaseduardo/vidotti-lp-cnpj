@@ -29,8 +29,9 @@ export function Benefits() {
               CNPJ sem orientação pode custar tempo, caixa e tranquilidade.
             </h2>
             <p className="mb-6 max-w-lg text-sm leading-6 text-white/65 md:mb-8 md:text-lg md:leading-relaxed">
-              O problema não é só abrir o CNPJ. É evitar enquadramento errado, obrigação esquecida e
-              decisões fiscais que afetam o caixa.
+              O problema não é só abrir o CNPJ. É evitar{" "}
+              <mark className="hl">enquadramento errado, obrigação esquecida</mark> e decisões
+              fiscais que afetam o caixa.
             </p>
             <ul className="mb-7 max-w-[620px] space-y-3 md:mb-10 md:space-y-4">
               {points.map((point, index) => (

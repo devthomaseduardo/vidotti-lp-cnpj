@@ -54,3 +54,27 @@ describe("resolveCampaignParams", () => {
     expect(later.utm_campaign).toBe("cnpj-novembro");
   });
 });
+
+describe("trackConversionEvent", () => {
+  it("manda o evento para o GTM e marca clique no WhatsApp como lead", async () => {
+    const { trackConversionEvent } = await import("@/lib/conversion");
+    const w = window as unknown as { dataLayer: Array<Record<string, unknown>> };
+    w.dataLayer = [];
+
+    trackConversionEvent("whatsapp_clicked", { source: "hero" });
+
+    const events = w.dataLayer.map((entry) => entry.event);
+    expect(events).toEqual(["whatsapp_clicked", "generate_lead"]);
+    expect(w.dataLayer[1].lead_source).toBe("hero");
+  });
+
+  it("não marca visita de página como lead", async () => {
+    const { trackConversionEvent } = await import("@/lib/conversion");
+    const w = window as unknown as { dataLayer: Array<Record<string, unknown>> };
+    w.dataLayer = [];
+
+    trackConversionEvent("page_view", { source: "root" });
+
+    expect(w.dataLayer.map((entry) => entry.event)).toEqual(["page_view"]);
+  });
+});

@@ -24,8 +24,8 @@ export function FinalCTA() {
               Entenda o melhor caminho antes de abrir, migrar ou reorganizar seu CNPJ.
             </h2>
             <p className="mb-7 max-w-2xl text-sm leading-6 text-white/70 md:mb-10 md:text-lg md:leading-relaxed">
-              O diagnóstico inicial organiza o contexto antes de discutir enquadramento, documentos,
-              prazo e proposta.
+              O <mark className="hl">diagnóstico inicial</mark> organiza o contexto antes de
+              discutir enquadramento, documentos, prazo e proposta.
             </p>
             <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4">
               <a

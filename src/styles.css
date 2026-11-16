@@ -278,3 +278,15 @@
     display: none !important;
   }
 }
+
+/* Destaque leve para termos-chave: sublinhado grosso e translúcido, sem mudar a cor do texto. */
+.hl {
+  background: linear-gradient(
+    transparent 62%,
+    color-mix(in srgb, var(--brand-red) 38%, transparent) 62%
+  );
+  color: inherit;
+  padding: 0 0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

@@ -143,26 +143,29 @@ export function Hero() {
             data-reveal-delay="80"
             className="max-w-3xl text-[2rem] font-bold leading-[1.08] text-white sm:text-4xl md:text-5xl lg:text-[3.75rem]"
           >
-            <span className="md:hidden">Abra seu CNPJ com orientação tributária.</span>
+            Abra seu CNPJ em Campinas com orientação tributária
             <span className="hidden md:inline">
-              Abra sua empresa com orientação tributária e acompanhamento contábil desde o primeiro
-              passo.
+              {" "}
+              e acompanhamento contábil desde o primeiro passo
             </span>
+            .
           </h1>
           <p
             data-reveal
             data-reveal-delay="160"
             className="mt-5 max-w-sm text-base leading-7 text-white/70 md:hidden"
           >
-            CNAE, regime tributário e próximos passos para começar com mais segurança.
+            <mark className="hl">CNAE, regime tributário</mark> e próximos passos para começar com
+            mais segurança.
           </p>
           <p
             data-reveal
             data-reveal-delay="160"
             className="mt-6 hidden max-w-2xl text-lg leading-relaxed text-white/70 md:block"
           >
-            A Vidotti analisa sua atividade, orienta natureza jurídica, CNAE e regime tributário e
-            acompanha as etapas necessárias para colocar o CNPJ em operação com mais segurança.
+            A Vidotti analisa sua atividade, orienta{" "}
+            <mark className="hl">natureza jurídica, CNAE e regime tributário</mark> e acompanha as
+            etapas necessárias para colocar o CNPJ em operação com mais segurança.
           </p>
 
           <div
