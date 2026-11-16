@@ -25,8 +25,8 @@ export function FloatingWhatsApp() {
         }}
         className="relative z-50 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-red shadow-[0_4px_20px_-4px_rgba(215,25,32,0.6)] transition-transform hover:scale-105 md:h-14 md:w-14 md:hover:scale-110"
       >
-        <span className="wave-ring absolute inset-0 rounded-full bg-brand-red opacity-35" />
-        <span className="wave-ring absolute inset-0 rounded-full bg-brand-red opacity-20 [animation-delay:0.4s]" />
+        <span className="wave-ring motion-reduce:hidden absolute inset-0 rounded-full bg-brand-red opacity-35" />
+        <span className="wave-ring motion-reduce:hidden absolute inset-0 rounded-full bg-brand-red opacity-20 [animation-delay:0.4s]" />
         <WhatsappIcon className="relative z-10 h-5 w-5 text-white md:h-7 md:w-7" />
       </a>
     </div>

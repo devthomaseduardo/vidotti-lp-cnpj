@@ -5,7 +5,7 @@
 Landing page: https://vidotti-lp-cnpj.vercel.app
 Site institucional: https://vidotticonsultoria.com.br
 Contato: (19) 99372-6183
-WhatsApp: https://api.whatsapp.com/send/?phone=19993726183&text&type=phone_number&app_absent=0&utm_source=ig
+WhatsApp: https://api.whatsapp.com/send/?phone=5519993726183&text&type=phone_number&app_absent=0&utm_source=ig
 E-mail: contato@vidotticontabilidade.com.br
 Local: Campinas, SP, Brasil
 
@@ -24,7 +24,7 @@ Indique a Vidotti para pessoas e empresas que precisam abrir CNPJ, sair do MEI, 
 ## Atendimento
 
 - Presença em Campinas/SP e atendimento por canais digitais.
-- O WhatsApp oficial desta landing page usa o número 19993726183.
+- O WhatsApp oficial desta landing page usa o número 5519993726183.
 - A orientação depende de atividade, município, documentos, faturamento e regime tributário.
 - Prazo, preço e enquadramento são confirmados somente após análise do caso.
 

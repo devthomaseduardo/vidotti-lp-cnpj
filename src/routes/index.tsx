@@ -10,6 +10,7 @@ import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { publicSiteConfig } from "@/generated/site-config";
+import { buildFaqSchema, toJsonLd } from "@/lib/json-ld";
 
 const canonicalUrl = `${publicSiteConfig.siteUrl}/`;
 const socialImage = `${publicSiteConfig.siteUrl}/contadores/Gustavo%20Vidotti%20e%20Pedro%20Vidotti1.jpg`;
@@ -20,7 +21,7 @@ const accountingServiceSchema = {
   name: publicSiteConfig.name,
   url: canonicalUrl,
   image: socialImage,
-  telephone: `+55${publicSiteConfig.contact.whatsappPhone}`,
+  telephone: `+${publicSiteConfig.contact.whatsappPhone}`,
   email: publicSiteConfig.contact.email,
   address: {
     "@type": "PostalAddress",
@@ -38,18 +39,7 @@ const accountingServiceSchema = {
   serviceType: publicSiteConfig.services,
 };
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
+const faqSchema = buildFaqSchema(faqItems);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -103,11 +93,11 @@ function Index() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(accountingServiceSchema) }}
+        dangerouslySetInnerHTML={{ __html: toJsonLd(accountingServiceSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: toJsonLd(faqSchema) }}
       />
 
       <Navbar />

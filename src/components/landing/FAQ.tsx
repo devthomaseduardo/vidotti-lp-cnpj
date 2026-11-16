@@ -1,5 +1,10 @@
 import { HelpCircle } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { WhatsAppLink } from "./WhatsAppLink";
 
 export const faqItems = [
@@ -69,12 +74,20 @@ export function FAQ() {
           </p>
         </div>
 
-        <Accordion type="single" collapsible defaultValue="faq-0" className="border-y border-white/10 md:hidden">
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="faq-0"
+          className="border-y border-white/10 md:hidden"
+        >
           {faqItems.map((item, index) => (
             <AccordionItem key={item.question} value={`faq-${index}`} className="border-white/10">
               <AccordionTrigger className="py-4 text-left text-sm font-bold leading-snug text-white hover:no-underline">
                 <span className="flex items-start gap-3 pr-2">
-                  <HelpCircle className="mt-0.5 h-5 w-5 shrink-0 text-brand-red" strokeWidth={1.75} />
+                  <HelpCircle
+                    className="mt-0.5 h-5 w-5 shrink-0 text-brand-red"
+                    strokeWidth={1.75}
+                  />
                   {item.question}
                 </span>
               </AccordionTrigger>
@@ -94,13 +107,14 @@ export function FAQ() {
               className="border-t border-white/10 py-4 md:py-6"
             >
               <div className="flex gap-3 md:gap-4">
-                <HelpCircle
-                  className="mt-0.5 h-5 w-5 shrink-0 text-brand-red"
-                  strokeWidth={1.75}
-                />
+                <HelpCircle className="mt-0.5 h-5 w-5 shrink-0 text-brand-red" strokeWidth={1.75} />
                 <div>
-                  <h3 className="mb-2 text-sm font-bold text-white md:mb-3 md:text-base">{item.question}</h3>
-                  <p className="text-sm leading-6 text-white/60 md:leading-relaxed">{item.answer}</p>
+                  <h3 className="mb-2 text-sm font-bold text-white md:mb-3 md:text-base">
+                    {item.question}
+                  </h3>
+                  <p className="text-sm leading-6 text-white/60 md:leading-relaxed">
+                    {item.answer}
+                  </p>
                 </div>
               </div>
             </article>

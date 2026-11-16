@@ -106,11 +106,18 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div id="mobile-navigation" className="border-t border-white/5 bg-[#0D1126]/98 shadow-[0_24px_70px_-40px_rgba(0,0,0,0.9)] backdrop-blur-md lg:hidden">
+        <div
+          id="mobile-navigation"
+          className="border-t border-white/5 bg-[#0D1126]/98 shadow-[0_24px_70px_-40px_rgba(0,0,0,0.9)] backdrop-blur-md lg:hidden"
+        >
           <div className="flex flex-col px-5 py-4">
             <div className="mb-4 border-b border-white/10 pb-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">Menu</p>
-              <p className="mt-1 text-sm leading-6 text-white/60">Acesse serviços, riscos e próximos passos.</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
+                Menu
+              </p>
+              <p className="mt-1 text-sm leading-6 text-white/60">
+                Acesse serviços, riscos e próximos passos.
+              </p>
             </div>
             <ul className="grid grid-cols-2 gap-2">
               {links.map((link) => (

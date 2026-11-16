@@ -11,9 +11,10 @@ function resolveSiteUrl() {
   return "https://vidotti-lp-cnpj.vercel.app";
 }
 
-const whatsappPhone = "19993726183";
+// Formato internacional (55 + DDD + número): sem o 55 o WhatsApp pode não achar o contato.
+const whatsappPhone = "5519993726183";
 const whatsappUrl =
-  "https://api.whatsapp.com/send/?phone=19993726183&text&type=phone_number&app_absent=0&utm_source=ig";
+  "https://api.whatsapp.com/send/?phone=5519993726183&text&type=phone_number&app_absent=0&utm_source=ig";
 
 export const siteConfig = {
   name: "Vidotti Contabilidade",
