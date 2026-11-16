@@ -8,7 +8,7 @@ Local: Campinas, SP, Brasil
 Landing page: https://vidotti-lp-cnpj.vercel.app
 Site institucional: https://vidotticonsultoria.com.br
 Idioma: pt-BR
-Atualizado: 2026-08-20
+Atualizado: 2026-11-16
 Stack: React, TanStack Start, TypeScript, Vite, Tailwind CSS
 Hospedagem: Vercel
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = "vidotti-static-2026-08-20-v2";
+const CACHE_NAME = "vidotti-static-2026-11-16-v2";
 const STATIC_ASSETS = [
   "/",
   "/politica-de-privacidade",

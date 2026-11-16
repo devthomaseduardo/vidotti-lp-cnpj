@@ -36,7 +36,16 @@ type AnalyticsWindow = Window & {
     capture: (eventName: string, properties?: Record<string, unknown>) => void;
   };
   gtag?: (command: "event", eventName: string, parameters?: Record<string, unknown>) => void;
+  dataLayer?: Array<Record<string, unknown>>;
+  fbq?: (command: "track", eventName: string, parameters?: Record<string, unknown>) => void;
 };
+
+/** Eventos que significam "a pessoa pediu contato": viram conversão no GA4/Google Ads e no Meta. */
+const LEAD_EVENTS: ReadonlySet<LandingEventName> = new Set([
+  "whatsapp_clicked",
+  "whatsapp_opened",
+  "form_completed",
+]);
 
 function getWindow(): AnalyticsWindow | null {
   if (typeof window === "undefined") return null;
@@ -161,6 +170,14 @@ export function trackConversionEvent(
 
   win.posthog?.capture(eventName, payload);
   win.gtag?.("event", eventName, payload);
+  // O site carrega o Google Tag Manager: sem este push, o GTM não vê nenhum evento.
+  win.dataLayer?.push({ event: eventName, ...payload });
+
+  if (LEAD_EVENTS.has(eventName)) {
+    win.gtag?.("event", "generate_lead", payload);
+    win.dataLayer?.push({ event: "generate_lead", lead_source: source, ...payload });
+    win.fbq?.("track", "Lead", { content_name: source });
+  }
   win.dispatchEvent(
     new CustomEvent("lp:conversion-event", {
       detail: {

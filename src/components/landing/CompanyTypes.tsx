@@ -179,9 +179,9 @@ export function CompanyTypes() {
               <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.18em] text-brand-red md:mb-4 md:tracking-[0.22em]">
                 Empresas atendidas
               </span>
-              <h3 className="max-w-xl text-xl font-semibold tracking-[-0.025em] text-white md:text-3xl">
+              <h2 className="max-w-xl text-xl font-semibold tracking-[-0.025em] text-white md:text-3xl">
                 Negócios que confiam no trabalho da Vidotti.
-              </h3>
+              </h2>
             </div>
             <p className="max-w-[420px] text-sm leading-6 text-white/45 md:text-right">
               Atendimento próximo para empresas de diferentes segmentos.
@@ -200,7 +200,7 @@ export function CompanyTypes() {
                     <div className="flex h-full w-full items-center justify-center overflow-hidden bg-white p-2 md:p-3">
                       <img
                         src={logo}
-                        alt=""
+                        alt={isDuplicate ? "" : "Logotipo de empresa atendida pela Vidotti"}
                         loading="lazy"
                         decoding="async"
                         draggable={false}

@@ -35,8 +35,25 @@ const accountingServiceSchema = {
     "@type": "City",
     name: "Campinas",
   },
+  foundingDate: "2002",
   sameAs: [publicSiteConfig.companySiteUrl, publicSiteConfig.contact.instagram],
   serviceType: publicSiteConfig.services,
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Serviços contábeis",
+    itemListElement: publicSiteConfig.services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: service, areaServed: "Campinas, SP" },
+    })),
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: publicSiteConfig.name,
+  url: canonicalUrl,
+  inLanguage: "pt-BR",
 };
 
 const faqSchema = buildFaqSchema(faqItems);
@@ -44,7 +61,7 @@ const faqSchema = buildFaqSchema(faqItems);
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Abertura de Empresa em Campinas | Vidotti Contabilidade" },
+      { title: "Abertura de Empresa e CNPJ em Campinas | Vidotti Contabilidade" },
       {
         name: "description",
         content:
@@ -54,7 +71,7 @@ export const Route = createFileRoute("/")({
       { property: "og:site_name", content: publicSiteConfig.name },
       {
         property: "og:title",
-        content: "Abertura de Empresa em Campinas | Vidotti Contabilidade",
+        content: "Abertura de Empresa e CNPJ em Campinas | Vidotti Contabilidade",
       },
       {
         property: "og:description",
@@ -69,7 +86,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "Abertura de Empresa em Campinas | Vidotti Contabilidade",
+        content: "Abertura de Empresa e CNPJ em Campinas | Vidotti Contabilidade",
       },
       {
         name: "twitter:description",
@@ -98,6 +115,10 @@ function Index() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(websiteSchema) }}
       />
 
       <Navbar />

@@ -4,7 +4,7 @@
   "short_name": "Vidotti",
   "description": "Abertura de CNPJ, desenquadramento MEI, troca de contador e orientação tributária e contábil para empresas.",
   "lang": "pt-BR",
-  "start_url": "/?utm_source=pwa&utm_medium=app&utm_campaign=vidotti-cnpj-agosto-2026&utm_content=manifest&utm_term=abertura-cnpj",
+  "start_url": "/?utm_source=pwa&utm_medium=app&utm_campaign=vidotti-cnpj-novembro-2026&utm_content=manifest&utm_term=abertura-cnpj",
   "scope": "/",
   "display": "standalone",
   "display_override": [

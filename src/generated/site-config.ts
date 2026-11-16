@@ -5,7 +5,7 @@ export const publicSiteConfig = {
   "siteUrl": "https://vidotti-lp-cnpj.vercel.app",
   "companySiteUrl": "https://vidotticonsultoria.com.br",
   "locale": "pt-BR",
-  "updatedAt": "2026-08-20",
+  "updatedAt": "2026-11-16",
   "description": "Abertura de CNPJ, desenquadramento MEI, troca de contador e orientação tributária e contábil para empresas.",
   "contact": {
     "whatsappPhone": "5519993726183",
@@ -18,7 +18,7 @@ export const publicSiteConfig = {
   "campaign": {
     "utm_source": "direct",
     "utm_medium": "site",
-    "utm_campaign": "vidotti-cnpj-agosto-2026",
+    "utm_campaign": "vidotti-cnpj-novembro-2026",
     "utm_content": "site-cnpj",
     "utm_term": "abertura-cnpj"
   },

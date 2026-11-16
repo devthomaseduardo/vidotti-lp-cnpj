@@ -25,7 +25,7 @@ export const siteConfig = {
   lang: "pt-BR",
   themeColor: "#0D1126",
   backgroundColor: "#0A0D1E",
-  updatedAt: "2026-08-20",
+  updatedAt: "2026-11-16",
   description:
     "Abertura de CNPJ, desenquadramento MEI, troca de contador e orientação tributária e contábil para empresas.",
   contact: {
@@ -39,14 +39,14 @@ export const siteConfig = {
   campaign: {
     utm_source: "direct",
     utm_medium: "site",
-    utm_campaign: "vidotti-cnpj-agosto-2026",
+    utm_campaign: "vidotti-cnpj-novembro-2026",
     utm_content: "site-cnpj",
     utm_term: "abertura-cnpj",
   },
   pages: [
     {
       path: "/",
-      title: "Abertura de Empresa em Campinas | Vidotti Contabilidade",
+      title: "Abertura de Empresa e CNPJ em Campinas | Vidotti Contabilidade",
       changefreq: "weekly",
       priority: "1.0",
     },
