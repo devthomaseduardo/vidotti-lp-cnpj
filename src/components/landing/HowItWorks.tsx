@@ -1,25 +1,22 @@
 import { useState } from "react";
-import { ClipboardCheck, FileText, MessagesSquare, Rocket, ShieldCheck } from "lucide-react";
+import { ClipboardCheck } from "lucide-react";
 import { trackConversionEvent } from "@/lib/conversion";
+import { StepIllustration } from "./StepIllustrations";
 
 const steps = [
   {
-    icon: MessagesSquare,
     title: "Diagnóstico inicial",
     text: "Você informa atividade, momento da empresa, faturamento esperado, cidade e principal dúvida.",
   },
   {
-    icon: ShieldCheck,
     title: "Enquadramento tributário",
     text: "Analisamos atividade, faturamento e cenário para orientar natureza jurídica, CNAE e regime antes de abrir ou migrar.",
   },
   {
-    icon: FileText,
     title: "Documentos e abertura",
     text: "Organizamos os documentos e orientamos as etapas que dependem da atividade, endereço, município e órgãos envolvidos.",
   },
   {
-    icon: Rocket,
     title: "Operação contábil",
     text: "Com o CNPJ ativo, alinhamos notas, guias, pró-labore e a rotina fiscal necessária para a empresa continuar em ordem.",
   },
@@ -79,12 +76,7 @@ export function HowItWorks() {
                       <span className="text-xs font-semibold tracking-[0.16em] text-white/40">
                         0{index + 1}
                       </span>
-                      <span
-                        aria-hidden="true"
-                        className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-red/10 text-brand-red ring-1 ring-brand-red/20 ring-offset-4 ring-offset-[#11152b] md:h-20 md:w-20"
-                      >
-                        <step.icon className="h-7 w-7 md:h-9 md:w-9" strokeWidth={1.5} />
-                      </span>
+                      <StepIllustration index={index} className="mx-auto h-[72px] w-auto md:h-24" />
                       <span>
                         <span className="block text-lg font-bold leading-tight text-white min-[380px]:text-base md:text-xl">
                           {step.title}
