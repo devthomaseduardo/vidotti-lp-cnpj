@@ -37,10 +37,11 @@ export function HowItWorks() {
               Como funciona
             </span>
             <h2 className="max-w-xl text-2xl font-bold leading-tight text-white sm:text-3xl md:text-5xl">
-              Processo claro antes, durante e depois da abertura.
+              Do diagnóstico ao CNPJ ativo <span className="text-white/55">em 4 etapas.</span>
             </h2>
             <p className="mt-4 max-w-lg text-sm leading-6 text-white/60 md:mt-6 md:text-base md:leading-relaxed">
-              Você entende decisões, documentos e próximos passos antes do CNPJ entrar em operação.
+              Você sabe o que vai acontecer, o que precisa enviar e qual regime faz sentido antes de
+              abrir.
             </p>
             <a
               href="#lead-form"

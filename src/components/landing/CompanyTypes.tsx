@@ -78,10 +78,12 @@ export function CompanyTypes() {
               Contabilidade para empresas
             </span>
             <h2 className="max-w-[520px] text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:text-4xl md:text-5xl">
-              Estrutura contábil para sua empresa crescer com segurança.
+              Contabilidade para empresas{" "}
+              <span className="text-white/55">da abertura à rotina fiscal.</span>
             </h2>
             <p className="mt-4 max-w-[500px] text-sm leading-6 text-white/55 md:mt-6 md:text-[17px] md:leading-7">
-              Da abertura do CNPJ à rotina fiscal, a Vidotti acompanha cada etapa da operação.
+              Abertura de CNPJ, saída do MEI, troca de contador e assessoria mensal no mesmo
+              escritório.
             </p>
             <div className="mt-9 hidden w-auto max-w-none items-center gap-4 md:flex">
               <a
@@ -180,7 +182,7 @@ export function CompanyTypes() {
                 Empresas atendidas
               </span>
               <h2 className="max-w-xl text-xl font-semibold tracking-[-0.025em] text-white md:text-3xl">
-                Negócios que confiam no trabalho da Vidotti.
+                Empresas que já confiam <span className="text-white/55">na Vidotti.</span>
               </h2>
             </div>
             <p className="max-w-[420px] text-sm leading-6 text-white/45 md:text-right">

@@ -42,10 +42,11 @@ export function Testimonials() {
               Confiança
             </span>
             <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl md:text-5xl">
-              Histórico, presença e orientação antes de qualquer decisão.
+              Desde 2002 <span className="text-white/55">cuidando de empresas em Campinas.</span>
             </h2>
             <p className="mt-4 text-sm leading-6 text-white/60 md:mt-6 md:text-base md:leading-relaxed">
-              Experiência, presença local e atendimento direto para entender o cenário da empresa.
+              Escritório físico, experiência com empresas de vários portes e atendimento direto pelo
+              WhatsApp.
             </p>
             <div className="mt-6 grid grid-cols-3 divide-x divide-white/10 border-y border-white/10 py-4 md:mt-8 md:py-5">
               {[

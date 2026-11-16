@@ -66,7 +66,8 @@ export function FAQ() {
               Dúvidas frequentes
             </span>
             <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl md:text-5xl">
-              Dúvidas antes de abrir ou migrar seu CNPJ.
+              Perguntas frequentes{" "}
+              <span className="text-white/55">sobre abrir ou migrar o CNPJ.</span>
             </h2>
           </div>
           <p className="max-w-2xl text-sm leading-6 text-white/60 md:text-base md:leading-relaxed">
@@ -121,7 +122,7 @@ export function FAQ() {
           ))}
         </div>
 
-        <div className="mt-8 flex justify-center md:mt-12" data-reveal>
+        <div className="mt-8 flex md:mt-12" data-reveal>
           <WhatsAppLink
             source="faq_whatsapp"
             intent="Li as dúvidas do site e quero entender o melhor caminho para meu CNPJ."
