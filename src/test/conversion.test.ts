@@ -1,11 +1,18 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { buildWhatsAppUrl, resolveCampaignParams } from "@/lib/conversion";
+import {
+  buildWhatsAppUrl,
+  readConsentChoice,
+  resolveCampaignParams,
+  saveConsentChoice,
+  trackConversionEvent,
+} from "@/lib/conversion";
 import { publicSiteConfig } from "@/generated/site-config";
 
 const setUrl = (search: string) => window.history.replaceState(null, "", `/${search}`);
 
 beforeEach(() => {
   sessionStorage.clear();
+  localStorage.clear();
   setUrl("");
 });
 
@@ -68,13 +75,23 @@ describe("trackConversionEvent", () => {
     expect(w.dataLayer[1].lead_source).toBe("hero");
   });
 
-  it("não marca visita de página como lead", async () => {
-    const { trackConversionEvent } = await import("@/lib/conversion");
+  it("não marca visita de página como lead", () => {
     const w = window as unknown as { dataLayer: Array<Record<string, unknown>> };
     w.dataLayer = [];
 
     trackConversionEvent("page_view", { source: "root" });
 
     expect(w.dataLayer.map((entry) => entry.event)).toEqual(["page_view"]);
+  });
+
+  it("não envia eventos para o GTM quando o visitante recusa os cookies", () => {
+    const w = window as unknown as { dataLayer: Array<Record<string, unknown>> };
+    w.dataLayer = [];
+
+    saveConsentChoice("rejected");
+    expect(readConsentChoice()).toBe("rejected");
+
+    trackConversionEvent("whatsapp_clicked", { source: "hero" });
+    expect(w.dataLayer).toEqual([]);
   });
 });

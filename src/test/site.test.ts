@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 // @ts-expect-error config.mjs é JavaScript puro, usado também pelos scripts de build.
 import { siteConfig, validateSiteConfig } from "../../config.mjs";
-import { faqItems } from "@/components/landing/FAQ";
+import { faqItems } from "@/components/landing/faq-data";
+import { renderErrorPage } from "@/lib/error-page";
 import { buildFaqSchema, toJsonLd } from "@/lib/json-ld";
 
 describe("configuração do site", () => {
@@ -29,5 +30,16 @@ describe("dados estruturados", () => {
 
   it("não deixa um texto fechar a tag <script>", () => {
     expect(toJsonLd({ text: "</script><script>alert(1)</script>" })).not.toContain("</script>");
+  });
+});
+
+describe("página de erro SSR", () => {
+  it("renderiza em português com a identidade visual da marca", () => {
+    const html = renderErrorPage();
+
+    expect(html).toContain('lang="pt-BR"');
+    expect(html).toContain("Esta página não carregou");
+    expect(html).toContain("#0a0d1e");
+    expect(html).toContain("#d71920");
   });
 });

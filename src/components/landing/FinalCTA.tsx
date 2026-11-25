@@ -1,5 +1,4 @@
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { trackConversionEvent } from "@/lib/conversion";
 import { WhatsAppLink } from "./WhatsAppLink";
 
 const closingPoints = [
@@ -31,12 +30,7 @@ export function FinalCTA() {
             <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:gap-4">
               <a
                 href="#lead-form"
-                onClick={() =>
-                  trackConversionEvent("cta_clicked", {
-                    source: "final_primary",
-                    destination: "lead_form",
-                  })
-                }
+                data-cta-source="final_primary"
                 className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-brand-red px-3 py-3 text-center text-xs font-semibold leading-tight text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-sm"
               >
                 Fazer diagnóstico <ArrowRight className="h-4 w-4" strokeWidth={1.75} />

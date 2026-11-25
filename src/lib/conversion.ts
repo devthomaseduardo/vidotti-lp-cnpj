@@ -3,6 +3,10 @@ import { publicSiteConfig } from "@/generated/site-config";
 const DEFAULT_UTMS = publicSiteConfig.campaign;
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const;
 const STORAGE_KEY = "vidotti_lp_utm";
+export const CONSENT_STORAGE_KEY = "vidotti_lp_consent";
+export const GTM_CONTAINER_ID = "GTM-MSF7R725";
+
+export type ConsentChoice = "accepted" | "rejected";
 
 export type LandingEventName =
   | "page_view"
@@ -50,6 +54,45 @@ const LEAD_EVENTS: ReadonlySet<LandingEventName> = new Set([
 function getWindow(): AnalyticsWindow | null {
   if (typeof window === "undefined") return null;
   return window as AnalyticsWindow;
+}
+
+export function readConsentChoice(): ConsentChoice | null {
+  const win = getWindow();
+  if (!win) return null;
+  try {
+    const value = win.localStorage.getItem(CONSENT_STORAGE_KEY);
+    return value === "accepted" || value === "rejected" ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveConsentChoice(choice: ConsentChoice) {
+  const win = getWindow();
+  if (!win) return;
+  try {
+    win.localStorage.setItem(CONSENT_STORAGE_KEY, choice);
+  } catch {
+    // O site continua funcionando se o localStorage estiver bloqueado.
+  }
+  if (choice === "accepted") {
+    loadGtmContainer();
+  }
+}
+
+export function loadGtmContainer(containerId = GTM_CONTAINER_ID) {
+  const win = getWindow();
+  if (!win || typeof document === "undefined") return;
+  if (document.getElementById("vidotti-gtm-script")) return;
+
+  win.dataLayer = win.dataLayer || [];
+  win.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+
+  const script = document.createElement("script");
+  script.id = "vidotti-gtm-script";
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(containerId)}`;
+  document.head.appendChild(script);
 }
 
 function readStoredUtms(win: AnalyticsWindow): Partial<UtmParams> {
@@ -160,6 +203,7 @@ export function trackConversionEvent(
   const win = getWindow();
   if (!win) return;
 
+  const consent = readConsentChoice();
   const source = typeof properties.source === "string" ? properties.source : eventName;
   const payload = {
     ...resolveCampaignParams(source),
@@ -168,15 +212,17 @@ export function trackConversionEvent(
     page_search: win.location.search,
   };
 
-  win.posthog?.capture(eventName, payload);
-  win.gtag?.("event", eventName, payload);
-  // O site carrega o Google Tag Manager: sem este push, o GTM não vê nenhum evento.
-  win.dataLayer?.push({ event: eventName, ...payload });
+  if (consent !== "rejected") {
+    win.posthog?.capture(eventName, payload);
+    win.gtag?.("event", eventName, payload);
+    // O site carrega o Google Tag Manager: sem este push, o GTM não vê nenhum evento.
+    win.dataLayer?.push({ event: eventName, ...payload });
 
-  if (LEAD_EVENTS.has(eventName)) {
-    win.gtag?.("event", "generate_lead", payload);
-    win.dataLayer?.push({ event: "generate_lead", lead_source: source, ...payload });
-    win.fbq?.("track", "Lead", { content_name: source });
+    if (LEAD_EVENTS.has(eventName)) {
+      win.gtag?.("event", "generate_lead", payload);
+      win.dataLayer?.push({ event: "generate_lead", lead_source: source, ...payload });
+      win.fbq?.("track", "Lead", { content_name: source });
+    }
   }
   win.dispatchEvent(
     new CustomEvent("lp:conversion-event", {

@@ -1,5 +1,5 @@
 import { BadgeCheck, Building2, CalendarCheck, FileCheck2, ShieldCheck } from "lucide-react";
-import { BrandCurves } from "./BrandCurves";
+import { BrandCurvesLight } from "./BrandCurves";
 import { WhatsAppLink } from "./WhatsAppLink";
 
 const proofPoints = [
@@ -31,8 +31,8 @@ export function Testimonials() {
       className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-10 md:py-28"
       id="prova"
     >
-      <div className="pointer-events-none absolute -left-52 top-0 w-[820px] opacity-5">
-        <BrandCurves className="w-full" />
+      <div className="pointer-events-none absolute -left-52 top-0 w-[820px] opacity-30">
+        <BrandCurvesLight className="w-full" />
       </div>
       <div className="relative mx-auto max-w-[1280px] px-5 sm:px-6">
         <div className="grid gap-9 md:gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">

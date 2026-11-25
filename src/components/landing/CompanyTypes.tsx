@@ -1,4 +1,3 @@
-import { trackConversionEvent } from "@/lib/conversion";
 import { WhatsAppLink } from "./WhatsAppLink";
 
 const services = [
@@ -88,12 +87,7 @@ export function CompanyTypes() {
             <div className="mt-9 hidden w-auto max-w-none items-center gap-4 md:flex">
               <a
                 href="#lead-form"
-                onClick={() =>
-                  trackConversionEvent("cta_clicked", {
-                    source: "services_primary",
-                    destination: "lead_form",
-                  })
-                }
+                data-cta-source="services_primary"
                 className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-red px-7 text-center text-sm font-semibold leading-tight text-white transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110"
               >
                 Fazer diagnóstico
@@ -156,12 +150,7 @@ export function CompanyTypes() {
           <div className="mt-8 grid w-full grid-cols-1 gap-3 md:hidden">
             <a
               href="#lead-form"
-              onClick={() =>
-                trackConversionEvent("cta_clicked", {
-                  source: "services_primary",
-                  destination: "lead_form",
-                })
-              }
+              data-cta-source="services_mobile_primary"
               className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-red px-3 text-center text-[13px] font-semibold leading-tight text-white transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110"
             >
               Fazer diagnóstico

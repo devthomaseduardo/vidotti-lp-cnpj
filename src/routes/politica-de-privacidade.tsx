@@ -1,8 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import logoNavy from "@/assets/vidotti-logo-navy.png";
+import { Footer } from "@/components/landing/Footer";
 import { publicSiteConfig } from "@/generated/site-config";
 
 const canonicalUrl = `${publicSiteConfig.siteUrl}/politica-de-privacidade`;
+
+function formatUpdatedDate(isoDate: string): string {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  if (!year || !month || !day) return isoDate;
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
 
 export const Route = createFileRoute("/politica-de-privacidade")({
   head: () => ({
@@ -14,6 +27,16 @@ export const Route = createFileRoute("/politica-de-privacidade")({
           "Saiba como a Vidotti Contabilidade trata informações enviadas pelo site, dados de navegação e contatos iniciados pelo WhatsApp.",
       },
       { name: "robots", content: "index,follow" },
+      { property: "og:site_name", content: publicSiteConfig.name },
+      { property: "og:title", content: "Política de Privacidade | Vidotti Contabilidade" },
+      {
+        property: "og:description",
+        content:
+          "Saiba como a Vidotti Contabilidade trata informações enviadas pelo site, dados de navegação e contatos iniciados pelo WhatsApp.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:url", content: canonicalUrl },
     ],
     links: [{ rel: "canonical", href: canonicalUrl }],
   }),
@@ -95,7 +118,9 @@ function PrivacyPolicy() {
           dados técnicos de navegação podem ser usados no atendimento e na operação digital da
           Vidotti Contabilidade.
         </p>
-        <p className="mt-3 text-sm text-white/40">Última atualização: 20 de agosto de 2026.</p>
+        <p className="mt-3 text-sm text-white/40">
+          Última atualização: {formatUpdatedDate(publicSiteConfig.updatedAt)}.
+        </p>
 
         <div className="mt-12 divide-y divide-white/10 border-y border-white/10">
           {sections.map((section) => (
@@ -112,6 +137,7 @@ function PrivacyPolicy() {
           ))}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

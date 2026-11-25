@@ -1,7 +1,8 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Clock3, ShieldCheck } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
-import { BrandArcSoft } from "./BrandCurves";
+import { BrandCurvesLight } from "./BrandCurves";
 import { WhatsAppLink } from "./WhatsAppLink";
 import heroImg from "@/assets/hero-empresario.png";
 import { buildWhatsAppUrl, trackConversionEvent } from "@/lib/conversion";
@@ -66,9 +67,15 @@ export function Hero() {
   };
 
   useEffect(() => {
+    const syncLeadHash = () => {
+      if (window.location.hash === "#lead-form") {
+        setDiagnosticOpen(true);
+      }
+    };
+
     const handleLeadAnchorClick = (event: MouseEvent) => {
       const target = event.target instanceof Element ? event.target : null;
-      const link = target?.closest('a[href="#lead-form"]');
+      const link = target?.closest('a[href="#lead-form"], a[href="/#lead-form"]');
       if (!link) return;
 
       event.preventDefault();
@@ -79,16 +86,24 @@ export function Hero() {
       setDiagnosticOpen(true);
     };
 
+    syncLeadHash();
+    window.addEventListener("hashchange", syncLeadHash);
     document.addEventListener("click", handleLeadAnchorClick);
-    return () => document.removeEventListener("click", handleLeadAnchorClick);
+    return () => {
+      window.removeEventListener("hashchange", syncLeadHash);
+      document.removeEventListener("click", handleLeadAnchorClick);
+    };
   }, []);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const trimmedBusiness = lead.business.trim();
+    if (!trimmedBusiness) return;
+
     trackConversionEvent("form_completed", {
       source: "hero_modal_form",
       need: lead.need,
-      has_context: Boolean(lead.business),
+      has_context: true,
       fields_count: 2,
     });
 
@@ -97,7 +112,7 @@ export function Hero() {
         source: "hero_modal_form",
         intent:
           "Quero entender o melhor caminho para meu CNPJ pelo diagnóstico inicial da Vidotti.",
-        lead: { business: lead.business, need: lead.need },
+        lead: { business: trimmedBusiness, need: lead.need },
       });
 
       trackConversionEvent("whatsapp_opened", {
@@ -114,8 +129,8 @@ export function Hero() {
       id="top"
       className="relative flex min-h-[680px] items-center overflow-hidden bg-[#0A0D1E] pb-10 pt-28 sm:min-h-[720px] md:min-h-[92vh] md:pb-20 md:pt-32"
     >
-      <div className="pointer-events-none absolute inset-x-0 -top-24 opacity-10">
-        <BrandArcSoft className="h-[720px] w-full" />
+      <div className="pointer-events-none absolute inset-x-0 -top-24 opacity-40">
+        <BrandCurvesLight className="h-[720px] w-full" />
       </div>
       <div className="photo-fade pointer-events-none absolute inset-y-0 right-0 h-full w-full opacity-35 md:w-[68%] md:opacity-30">
         <img
@@ -271,6 +286,8 @@ export function Hero() {
                 name="business"
                 type="text"
                 required
+                pattern=".*\S.*"
+                title="Informe a atividade, cidade ou dúvida principal."
                 value={lead.business}
                 onChange={updateLead("business")}
                 className="w-full rounded-md border border-white/10 bg-[#0D1126] px-4 py-3 text-sm text-white placeholder-white/30 transition-all focus:border-brand-red/60 focus:outline-none focus:ring-1 focus:ring-brand-red/60"
@@ -295,12 +312,12 @@ export function Hero() {
                 </label>
                 <p className="mt-1 text-[11px] leading-relaxed text-white/40">
                   Consulte a{" "}
-                  <a
-                    href="/politica-de-privacidade"
+                  <Link
+                    to="/politica-de-privacidade"
                     className="underline underline-offset-2 transition-colors hover:text-white/70"
                   >
                     Política de Privacidade
-                  </a>
+                  </Link>
                   .
                 </p>
               </div>

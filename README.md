@@ -1,4 +1,4 @@
-# Vidotti Contabilidade — landing de abertura de CNPJ
+# Vidotti Contabilidade: landing de abertura de CNPJ
 
 [![CI](https://github.com/devthomaseduardo/vidotti-lp-cnpj/actions/workflows/ci.yml/badge.svg)](https://github.com/devthomaseduardo/vidotti-lp-cnpj/actions/workflows/ci.yml)
 
@@ -18,8 +18,8 @@ Desenvolvedor do projeto: interface, conteúdo das seções, rastreamento de cam
 
 - **Configuração única em `config.mjs`.** Nome, contato, WhatsApp, páginas e UTMs ficam em um só arquivo. `npm run generate` deriva dele o `src/generated/site-config.ts`, o manifest e o `llms.txt`, e a CI falha se os arquivos gerados estiverem desatualizados.
 - **WhatsApp travado por validação.** O build recusa número diferente do oficial ou link quebrado, e o teste confirma o formato internacional (`55` + DDD).
-- **Atribuição de campanha sem backend.** `src/lib/conversion.ts` lê os UTMs da URL, guarda na sessão e usa a origem do clique (`utm_content`) quando não há campanha, para que todo contato no WhatsApp chegue com contexto. Eventos vão para Google Tag Manager/gtag e PostHog quando presentes.
-- **SSR com TanStack Start.** A página chega pronta para buscadores. `src/server.ts` trata o erro de SSR que o h3 engole e devolve uma página de erro em HTML em vez de um JSON genérico.
+- **Atribuição de campanha sem backend.** `src/lib/conversion.ts` lê os UTMs da URL, guarda na sessão e usa a origem do clique (`utm_content`) quando não há campanha, para que todo contato no WhatsApp chegue com contexto. O carregamento do Google Tag Manager respeita a escolha de cookies do visitante (LGPD).
+- **SSR com TanStack Start.** A página chega pronta para buscadores. `src/server.ts` trata o erro de SSR que o h3 engole e devolve uma página de erro em HTML em português e no tema da marca em vez de um JSON genérico.
 - **Dados estruturados seguros.** `AccountingService` e `FAQPage` são serializados por `toJsonLd`, que escapa `<` para nenhum texto fechar a tag `<script>`.
 
 ## Stack
@@ -28,7 +28,7 @@ React 19, TypeScript, TanStack Start e Router (SSR), Vite, Tailwind CSS 4, Radix
 
 ## Como rodar
 
-Requisitos: Node 20+ e npm.
+Requisitos: Node 22 e npm.
 
 ```bash
 git clone https://github.com/devthomaseduardo/vidotti-lp-cnpj.git
@@ -167,19 +167,30 @@ Arquivo técnico reservado para fluxo de verificação relacionado ao Google. El
 ```text
 src/
 ├── components/
-│   └── landing/
-│       ├── Benefits.tsx
-│       ├── CompanyTypes.tsx
-│       ├── FAQ.tsx
-│       ├── FinalCTA.tsx
-│       ├── FloatingWhatsApp.tsx
-│       ├── Footer.tsx
-│       ├── Hero.tsx
-│       ├── HowItWorks.tsx
-│       ├── Navbar.tsx
-│       └── WhatsAppLink.tsx
+│   ├── landing/
+│   │   ├── Benefits.tsx
+│   │   ├── BrandCurves.tsx
+│   │   ├── CompanyTypes.tsx
+│   │   ├── CookieBanner.tsx
+│   │   ├── FAQ.tsx
+│   │   ├── FinalCTA.tsx
+│   │   ├── FloatingWhatsApp.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Hero.tsx
+│   │   ├── HowItWorks.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── StepIllustrations.tsx
+│   │   ├── Testimonials.tsx
+│   │   ├── WhatsAppLink.tsx
+│   │   └── faq-data.ts
+│   └── ui/
+│       ├── accordion.tsx
+│       └── dialog.tsx
+├── generated/
+├── hooks/
 ├── lib/
-└── routes/
+├── routes/
+└── test/
 ```
 
 A landing page é dividida em componentes independentes para facilitar manutenção e ajustes comerciais sem concentrar toda a interface em um único arquivo.
@@ -257,7 +268,7 @@ Não é recomendado substituir esse comando por `vite build` diretamente, pois o
 ## Contato institucional
 
 **Vidotti Contabilidade**  
-Campinas — SP  
+Campinas, SP  
 WhatsApp: (19) 99372-6183  
 E-mail: contato@vidotticontabilidade.com.br  
 Site institucional: https://vidotticonsultoria.com.br

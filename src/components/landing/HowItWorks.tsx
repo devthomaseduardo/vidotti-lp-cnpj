@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ClipboardCheck } from "lucide-react";
-import { trackConversionEvent } from "@/lib/conversion";
 import { StepIllustration } from "./StepIllustrations";
 
 const steps = [
@@ -45,12 +44,7 @@ export function HowItWorks() {
             </p>
             <a
               href="#lead-form"
-              onClick={() =>
-                trackConversionEvent("cta_clicked", {
-                  source: "process_primary",
-                  destination: "lead_form",
-                })
-              }
+              data-cta-source="process_primary"
               className="mt-6 hidden min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 md:mt-8 md:inline-flex md:px-8 md:py-3.5"
             >
               Fazer diagnóstico <ClipboardCheck className="h-4 w-4" strokeWidth={1.75} />
@@ -66,13 +60,14 @@ export function HowItWorks() {
                   type="button"
                   aria-pressed={flipped}
                   onClick={() => setFlippedStep((current) => (current === index ? null : index))}
-                  className="block min-h-[174px] w-full text-left outline-none [perspective:1000px] focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-brand-red/70 min-[380px]:min-h-[188px] md:min-h-[228px]"
+                  className="flip-card block min-h-[174px] w-full text-left outline-none focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-brand-red/70 min-[380px]:min-h-[188px] md:min-h-[228px]"
                 >
                   <span
-                    className={`relative block h-full w-full rounded-2xl transition-transform duration-500 [transform-style:preserve-3d] ${flipped ? "[transform:rotateY(180deg)]" : ""}`}
+                    className={`flip-card-inner relative block h-full w-full rounded-2xl transition-transform duration-500 ${flipped ? "is-flipped" : ""}`}
                   >
                     <span
-                      className={`absolute inset-0 flex flex-col justify-between rounded-2xl border bg-white/[0.04] p-4 transition-colors [backface-visibility:hidden] md:p-5 ${flipped ? "border-brand-red/35" : "border-white/10 hover:border-white/20 hover:bg-white/[0.06]"}`}
+                      aria-hidden={flipped || undefined}
+                      className={`flip-card-face absolute inset-0 flex flex-col justify-between rounded-2xl border bg-white/[0.04] p-4 transition-colors md:p-5 ${flipped ? "border-brand-red/35" : "border-white/10 hover:border-white/20 hover:bg-white/[0.06]"}`}
                     >
                       <span className="text-xs font-semibold tracking-[0.16em] text-white/40">
                         0{index + 1}
@@ -88,7 +83,10 @@ export function HowItWorks() {
                         </span>
                       </span>
                     </span>
-                    <span className="absolute inset-0 flex rounded-2xl border border-brand-red/35 bg-[#151933] p-4 shadow-[0_18px_50px_-32px_rgba(215,25,32,0.75)] [backface-visibility:hidden] [transform:rotateY(180deg)] md:p-5">
+                    <span
+                      aria-hidden={!flipped || undefined}
+                      className="flip-card-face flip-card-back absolute inset-0 flex rounded-2xl border border-brand-red/35 bg-[#151933] p-4 shadow-[0_18px_50px_-32px_rgba(215,25,32,0.75)] md:p-5"
+                    >
                       <span className="flex flex-col justify-between">
                         <span className="flex items-center justify-between gap-3">
                           <span className="text-xs font-semibold tracking-[0.16em] text-brand-red">
@@ -116,12 +114,7 @@ export function HowItWorks() {
         <div className="mt-8 flex md:hidden">
           <a
             href="#lead-form"
-            onClick={() =>
-              trackConversionEvent("cta_clicked", {
-                source: "process_primary",
-                destination: "lead_form",
-              })
-            }
+            data-cta-source="process_mobile_primary"
             className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-red px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
           >
             Fazer diagnóstico <ClipboardCheck className="h-4 w-4" strokeWidth={1.75} />
