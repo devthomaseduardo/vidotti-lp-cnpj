@@ -30,7 +30,7 @@ export function HowItWorks() {
       className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-8 md:py-16"
     >
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-        <div className="grid gap-6 md:gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start lg:gap-14">
+        <div className="grid gap-6 md:gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-14 xl:gap-20">
           <div data-reveal>
             <span className="mb-2.5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-red md:mb-4">
               <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
@@ -51,7 +51,7 @@ export function HowItWorks() {
               Fazer diagnóstico <ClipboardCheck className="h-4 w-4" strokeWidth={1.75} />
             </a>
           </div>
-          <div className="grid grid-cols-2 gap-2.5 md:gap-4 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-2.5 min-[360px]:grid-cols-2 md:gap-4 xl:gap-5">
             {steps.map((step, index) => {
               const flipped = flippedStep === index;
 
@@ -61,14 +61,14 @@ export function HowItWorks() {
                   type="button"
                   aria-pressed={flipped}
                   onClick={() => setFlippedStep((current) => (current === index ? null : index))}
-                  className="flip-card block min-h-[168px] w-full text-left outline-none focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-brand-red/70 sm:min-h-[192px] md:min-h-[214px]"
+                  className="flip-card block min-h-[176px] w-full text-left outline-none focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-brand-red/70 sm:min-h-[192px] md:min-h-[214px] xl:min-h-[236px]"
                 >
                   <span
                     className={`flip-card-inner relative block h-full w-full rounded-2xl transition-transform duration-500 ${flipped ? "is-flipped" : ""}`}
                   >
                     <span
                       aria-hidden={flipped || undefined}
-                      className={`flip-card-face absolute inset-0 flex flex-col justify-between rounded-2xl border bg-white/[0.03] p-3.5 transition-colors sm:p-4 md:p-5 ${flipped ? "border-brand-red/35" : "border-white/10 hover:border-white/20 hover:bg-white/[0.05]"}`}
+                      className={`flip-card-face absolute inset-0 flex flex-col justify-between rounded-2xl border bg-white/[0.03] p-3.5 transition-colors sm:p-4 md:p-5 xl:p-6 ${flipped ? "border-brand-red/35" : "border-white/10 hover:border-white/20 hover:bg-white/[0.05]"}`}
                     >
                       <span className="text-[11px] font-semibold tracking-[0.16em] text-white/40 sm:text-xs">
                         0{index + 1}
@@ -88,7 +88,7 @@ export function HowItWorks() {
                     </span>
                     <span
                       aria-hidden={!flipped || undefined}
-                      className="flip-card-face flip-card-back absolute inset-0 flex rounded-2xl border border-brand-red/35 bg-[#151933] p-3.5 transition-colors sm:p-4 md:p-5"
+                      className="flip-card-face flip-card-back absolute inset-0 flex rounded-2xl border border-brand-red/35 bg-[#151933] p-3.5 transition-colors sm:p-4 md:p-5 xl:p-6"
                     >
                       <span className="flex flex-col justify-between">
                         <span className="flex items-center justify-between gap-2">

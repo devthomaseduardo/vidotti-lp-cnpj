@@ -4,7 +4,7 @@
 
 Landing page da **Vidotti Contabilidade** (Campinas/SP, desde 2002) para abertura de CNPJ, desenquadramento do MEI, troca de contador e orientação tributária. O objetivo é transformar tráfego de campanha e busca em conversas qualificadas no WhatsApp, sabendo de qual campanha e de qual botão cada contato veio.
 
-**No ar:** https://vidotti-lp-cnpj.vercel.app
+**No ar:** https://www.vidotticontabilidade.com.br (domínio oficial, na Vercel)
 
 | Desktop                                     | Celular                                                              |
 | ------------------------------------------- | -------------------------------------------------------------------- |
@@ -13,6 +13,27 @@ Landing page da **Vidotti Contabilidade** (Campinas/SP, desde 2002) para abertur
 ## Meu papel
 
 Desenvolvedor do projeto: interface, conteúdo das seções, rastreamento de campanha, SEO técnico (dados estruturados, sitemap, `llms.txt`), pipeline de build, testes e CI.
+
+## Seções da página
+
+Ordem em `src/routes/index.tsx`:
+
+| #   | Componente         | Seção                                                                               |
+| --- | ------------------ | ----------------------------------------------------------------------------------- |
+| 1   | `Hero.tsx`         | Chamada principal e foto (`src/assets/hero-empresario.png`)                         |
+| 2   | `CompanyTypes.tsx` | Tipos de empresa e carrossel "Empresas atendidas" (`public/clientes/*.webp`)        |
+| 3   | `Benefits.tsx`     | "Por que isso importa", com foto à esquerda (`src/assets/empresaria-telefone.webp`) |
+| 4   | `Testimonials.tsx` | Confiança: "Desde 2002 cuidando de empresas em Campinas"                            |
+| 5   | `HowItWorks.tsx`   | Como funciona, em 4 etapas                                                          |
+| 6   | `FAQ.tsx`          | Dúvidas frequentes (`faq-data.ts`, também usado no JSON-LD)                         |
+| 7   | `FinalCTA.tsx`     | Próximo passo e diagnóstico pelo WhatsApp                                           |
+
+As duas seções com foto (Hero e Benefits) ficam separadas de propósito.
+
+### Imagens
+
+- Fotos em `src/assets/`, importadas pelo componente (o Vite gera o hash do arquivo). Prefira WebP.
+- Logos de clientes em `public/clientes/`, em WebP com fundo branco. Os arquivos antigos eram JPG com os cantos pretos (transparência perdida na conversão); os cantos foram preenchidos de branco. Para nitidez maior, substituir pelos arquivos originais das marcas, mantendo o mesmo nome.
 
 ## Decisões técnicas
 
@@ -28,7 +49,9 @@ React 19, TypeScript, TanStack Start e Router (SSR), Vite, Tailwind CSS 4, Radix
 
 ## Como rodar
 
-Requisitos: Node 22 e npm.
+Requisitos: Node 22 (`.nvmrc`) e npm 10, a mesma versão da CI.
+
+> Gere o `package-lock.json` com npm 10. Lockfile gerado com npm 11 pode quebrar o `npm ci` da CI (`Missing: lru-cache ... from lock file`). Se acontecer: `npx npm@10 install`.
 
 ```bash
 git clone https://github.com/devthomaseduardo/vidotti-lp-cnpj.git
@@ -46,6 +69,8 @@ npm run dev
 | `npm run typecheck` | checagem de tipos                                                  |
 | `npm test`          | testes (Vitest)                                                    |
 | `npm run verify`    | lint + build                                                       |
+| `npm run format`    | formata o projeto com Prettier                                     |
+| `npm run preview`   | serve o build localmente                                           |
 
 ## Testes
 
@@ -56,7 +81,7 @@ npm run dev
 - validação da configuração central;
 - `FAQPage` com todas as perguntas e escape do JSON-LD.
 
-A CI roda `generate` (e confere que nada mudou), lint, tipos, testes e build em cada PR.
+A CI (`.github/workflows/ci.yml`) roda `npm ci`, `generate` (e confere que nada mudou), lint, tipos, testes e build em cada PR. Na `main`, depois disso, faz o deploy de produção na Vercel.
 
 ## Configuração central
 
@@ -102,6 +127,8 @@ Sem configuração externa, o fallback atual é:
 ```text
 https://vidotti-lp-cnpj.vercel.app
 ```
+
+Em produção, defina `SITE_URL=https://www.vidotticontabilidade.com.br` na Vercel para que canonical, sitemap e `llms.txt` usem o domínio oficial.
 
 ## Pipeline de build
 
@@ -185,11 +212,14 @@ src/
 │   └── ui/
 │       ├── accordion.tsx
 │       └── dialog.tsx
-├── generated/
-├── hooks/
-├── lib/
-├── routes/
-└── test/
+├── assets/          fotos das seções
+├── generated/       gerado por `npm run generate` (não editar)
+├── hooks/           use-scroll-reveal.ts
+├── lib/             conversion, json-ld, error-page, error-capture, utils
+├── routes/          __root, index, politica-de-privacidade (ver routes/README.md)
+├── server.ts        tratamento do erro de SSR
+└── test/            conversion.test.ts, site.test.ts
+public/clientes/     logos das empresas atendidas
 ```
 
 A landing page é dividida em componentes independentes para facilitar manutenção e ajustes comerciais sem concentrar toda a interface em um único arquivo.
@@ -250,6 +280,10 @@ npm run build
 ```
 
 Não é recomendado substituir esse comando por `vite build` diretamente, pois o pipeline também valida a configuração e atualiza os arquivos públicos antes da compilação.
+
+- PR: a Vercel cria um preview a cada push.
+- `main`: o workflow de CI faz o deploy de produção depois de passar.
+- A Vercel bloqueia o deploy se alguma dependência tiver falha de segurança conhecida (ex.: CVE-2026-102989 no `@tanstack/react-start`, corrigida na 1.169.7). Atualize a dependência; não use a variável que libera o deploy vulnerável.
 
 ## Checklist antes da entrega
 
