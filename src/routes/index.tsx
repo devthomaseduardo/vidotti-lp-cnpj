@@ -126,8 +126,8 @@ function Index() {
 
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <Benefits />
         <CompanyTypes />
+        <Benefits />
         <Testimonials />
         <HowItWorks />
         <FAQ />
