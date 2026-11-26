@@ -73,9 +73,13 @@ export function Benefits() {
             </div>
           </div>
 
-          <div data-reveal data-reveal-delay="160" className="relative md:col-span-5">
-            <div className="grid grid-cols-[1fr_205px] items-end gap-2 sm:grid-cols-[1fr_255px] md:block">
-              <ul className="space-y-3 pb-7 md:hidden">
+          <div
+            data-reveal
+            data-reveal-delay="160"
+            className="relative md:order-first md:col-span-5"
+          >
+            <div className="grid grid-cols-[205px_1fr] items-end gap-2 sm:grid-cols-[255px_1fr] md:block">
+              <ul className="order-last space-y-3 pb-7 md:hidden">
                 {points.map((point) => (
                   <li key={point.title} className="flex items-start gap-2">
                     <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-red text-white">
@@ -89,7 +93,7 @@ export function Benefits() {
                 ))}
               </ul>
 
-              <div className="photo-fade relative flex items-end justify-end md:h-[520px] lg:h-[580px]">
+              <div className="photo-fade relative flex items-end justify-start md:h-[520px] lg:h-[580px]">
                 <img
                   src={businesswomanImg}
                   alt="Empresária sorridente falando ao telefone com um café na mão"
