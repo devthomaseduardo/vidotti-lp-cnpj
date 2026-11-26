@@ -2,7 +2,6 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Clock3, ShieldCheck } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
-import { BrandCurvesLight } from "./BrandCurves";
 import { WhatsAppLink } from "./WhatsAppLink";
 import heroImg from "@/assets/hero-empresario.png";
 import { buildWhatsAppUrl, trackConversionEvent } from "@/lib/conversion";
@@ -125,97 +124,116 @@ export function Hero() {
   };
 
   return (
-    <section
-      id="top"
-      className="relative flex min-h-[680px] items-center overflow-hidden bg-[#0A0D1E] pb-10 pt-28 sm:min-h-[720px] md:min-h-[92vh] md:pb-20 md:pt-32"
-    >
-      <div className="pointer-events-none absolute inset-x-0 -top-24 opacity-40">
-        <BrandCurvesLight className="h-[720px] w-full" />
-      </div>
-      <div className="photo-fade pointer-events-none absolute inset-y-0 right-0 h-full w-full opacity-35 md:w-[68%] md:opacity-30">
-        <img
-          src={heroImg}
-          alt=""
-          decoding="async"
-          fetchPriority="high"
-          className="h-full w-full object-cover object-[72%_center] md:object-right"
-        />
-      </div>
-
-      <div className="relative mx-auto grid w-full max-w-[1280px] items-center gap-8 px-5 sm:px-6 lg:grid-cols-12">
-        <div className="lg:col-span-7">
-          <span
-            data-reveal
-            className="mb-5 inline-block rounded-full border border-white/20 px-3 py-1.5 text-[11px] font-medium text-white/80 backdrop-blur-sm sm:px-4 sm:text-xs md:mb-8"
-          >
-            Contabilidade em Campinas desde 2002
-          </span>
-          <h1
-            data-reveal
-            data-reveal-delay="80"
-            className="max-w-3xl text-[2rem] font-bold leading-[1.08] text-white sm:text-4xl md:text-5xl lg:text-[3.75rem]"
-          >
-            Abra seu CNPJ em Campinas{" "}
-            <span className="text-white/55">com a orientação certa desde o início.</span>
-          </h1>
-          <p
-            data-reveal
-            data-reveal-delay="160"
-            className="mt-5 max-w-xl text-base leading-7 text-white/70 md:mt-6 md:text-lg md:leading-relaxed"
-          >
-            Analisamos <mark className="hl">CNAE, natureza jurídica e regime tributário</mark> antes
-            de abrir, para evitar imposto a mais e retrabalho depois.
-          </p>
-
-          <div
-            data-reveal
-            data-reveal-delay="240"
-            className="mt-7 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-4 md:mt-10"
-          >
-            <button
-              id="lead-form"
-              type="button"
-              onClick={() => openDiagnostic("hero_primary")}
-              className="inline-flex min-h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-brand-red px-3 py-3 text-center text-xs font-semibold leading-tight text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-sm"
+    <section id="top" className="relative overflow-hidden bg-[#0A0D1E] pt-20 pb-8 md:pt-28 md:pb-0">
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+        <div className="grid items-end gap-5 md:grid-cols-12 md:gap-8">
+          <div className="md:col-span-7 md:pb-14">
+            <span
+              data-reveal
+              className="mb-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-red sm:text-xs md:mb-5"
             >
-              Fazer diagnóstico <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
-            </button>
-            <WhatsAppLink
-              source="hero_whatsapp"
-              intent="Quero falar com a Vidotti sobre abertura de CNPJ, desenquadramento MEI ou troca de contador."
-              className="inline-flex min-h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-full border border-white/20 bg-transparent px-3 py-3 text-center text-xs font-semibold leading-tight text-white transition-colors hover:border-white/40 hover:bg-white/5 sm:px-8 sm:py-3.5 sm:text-sm"
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
+              Campinas desde 2002
+            </span>
+            <h1
+              data-reveal
+              data-reveal-delay="80"
+              className="max-w-3xl text-[1.85rem] font-bold leading-[1.08] tracking-[-0.03em] text-white sm:text-4xl md:text-5xl lg:text-[3.5rem]"
             >
-              Falar pelo WhatsApp
-            </WhatsAppLink>
+              Abra seu CNPJ em Campinas{" "}
+              <span className="text-white/55">com a orientação certa desde o início.</span>
+            </h1>
+            <p
+              data-reveal
+              data-reveal-delay="160"
+              className="mt-3 max-w-xl text-sm leading-6 text-white/75 md:mt-5 md:text-lg md:leading-relaxed"
+            >
+              Analisamos <mark className="hl">CNAE, natureza jurídica e regime tributário</mark>{" "}
+              antes de abrir, para evitar imposto a mais e retrabalho.
+            </p>
+
+            <div
+              data-reveal
+              data-reveal-delay="240"
+              className="mt-7 hidden flex-wrap items-center gap-4 md:flex"
+            >
+              <button
+                id="lead-form"
+                type="button"
+                onClick={() => openDiagnostic("hero_primary")}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
+              >
+                Fazer diagnóstico <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+              </button>
+              <WhatsAppLink
+                source="hero_whatsapp"
+                intent="Quero falar com a Vidotti sobre abertura de CNPJ, desenquadramento MEI ou troca de contador."
+                className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full border border-white/20 bg-transparent px-8 py-3.5 text-center text-sm font-semibold leading-tight text-white transition-colors hover:border-white/40 hover:bg-white/5"
+              >
+                Falar pelo WhatsApp
+              </WhatsAppLink>
+            </div>
+
+            <div
+              data-reveal
+              data-reveal-delay="300"
+              className="mt-6 hidden max-w-3xl grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-5 md:mt-8 md:grid md:pt-6"
+            >
+              {trustPoints.map((point) => (
+                <div key={point.title} className="px-4 first:pl-0 last:pr-0 md:px-5">
+                  <div className="flex items-center gap-2">
+                    <point.icon className="h-4 w-4 shrink-0 text-brand-red" strokeWidth={1.75} />
+                    <p className="text-sm font-semibold text-white">{point.title}</p>
+                  </div>
+                  <p className="mt-1 text-xs leading-relaxed text-white/55">{point.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <ul
-            data-reveal
-            data-reveal-delay="300"
-            className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs text-white/65 md:hidden"
-          >
-            {trustPoints.map((point) => (
-              <li key={point.title} className="flex items-center gap-1.5">
-                <point.icon className="h-3.5 w-3.5 text-brand-red" strokeWidth={2} />
-                {point.title}
-              </li>
-            ))}
-          </ul>
-          <div
-            data-reveal
-            data-reveal-delay="320"
-            className="mt-12 hidden max-w-3xl gap-3 md:grid md:grid-cols-3"
-          >
-            {trustPoints.map((point) => (
-              <div
-                key={point.title}
-                className="rounded-xl border border-white/10 bg-white/[0.04] p-4"
-              >
-                <point.icon className="mb-3 h-5 w-5 text-brand-red" strokeWidth={1.75} />
-                <p className="text-sm font-semibold text-white">{point.title}</p>
-                <p className="mt-1 text-xs leading-relaxed text-white/60">{point.text}</p>
+          <div data-reveal data-reveal-delay="280" className="relative md:col-span-5">
+            <div className="grid grid-cols-[1fr_205px] items-end gap-2 sm:grid-cols-[1fr_250px] md:block">
+              <ul className="space-y-3 pb-5 md:hidden">
+                {trustPoints.map((point) => (
+                  <li key={point.title} className="flex items-start gap-2">
+                    <point.icon
+                      className="mt-0.5 h-4 w-4 shrink-0 text-brand-red"
+                      strokeWidth={1.85}
+                    />
+                    <div>
+                      <p className="text-xs font-bold leading-tight text-white">{point.title}</p>
+                      <p className="mt-0.5 text-[11px] leading-snug text-white/55">{point.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="photo-fade relative flex items-end justify-end md:h-[520px] lg:h-[580px]">
+                <img
+                  src={heroImg}
+                  alt="Especialista da Vidotti Contabilidade"
+                  width={707}
+                  height={700}
+                  decoding="async"
+                  fetchPriority="high"
+                  className="block h-[245px] w-auto object-contain object-right-bottom sm:h-[290px] md:h-full md:w-full"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#0A0D1E] via-[#0A0D1E]/45 to-transparent md:h-16"
+                />
               </div>
-            ))}
+            </div>
+
+            <div className="mt-5 flex justify-center md:hidden">
+              <button
+                type="button"
+                onClick={() => openDiagnostic("hero_mobile_primary")}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
+              >
+                Fazer diagnóstico <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -290,7 +308,7 @@ export function Hero() {
                 title="Informe a atividade, cidade ou dúvida principal."
                 value={lead.business}
                 onChange={updateLead("business")}
-                className="w-full rounded-md border border-white/10 bg-[#0D1126] px-4 py-3 text-sm text-white placeholder-white/30 transition-all focus:border-brand-red/60 focus:outline-none focus:ring-1 focus:ring-brand-red/60"
+                className="w-full rounded-md border border-white/10 bg-[#0D1126] px-4 py-3 text-base text-white placeholder-white/30 transition-all focus:border-brand-red/60 focus:outline-none focus:ring-1 focus:ring-brand-red/60 sm:text-sm"
                 placeholder="Ex.: serviços em Campinas, loja online, TI"
               />
             </div>

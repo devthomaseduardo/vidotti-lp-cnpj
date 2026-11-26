@@ -169,7 +169,6 @@ src/
 ├── components/
 │   ├── landing/
 │   │   ├── Benefits.tsx
-│   │   ├── BrandCurves.tsx
 │   │   ├── CompanyTypes.tsx
 │   │   ├── CookieBanner.tsx
 │   │   ├── FAQ.tsx

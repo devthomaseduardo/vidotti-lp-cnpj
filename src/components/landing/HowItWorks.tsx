@@ -27,30 +27,31 @@ export function HowItWorks() {
   return (
     <section
       id="como-funciona"
-      className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-10 md:py-28"
+      className="relative overflow-hidden border-t border-white/5 bg-[#0A0D1E] py-8 md:py-16"
     >
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-6">
-        <div className="grid gap-9 md:gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+        <div className="grid gap-6 md:gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start lg:gap-14">
           <div data-reveal>
-            <span className="mb-4 inline-block rounded-full border border-white/10 px-4 py-1.5 text-xs font-semibold text-white/60 md:mb-6">
+            <span className="mb-2.5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-red md:mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
               Como funciona
             </span>
-            <h2 className="max-w-xl text-2xl font-bold leading-tight text-white sm:text-3xl md:text-5xl">
+            <h2 className="max-w-xl text-2xl font-bold leading-tight text-white sm:text-3xl md:text-[2.75rem]">
               Do diagnóstico ao CNPJ ativo <span className="text-white/55">em 4 etapas.</span>
             </h2>
-            <p className="mt-4 max-w-lg text-sm leading-6 text-white/60 md:mt-6 md:text-base md:leading-relaxed">
+            <p className="mt-3 max-w-lg text-sm leading-6 text-white/60 md:mt-4 md:text-base md:leading-relaxed">
               Você sabe o que vai acontecer, o que precisa enviar e qual regime faz sentido antes de
               abrir.
             </p>
             <a
               href="#lead-form"
               data-cta-source="process_primary"
-              className="mt-6 hidden min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 md:mt-8 md:inline-flex md:px-8 md:py-3.5"
+              className="mt-6 hidden min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5 md:inline-flex"
             >
               Fazer diagnóstico <ClipboardCheck className="h-4 w-4" strokeWidth={1.75} />
             </a>
           </div>
-          <div className="grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 md:gap-4">
+          <div className="grid grid-cols-2 gap-2.5 md:gap-4 xl:grid-cols-4">
             {steps.map((step, index) => {
               const flipped = flippedStep === index;
 
@@ -60,48 +61,49 @@ export function HowItWorks() {
                   type="button"
                   aria-pressed={flipped}
                   onClick={() => setFlippedStep((current) => (current === index ? null : index))}
-                  className="flip-card block min-h-[174px] w-full text-left outline-none focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-brand-red/70 min-[380px]:min-h-[188px] md:min-h-[228px]"
+                  className="flip-card block min-h-[168px] w-full text-left outline-none focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-brand-red/70 sm:min-h-[192px] md:min-h-[214px]"
                 >
                   <span
                     className={`flip-card-inner relative block h-full w-full rounded-2xl transition-transform duration-500 ${flipped ? "is-flipped" : ""}`}
                   >
                     <span
                       aria-hidden={flipped || undefined}
-                      className={`flip-card-face absolute inset-0 flex flex-col justify-between rounded-2xl border bg-white/[0.04] p-4 transition-colors md:p-5 ${flipped ? "border-brand-red/35" : "border-white/10 hover:border-white/20 hover:bg-white/[0.06]"}`}
+                      className={`flip-card-face absolute inset-0 flex flex-col justify-between rounded-2xl border bg-white/[0.03] p-3.5 transition-colors sm:p-4 md:p-5 ${flipped ? "border-brand-red/35" : "border-white/10 hover:border-white/20 hover:bg-white/[0.05]"}`}
                     >
-                      <span className="text-xs font-semibold tracking-[0.16em] text-white/40">
+                      <span className="text-[11px] font-semibold tracking-[0.16em] text-white/40 sm:text-xs">
                         0{index + 1}
                       </span>
-                      <StepIllustration index={index} className="mx-auto h-[72px] w-auto md:h-24" />
+                      <StepIllustration
+                        index={index}
+                        className="mx-auto h-14 w-auto sm:h-20 md:h-24"
+                      />
                       <span>
-                        <span className="block text-lg font-bold leading-tight text-white min-[380px]:text-base md:text-xl">
+                        <span className="block text-sm font-bold leading-snug text-white sm:text-base md:text-lg">
                           {step.title}
                         </span>
-                        <span className="mt-2 block text-xs font-medium text-white/60">
-                          <span className="md:hidden">Toque</span>
-                          <span className="hidden md:inline">Clique</span> para ver detalhes
+                        <span className="mt-1 block text-[11px] font-medium text-white/55 sm:text-xs">
+                          Ver detalhes
                         </span>
                       </span>
                     </span>
                     <span
                       aria-hidden={!flipped || undefined}
-                      className="flip-card-face flip-card-back absolute inset-0 flex rounded-2xl border border-brand-red/35 bg-[#151933] p-4 shadow-[0_18px_50px_-32px_rgba(215,25,32,0.75)] md:p-5"
+                      className="flip-card-face flip-card-back absolute inset-0 flex rounded-2xl border border-brand-red/35 bg-[#151933] p-3.5 transition-colors sm:p-4 md:p-5"
                     >
                       <span className="flex flex-col justify-between">
-                        <span className="flex items-center justify-between gap-3">
-                          <span className="text-xs font-semibold tracking-[0.16em] text-brand-red">
+                        <span className="flex items-center justify-between gap-2">
+                          <span className="text-[11px] font-semibold tracking-[0.16em] text-brand-red sm:text-xs">
                             0{index + 1}
                           </span>
-                          <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/35">
+                          <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/35">
                             Detalhe
                           </span>
                         </span>
-                        <span className="mt-3 text-[13px] leading-5 text-white/75 min-[380px]:text-xs md:text-base md:leading-7">
+                        <span className="mt-1.5 text-[11px] leading-[1.38] text-white/80 sm:text-xs md:mt-3 md:text-sm md:leading-6">
                           {step.text}
                         </span>
-                        <span className="mt-3 text-xs font-medium text-white/60">
-                          <span className="md:hidden">Toque</span>
-                          <span className="hidden md:inline">Clique</span> para voltar
+                        <span className="mt-1.5 text-[10px] font-medium text-white/55 sm:text-xs">
+                          Voltar
                         </span>
                       </span>
                     </span>
@@ -110,15 +112,15 @@ export function HowItWorks() {
               );
             })}
           </div>
-        </div>
-        <div className="mt-8 flex md:hidden">
-          <a
-            href="#lead-form"
-            data-cta-source="process_mobile_primary"
-            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-red px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
-          >
-            Fazer diagnóstico <ClipboardCheck className="h-4 w-4" strokeWidth={1.75} />
-          </a>
+          <div className="flex justify-center md:hidden">
+            <a
+              href="#lead-form"
+              data-cta-source="process_mobile_primary"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-8 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_-4px_rgba(215,25,32,0.5)] transition-transform hover:-translate-y-0.5"
+            >
+              Fazer diagnóstico <ClipboardCheck className="h-4 w-4" strokeWidth={1.75} />
+            </a>
+          </div>
         </div>
       </div>
     </section>

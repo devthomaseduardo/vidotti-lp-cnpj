@@ -40,8 +40,8 @@ export function Navbar() {
     >
       <nav
         aria-label="Navegação principal"
-        className={`mx-auto flex max-w-[1280px] items-center justify-between px-5 transition-all duration-300 sm:px-6 ${
-          scrolled ? "h-14 lg:h-16" : "h-14 lg:h-24"
+        className={`mx-auto flex max-w-[1440px] items-center justify-between px-4 transition-all duration-300 sm:px-6 lg:px-10 ${
+          scrolled ? "h-14 lg:h-16" : "h-14 lg:h-20"
         }`}
       >
         <a href="#top" className="flex items-center" aria-label="Voltar ao início">

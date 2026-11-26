@@ -10,7 +10,7 @@ export function Footer() {
 
   return (
     <footer className="relative border-t border-white/5 bg-[#0D1126] text-white/80">
-      <div className="mx-auto grid max-w-[1280px] grid-cols-2 gap-x-6 gap-y-6 px-6 pt-8 pb-2 md:grid-cols-2 md:gap-10 md:py-16 lg:grid-cols-[1.1fr_0.8fr_0.8fr_1.2fr]">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-x-6 gap-y-6 px-4 pt-8 pb-2 sm:px-6 md:grid-cols-2 md:gap-8 md:py-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1.2fr] lg:px-10">
         <div className="col-span-2 lg:col-span-1">
           <div className="flex items-center justify-between gap-4 lg:block">
             <img
@@ -125,7 +125,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-3 px-6 pt-3 pb-4 text-[11px] text-white/50 md:py-6 md:text-xs">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3 px-4 pt-3 pb-4 text-[11px] text-white/50 sm:px-6 md:py-4 md:text-xs lg:px-10">
           <p>
             © {new Date().getFullYear()} {publicSiteConfig.name}. Todos os direitos reservados.
           </p>

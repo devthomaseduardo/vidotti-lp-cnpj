@@ -1,42 +1,27 @@
 export const faqItems = [
   {
-    question: "Quais documentos preciso para abrir meu CNPJ?",
+    question: "Como escolho o CNAE e o regime tributário certo?",
     answer:
-      "A lista depende da atividade, endereço, tipo de empresa e exigências locais. No diagnóstico inicial, a Vidotti orienta quais dados e documentos precisam ser separados para o seu caso.",
+      "A Vidotti analisa atividade, faturamento e operação antes do protocolo para definir CNAE, natureza jurídica e regime com menor carga legal de impostos.",
   },
   {
-    question: "A Vidotti ajuda a escolher CNAE e regime tributário?",
+    question: "Sou MEI e preciso virar ME. Vocês fazem a migração?",
     answer:
-      "Sim. A Vidotti analisa atividade e cenário da empresa para orientar CNAE, natureza jurídica e regime tributário, porque essas escolhas impactam impostos, notas e obrigações desde o começo.",
+      "Sim. Avaliamos o momento certo de sair do MEI, calculamos os novos impostos e cuidamos de toda a transição para ME sem interromper suas notas.",
   },
   {
-    question: "Sou MEI e preciso desenquadrar. Vocês fazem essa migração?",
+    question: "Já tenho empresa aberta. Como funciona a troca de contador?",
     answer:
-      "Sim. A Vidotti avalia se a empresa já precisa sair do MEI, quais impactos fiscais existem e quais etapas entram na migração para uma estrutura adequada.",
+      "Conferimos documentos, certidões e rotinas atuais para assumir a contabilidade da sua empresa com segurança e sem dor de cabeça para você.",
   },
   {
-    question: "Já tenho contador. Posso trocar para a Vidotti?",
+    question: "Quais documentos preciso e qual o prazo de abertura?",
     answer:
-      "Pode. Antes da troca, a Vidotti confere documentos, pendências e rotinas para que a transição aconteça com mais visibilidade sobre o que já existe na empresa.",
+      "Documentos e prazos variam conforme a atividade e a prefeitura. No diagnóstico inicial de 2 minutos você já recebe a lista exata para o seu caso.",
   },
   {
-    question: "O atendimento é apenas para Campinas?",
+    question: "O atendimento é só para Campinas ou também digital?",
     answer:
-      "A Vidotti tem presença em Campinas/SP e também atende por canais digitais. A viabilidade depende do tipo de serviço, município e necessidade da empresa.",
-  },
-  {
-    question: "Quanto tempo leva para abrir a empresa?",
-    answer:
-      "O prazo varia conforme documentação, atividade, município e órgãos responsáveis. Por isso, a Vidotti confirma o cenário antes de assumir um prazo de abertura.",
-  },
-  {
-    question: "Quanto custa a abertura ou a assessoria?",
-    answer:
-      "O valor depende do tipo de empresa, regime, atividade e escopo de atendimento. O diagnóstico inicial serve para entender o caso antes da proposta.",
-  },
-  {
-    question: "Depois do CNPJ aberto, a Vidotti acompanha a rotina fiscal?",
-    answer:
-      "Sim. Além da abertura, a Vidotti atua com rotina contábil, fiscal, trabalhista, planejamento tributário e apoio financeiro conforme o perfil da empresa.",
+      "Temos sede física em Campinas/SP (desde 2002) e atendimento digital direto pelo WhatsApp para abertura e assessoria contábil mensal.",
   },
 ] as const;
