@@ -29,21 +29,21 @@ const services = [
 ];
 
 const logos = [
-  "/clientes/clientes1.jpg",
-  "/clientes/clientes2.jpg",
-  "/clientes/clientes3.jpg",
-  "/clientes/clientes4.jpg",
-  "/clientes/clientes5.jpg",
-  "/clientes/clientes6.jpg",
-  "/clientes/clientes7.jpg",
-  "/clientes/clientes8.jpg",
-  "/clientes/clientes9.jpg",
-  "/clientes/clientes10.jpg",
-  "/clientes/clientes11.jpg",
-  "/clientes/clientes12.jpg",
-  "/clientes/clientes13.jpg",
-  "/clientes/clientes14.jpg",
-  "/clientes/novoImg5.jpg",
+  "/clientes/clientes1.webp",
+  "/clientes/clientes2.webp",
+  "/clientes/clientes3.webp",
+  "/clientes/clientes4.webp",
+  "/clientes/clientes5.webp",
+  "/clientes/clientes6.webp",
+  "/clientes/clientes7.webp",
+  "/clientes/clientes8.webp",
+  "/clientes/clientes9.webp",
+  "/clientes/clientes10.webp",
+  "/clientes/clientes11.webp",
+  "/clientes/clientes12.webp",
+  "/clientes/clientes13.webp",
+  "/clientes/clientes14.webp",
+  "/clientes/novoImg5.webp",
 ];
 
 export function CompanyTypes() {
