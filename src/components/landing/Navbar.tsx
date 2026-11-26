@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { trackConversionEvent } from "@/lib/conversion";
 import logoNavy from "@/assets/vidotti-logo-navy.png";
 import { WhatsAppLink } from "./WhatsAppLink";
 
@@ -41,8 +40,8 @@ export function Navbar() {
     >
       <nav
         aria-label="Navegação principal"
-        className={`mx-auto flex max-w-[1280px] items-center justify-between px-5 transition-all duration-300 sm:px-6 ${
-          scrolled ? "h-14 lg:h-16" : "h-14 lg:h-24"
+        className={`mx-auto flex max-w-[1440px] items-center justify-between px-4 transition-all duration-300 sm:px-6 lg:px-10 ${
+          scrolled ? "h-14 lg:h-16" : "h-14 lg:h-20"
         }`}
       >
         <a href="#top" className="flex items-center" aria-label="Voltar ao início">
@@ -77,12 +76,7 @@ export function Navbar() {
           </WhatsAppLink>
           <a
             href="#lead-form"
-            onClick={() =>
-              trackConversionEvent("cta_clicked", {
-                source: "navbar_primary",
-                destination: "lead_form",
-              })
-            }
+            data-cta-source="navbar_primary"
             className="group inline-flex items-center gap-2 rounded-full bg-brand-red px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-14px_rgb(215_25_32_/_0.8)]"
           >
             Fazer diagnóstico
@@ -136,13 +130,8 @@ export function Navbar() {
             <div className="mt-4 grid grid-cols-2 gap-3">
               <a
                 href="#lead-form"
-                onClick={() => {
-                  setOpen(false);
-                  trackConversionEvent("cta_clicked", {
-                    source: "navbar_mobile_primary",
-                    destination: "lead_form",
-                  });
-                }}
+                data-cta-source="navbar_mobile_primary"
+                onClick={() => setOpen(false)}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-red px-4 text-center text-xs font-semibold text-white"
               >
                 Fazer diagnóstico

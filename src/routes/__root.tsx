@@ -1,4 +1,3 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
@@ -8,10 +7,16 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { CookieBanner } from "../components/landing/CookieBanner";
 import { FloatingWhatsApp } from "../components/landing/FloatingWhatsApp";
 
 import appCss from "../styles.css?url";
-import { captureInitialCampaign, trackConversionEvent } from "../lib/conversion";
+import {
+  captureInitialCampaign,
+  loadGtmContainer,
+  readConsentChoice,
+  trackConversionEvent,
+} from "../lib/conversion";
 
 const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION?.trim() || "";
 
@@ -37,7 +42,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
 
@@ -71,7 +76,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRouteWithContext<Record<string, never>>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -88,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "manifest", href: "/manifest.webmanifest" },
@@ -106,25 +111,8 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="pt-BR" suppressHydrationWarning>
       <head suppressHydrationWarning>
         <HeadContent />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MSF7R725');`,
-          }}
-        />
       </head>
       <body suppressHydrationWarning>
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MSF7R725"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
         {children}
         <Scripts />
       </body>
@@ -133,10 +121,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
-
   useEffect(() => {
     captureInitialCampaign();
+    if (readConsentChoice() === "accepted") {
+      loadGtmContainer();
+    }
     trackConversionEvent("page_view", { source: "root" });
 
     if (import.meta.env.PROD && "serviceWorker" in navigator) {
@@ -148,9 +137,10 @@ function RootComponent() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <Outlet />
+      <CookieBanner />
       <FloatingWhatsApp />
-    </QueryClientProvider>
+    </>
   );
 }

@@ -8,7 +8,7 @@ const red = "var(--brand-red)";
 
 type Props = { className?: string };
 
-/** 01 — Diagnóstico: conversa + ficha sendo preenchida. */
+/** 01: Diagnóstico: conversa + ficha sendo preenchida. */
 function Diagnostic({ className }: Props) {
   return (
     <svg viewBox="0 0 160 110" className={className} fill="none" aria-hidden="true">
@@ -38,7 +38,7 @@ function Diagnostic({ className }: Props) {
   );
 }
 
-/** 02 — Enquadramento: balança entre dois regimes. */
+/** 02: Enquadramento: balança entre dois regimes. */
 function Tax({ className }: Props) {
   return (
     <svg viewBox="0 0 160 110" className={className} fill="none" aria-hidden="true">
@@ -73,7 +73,7 @@ function Tax({ className }: Props) {
   );
 }
 
-/** 03 — Documentos: papéis empilhados com carimbo de aprovado. */
+/** 03: Documentos: papéis empilhados com carimbo de aprovado. */
 function Documents({ className }: Props) {
   return (
     <svg viewBox="0 0 160 110" className={className} fill="none" aria-hidden="true">
@@ -117,7 +117,7 @@ function Documents({ className }: Props) {
   );
 }
 
-/** 04 — Operação: calendário de guias + gráfico em ordem. */
+/** 04: Operação: calendário de guias + gráfico em ordem. */
 function Operation({ className }: Props) {
   return (
     <svg viewBox="0 0 160 110" className={className} fill="none" aria-hidden="true">

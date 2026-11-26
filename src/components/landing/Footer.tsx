@@ -1,20 +1,25 @@
+import { Link } from "@tanstack/react-router";
 import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 import logoNavy from "@/assets/vidotti-logo-navy.png";
+import { publicSiteConfig } from "@/generated/site-config";
 import { WhatsAppLink } from "./WhatsAppLink";
 
 export function Footer() {
+  const { contact } = publicSiteConfig;
+  const [streetAddress, cityStateZip] = contact.address.split(", Campinas, ");
+
   return (
     <footer className="relative border-t border-white/5 bg-[#0D1126] text-white/80">
-      <div className="mx-auto grid max-w-[1280px] grid-cols-2 gap-x-6 gap-y-6 px-6 pt-8 pb-2 md:grid-cols-2 md:gap-10 md:py-16 lg:grid-cols-[1.1fr_0.8fr_0.8fr_1.2fr]">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-x-6 gap-y-6 px-4 pt-8 pb-2 sm:px-6 md:grid-cols-2 md:gap-8 md:py-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1.2fr] lg:px-10">
         <div className="col-span-2 lg:col-span-1">
           <div className="flex items-center justify-between gap-4 lg:block">
             <img
               src={logoNavy}
-              alt="Vidotti Contabilidade"
+              alt={publicSiteConfig.name}
               className="h-7 w-auto brightness-0 invert md:h-8"
             />
             <a
-              href="https://instagram.com/vidotticontabilidade2002"
+              href={contact.instagram}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram da Vidotti"
@@ -39,7 +44,7 @@ export function Footer() {
             ].map((item) => (
               <li key={item}>
                 <a
-                  href="#empresas"
+                  href="/#empresas"
                   className="text-white/60 transition-colors hover:text-brand-red"
                 >
                   {item}
@@ -55,29 +60,29 @@ export function Footer() {
           <ul className="space-y-1.5 text-xs md:space-y-2 md:text-sm">
             <li>
               <a
-                href="#como-funciona"
+                href="/#como-funciona"
                 className="text-white/60 transition-colors hover:text-brand-red"
               >
                 Como funciona
               </a>
             </li>
             <li>
-              <a href="#prova" className="text-white/60 transition-colors hover:text-brand-red">
+              <a href="/#prova" className="text-white/60 transition-colors hover:text-brand-red">
                 Confiança
               </a>
             </li>
             <li>
-              <a href="#faq" className="text-white/60 transition-colors hover:text-brand-red">
+              <a href="/#faq" className="text-white/60 transition-colors hover:text-brand-red">
                 Dúvidas frequentes
               </a>
             </li>
             <li>
-              <a
-                href="/politica-de-privacidade"
+              <Link
+                to="/politica-de-privacidade"
                 className="text-white/60 transition-colors hover:text-brand-red"
               >
                 Política de Privacidade
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -92,35 +97,41 @@ export function Footer() {
                 withIcon={false}
                 className="text-white/60 transition-colors hover:text-brand-red"
               >
-                (19) 99372-6183
+                {contact.whatsappDisplay}
               </WhatsAppLink>
             </li>
             <li className="flex items-start gap-2.5 md:gap-3">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" strokeWidth={1.5} />
               <a
-                href="mailto:contato@vidotticontabilidade.com.br"
+                href={`mailto:${contact.email}`}
                 className="break-all text-white/60 transition-colors hover:text-brand-red"
               >
-                contato@vidotticontabilidade.com.br
+                {contact.email}
               </a>
             </li>
             <li className="flex items-start gap-2.5 md:gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" strokeWidth={1.5} />
               <span className="text-white/60">
-                Av. Dermival Bernardes Siqueira, 1790
-                <br />
-                Campinas, SP 13049-252
+                {streetAddress}
+                {cityStateZip ? (
+                  <>
+                    <br />
+                    Campinas, {cityStateZip}
+                  </>
+                ) : null}
               </span>
             </li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-3 px-6 pt-3 pb-0 text-[11px] text-white/50 md:py-6 md:text-xs">
-          <p>© {new Date().getFullYear()} Vidotti Contabilidade. Todos os direitos reservados.</p>
-          <a href="/politica-de-privacidade" className="transition-colors hover:text-white/80">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-3 px-4 pt-3 pb-4 text-[11px] text-white/50 sm:px-6 md:py-4 md:text-xs lg:px-10">
+          <p>
+            © {new Date().getFullYear()} {publicSiteConfig.name}. Todos os direitos reservados.
+          </p>
+          <Link to="/politica-de-privacidade" className="transition-colors hover:text-white/80">
             Privacidade
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

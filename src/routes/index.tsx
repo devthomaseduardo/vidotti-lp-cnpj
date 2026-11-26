@@ -5,7 +5,8 @@ import { Benefits } from "@/components/landing/Benefits";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { CompanyTypes } from "@/components/landing/CompanyTypes";
 import { Testimonials } from "@/components/landing/Testimonials";
-import { FAQ, faqItems } from "@/components/landing/FAQ";
+import { FAQ } from "@/components/landing/FAQ";
+import { faqItems } from "@/components/landing/faq-data";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
@@ -127,8 +128,8 @@ function Index() {
         <Hero />
         <CompanyTypes />
         <Benefits />
-        <HowItWorks />
         <Testimonials />
+        <HowItWorks />
         <FAQ />
         <FinalCTA />
       </main>

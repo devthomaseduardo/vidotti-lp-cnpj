@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Montserrat", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -189,8 +189,8 @@
 }
 
 @utility photo-fade {
-  mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
 }
 
 @keyframes wave-expand {
@@ -226,6 +226,28 @@
   animation: float-msg-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) 1.8s both;
 }
 
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -255,6 +277,10 @@
   .wave-ring,
   .floating-whatsapp-msg {
     animation: none !important;
+  }
+
+  .flip-card-inner {
+    transition: none !important;
   }
 }
 

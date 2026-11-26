@@ -1,21 +1,11 @@
-# Routes
+# Rotas
 
-TanStack Start uses **file-based routing**. Every `.tsx` file in this directory
-defines a route. Do **not** create `src/pages/`, `src/routes/_app/index.tsx`, or
-`app/layout.tsx` — those are Next.js / Remix conventions. The only root layout
-is `src/routes/__root.tsx`.
+O projeto utiliza roteamento baseado em arquivos do TanStack Start. Cada arquivo `.tsx` neste diretório define uma rota pública:
 
-## Conventions
+| Arquivo                       | Rota                       | Função                                                                 |
+| ----------------------------- | -------------------------- | ---------------------------------------------------------------------- |
+| `__root.tsx`                  | Layout raiz                | Cabeçalho HTML, fontes, aviso de cookies e botão flutuante do WhatsApp |
+| `index.tsx`                   | `/`                        | Landing page principal e JSON-LD de SEO                                |
+| `politica-de-privacidade.tsx` | `/politica-de-privacidade` | Política de Privacidade e LGPD                                         |
 
-| File                     | URL                                                     |
-| ------------------------ | ------------------------------------------------------- |
-| `index.tsx`              | `/`                                                     |
-| `about.tsx`              | `/about`                                                |
-| `users/index.tsx`        | `/users`                                                |
-| `users/$id.tsx`          | `/users/:id` (dynamic — bare `$`, no curly braces)      |
-| `posts/{-$category}.tsx` | `/posts/:category?` (optional segment)                  |
-| `files/$.tsx`            | `/files/*` (splat — read via `_splat` param, never `*`) |
-| `_layout.tsx`            | layout route (renders children via `<Outlet />`)        |
-| `__root.tsx`             | app shell — wraps every page; preserve `<Outlet />`     |
-
-`routeTree.gen.ts` is auto-generated. Don't edit it by hand.
+O arquivo `src/routeTree.gen.ts` é gerado automaticamente pelo plugin do TanStack Router e não deve ser editado manualmente.
